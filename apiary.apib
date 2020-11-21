@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://polls.apiblueprint.org/
+HOST: http://laikapp.herokuapp.com
 
 # Laika API
 
@@ -257,7 +257,7 @@ You may add a new mission using this action. It takes a JSON object containing t
             "tags": ["esa", "exoplanets"],
         }
 
-### Update a specific mission [POST]
+### Update a specific mission [PUT]
 
 You may update an existing news using this action. It takes a JSON object containing the new complete information.
 
@@ -415,7 +415,7 @@ You may add a new astronaut using this action. It takes a JSON object containing
                 "agency": "ESA",
             }
 
-### Update a specific astronaut [POST]
+### Update a specific astronaut [PUT]
 
 You may update an existing astronaut using this action. It takes a JSON object containing the new complete information.
 
@@ -574,7 +574,7 @@ You may add a new telescope using this action. It takes a JSON object containing
             "tags": ["jaxa"],
         }
 
-### Update a specific telescope [POST]
+### Update a specific telescope [PUT]
 
 You may update an existing telescope using this action. It takes a JSON object containing the new complete information.
 
@@ -738,7 +738,7 @@ You may add a newly discovered exoplanet using this action. It takes a JSON obje
             "tags": ["kepler"],
         }
 
-### Update a specific exoplanet [POST]
+### Update a specific exoplanet [PUT]
 
 You may update an existing exoplanet using this action. It takes a JSON object containing the new complete information.
 
@@ -822,4 +822,101 @@ You may get the latest exoplanets using this action. You need to specify the num
                         "tags": ["kepler"],
                     }
                 ]
+            }
+            
+## Creating and deleting user accounts [/signup]
+
+### Sign up [POST]
+
+You may sign up by providing a username and password. It takes a JSON object containing the necessary information.
+
++ Request (application/json)
+
+            {
+                "username": "user1",
+                "password": "password",
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
+            }
+            
+### Delete an account [DELETE]
+
+You may delete your account if you're signed in.
+
++ Request (application/json)
+
+            {
+                "token": 2
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
+            }
+            
+## Signing in [/signin]
+            
+### Sign in [POST]
+
+You may sign in to an existing user account by providing a username and password.
+
++ Request (application/json)
+
+            {
+                "username": "user2",
+                "password": "password",
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
+                "token": 2,
+                "img": "",
+                "saved_articles": [],
+                "followed_missions": [],
+            }
+            
+## Updating your profile picture [/updatepic]
+            
+### Update your user pic [POST]
+
+You may update your profile picture if you're signed into your account.
+
++ Request (application/json)
+
+            {
+                "token": 2,
+                "img": "",
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
             }
