@@ -11,7 +11,6 @@ Laika is an API service to return astronomy information and data. It can be used
 
 + Response 200 (application/json)
 
-        [
             {
                 "news": [
                     {
@@ -21,6 +20,7 @@ Laika is an API service to return astronomy information and data. It can be used
                         "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
                         "img": "",
                         "source": "https://www.nasa.gov",
+                        "tags": ["nasa", "spacex", "iss"],
                     }, {
                         "id": 2,
                         "date": "17/11/2020",
@@ -28,6 +28,7 @@ Laika is an API service to return astronomy information and data. It can be used
                         "content": " The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.",
                         "img": "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2046a.jpg"
                         "source": "https://www.nasa.gov",
+                        "tags": ["nasa", "spacex", "iss"],
                     }, {
                         "id": 3,
                         "date": "17/11/2020",
@@ -35,10 +36,10 @@ Laika is an API service to return astronomy information and data. It can be used
                         "content": "NASA will host a media teleconference at 1 p.m. EST Friday, Nov. 20, to discuss science investigations and a new privately funded airlock launching on SpaceX’s 21st commercial cargo resupply mission for the agency to the International Space Station.",
                         "img": ""
                         "source": "https://www.nasa.gov",
+                        "tags": ["nasa"],
                     }
                 ]
             }
-        ]
 
 ### Add a new news [POST]
 
@@ -52,13 +53,14 @@ You may add a new news using this action. It takes a JSON object containing the 
             "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
             "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
             "source": "https://www.esa.int",
+            "tags": ["nasa"],
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/4
+            Location: /news/4
 
     + Body
 
@@ -84,6 +86,7 @@ You may add a new news using this action. It takes a JSON object containing the 
             "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
             "img": "",
             "source": "https://www.nasa.gov",
+            "tags": ["nasa"],
         }
 
 ### Update a specific news [POST]
@@ -99,13 +102,14 @@ You may update an existing news using this action. It takes a JSON object contai
             "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
             "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
             "source": "https://www.esa.int",
+            "tags": ["nasa"],
         }
 
 + Response 202 (application/json)
 
     + Headers
 
-            Location: /questions/4
+            Location: /news/4
 
     + Body
 
@@ -148,7 +152,6 @@ You may get the latest news using this action. You need to specify the number of
 
 + Response 200 (application/json)
 
-        [
             {
                 "news": [
                     {
@@ -158,6 +161,7 @@ You may get the latest news using this action. You need to specify the number of
                         "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
                         "img": "",
                         "source": "https://www.nasa.gov",
+                        "tags": ["nasa", "spacex", "iss"],
                     }, {
                         "id": 2,
                         "date": "17/11/2020",
@@ -165,6 +169,7 @@ You may get the latest news using this action. You need to specify the number of
                         "content": " The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.",
                         "img": "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2046a.jpg"
                         "source": "https://www.nasa.gov",
+                        "tags": ["nasa", "spacex", "iss"],
                     }, {
                         "id": 3,
                         "date": "17/11/2020",
@@ -172,89 +177,84 @@ You may get the latest news using this action. You need to specify the number of
                         "content": "NASA will host a media teleconference at 1 p.m. EST Friday, Nov. 20, to discuss science investigations and a new privately funded airlock launching on SpaceX’s 21st commercial cargo resupply mission for the agency to the International Space Station.",
                         "img": ""
                         "source": "https://www.nasa.gov",
+                        "tags": ["nasa"],
                     }
                 ]
             }
-        ]
+            
 ## Missions [/missions]
 
 ### List all missions [GET]
 
 + Response 200 (application/json)
 
-        [
             {
-                "news": [
+                "missions": [
                     {
                         "id": 1,
                         "date": "16/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Headed to International Space Station",
-                        "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
+                        "title": "CREW-1 MISSION",
+                        "content": "n Monday, November 16 at 11:01 p.m. EST, 04:01 UTC on November 17, SpaceX’s Dragon autonomously docked with the International Space Station (ISS) after Falcon 9 launched the spacecraft to orbit from historic Launch Complex 39A (LC-39A) at NASA’s Kennedy Space Center in Florida on Sunday, November 15, 2020.",
                         "img": "",
-                        "source": "https://www.nasa.gov",
+                        "source": "https://www.spacex.com/updates/crew-1-docks-to-iss/index.html",
+                        "tags": ["iss", "spacex", "nasa"],
                     }, {
                         "id": 2,
-                        "date": "17/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Arrive at Space Station",
-                        "content": " The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.",
-                        "img": "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2046a.jpg"
-                        "source": "https://www.nasa.gov",
-                    }, {
-                        "id": 3,
-                        "date": "17/11/2020",
-                        "title": "NASA Highlights Science, New Airlock on Space Station Resupply Mission",
-                        "content": "NASA will host a media teleconference at 1 p.m. EST Friday, Nov. 20, to discuss science investigations and a new privately funded airlock launching on SpaceX’s 21st commercial cargo resupply mission for the agency to the International Space Station.",
+                        "date": "18/12/2019",
+                        "title": "Cheops",
+                        "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
                         "img": ""
-                        "source": "https://www.nasa.gov",
+                        "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+                        "tags": ["esa", "exoplanets"],
                     }
                 ]
             }
-        ]
 
 ### Add a new missions [POST]
 
-You may add a new news using this action. It takes a JSON object containing the necessary information.
+You may add a new mission using this action. It takes a JSON object containing the necessary information.
 
 + Request (application/json)
 
         {
-            "date": "21/11/2020",
-            "title": "Sea-level monitoring satellite in position for liftoff",
-            "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
-            "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
-            "source": "https://www.esa.int",
+            "date": "18/12/2019",
+            "title": "Cheops",
+            "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
+            "img": ""
+            "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+            "tags": ["esa", "exoplanets"],
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/4
+            Location: /missions/2
 
     + Body
 
             {
-                "id": 4,
-                "date": "21/11/2020",
-                "title": "Sea-level monitoring satellite in position for liftoff",
-                "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
-                "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
-                "source": "https://www.esa.int",
+                "date": "18/12/2019",
+                "title": "Cheops",
+                "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
+                "img": ""
+                "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+                "tags": ["esa", "exoplanets"],
             }
 
-## Specific Mission [/missions/{id}]
+## Specific Missions [/missions/{id}]
 
 ### Get a specific mission [GET]
 
 + Response 200 (application/json)
 
         {
-            "id": 1,
-            "date": "16/11/2020",
-            "title": "NASA’s SpaceX Crew-1 Astronauts Headed to International Space Station",
-            "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
-            "img": "",
-            "source": "https://www.nasa.gov",
+            "date": "18/12/2019",
+            "title": "Cheops",
+            "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
+            "img": ""
+            "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+            "tags": ["esa", "exoplanets"],
         }
 
 ### Update a specific mission [POST]
@@ -264,34 +264,36 @@ You may update an existing news using this action. It takes a JSON object contai
 + Request (application/json)
 
         {
-            "id": 4,
-            "date": "21/11/2020",
-            "title": "Sea-level monitoring satellite in position for liftoff",
-            "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
-            "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
-            "source": "https://www.esa.int",
+            "id": 2
+            "date": "18/12/2019",
+            "title": "Cheops",
+            "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
+            "img": ""
+            "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+            "tags": ["esa", "exoplanets"],
         }
 
 + Response 202 (application/json)
 
     + Headers
 
-            Location: /questions/4
+            Location: /missions/2
 
     + Body
 
             {
-                "id": 4,
-                "date": "21/11/2020",
-                "title": "Sea-level monitoring satellite in position for liftoff",
-                "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
-                "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
-                "source": "https://www.esa.int",
+                "id": 2
+                "date": "18/12/2019",
+                "title": "Cheops",
+                "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
+                "img": ""
+                "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+                "tags": ["esa", "exoplanets"],
             }
 
 ### Delete a specific mission [DELETE]
 
-You may delete an existing news using this action. It takes a JSON object containing the id of the news to delete.
+You may delete an existing mission using this action. It takes a JSON object containing the id of the mission to delete.
 
 + Request (application/json)
 
@@ -303,7 +305,7 @@ You may delete an existing news using this action. It takes a JSON object contai
 
     + Headers
 
-            Location: /questions/4
+            Location: /missions/4
 
     + Body
 
@@ -315,35 +317,182 @@ You may delete an existing news using this action. It takes a JSON object contai
 
 ### Get the latest mission [GET]
 
-You may get the latest news using this action. You need to specify the number of how many news you want to be returned.
+You may get the latest missions using this action. You need to specify the number of how many missions you want to be returned.
 
 + Response 200 (application/json)
 
-        [
             {
-                "news": [
+                "missions": [
                     {
                         "id": 1,
                         "date": "16/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Headed to International Space Station",
-                        "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
+                        "title": "CREW-1 MISSION",
+                        "content": "n Monday, November 16 at 11:01 p.m. EST, 04:01 UTC on November 17, SpaceX’s Dragon autonomously docked with the International Space Station (ISS) after Falcon 9 launched the spacecraft to orbit from historic Launch Complex 39A (LC-39A) at NASA’s Kennedy Space Center in Florida on Sunday, November 15, 2020.",
                         "img": "",
-                        "source": "https://www.nasa.gov",
+                        "source": "https://www.spacex.com/updates/crew-1-docks-to-iss/index.html",
+                        "tags": ["iss", "spacex", "nasa"],
                     }, {
                         "id": 2,
-                        "date": "17/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Arrive at Space Station",
-                        "content": " The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.",
-                        "img": "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2046a.jpg"
-                        "source": "https://www.nasa.gov",
-                    }, {
-                        "id": 3,
-                        "date": "17/11/2020",
-                        "title": "NASA Highlights Science, New Airlock on Space Station Resupply Mission",
-                        "content": "NASA will host a media teleconference at 1 p.m. EST Friday, Nov. 20, to discuss science investigations and a new privately funded airlock launching on SpaceX’s 21st commercial cargo resupply mission for the agency to the International Space Station.",
+                        "date": "18/12/2019",
+                        "title": "Cheops",
+                        "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
                         "img": ""
-                        "source": "https://www.nasa.gov",
+                        "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+                        "tags": ["esa", "exoplanets"],
                     }
                 ]
             }
-        ]
+            
+## Astronauts [/astronauts]
+
+### List all astronauts [GET]
+
++ Response 200 (application/json)
+
+            {
+                "astronauts": [
+                    {
+                        "id": 1,
+                        "birth": "27/09/1976",
+                        "name": "Luca Parmitano",
+                        "nationality": "Italy",
+                        "img": "",
+                        "agency": "ESA",
+                    }, {
+                        "id": 2,
+                        "birth": "19/09/1987",
+                        "name": "Kayla Barron",
+                        "nationality": "US",
+                        "img": "",
+                        "agency": "NASA",
+                    }
+                ]
+            }
+
+### Add a new astronaut [POST]
+
+You may add a new astronaut using this action. It takes a JSON object containing the necessary information.
+
++ Request (application/json)
+
+            {
+                "birth": "11/01/1975",
+                "name": "Robert Hines",
+                "nationality": "US",
+                "img": "",
+                "agency": "NASA",
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /astroanuts/2
+
+    + Body
+
+            {
+                "id": 3,
+                "birth": "11/01/1975",
+                "name": "Robert Hines",
+                "nationality": "US",
+                "img": "",
+                "agency": "NASA",
+            }
+
+## Specific astronauts [/astronauts/{id}]
+
+### Get a specific astronaut [GET]
+
++ Response 200 (application/json)
+
+            {
+                "id": 1,
+                "birth": "27/09/1976",
+                "name": "Luca Parmitano",
+                "nationality": "Italy",
+                "img": "",
+                "agency": "ESA",
+            }
+
+### Update a specific astronaut [POST]
+
+You may update an existing astronaut using this action. It takes a JSON object containing the new complete information.
+
++ Request (application/json)
+
+        {
+            "id": 1,
+            "birth": "27/09/1976",
+            "name": "Luca Parmitano",
+            "nationality": "Italy",
+            "img": "",
+            "agency": "ESA",
+        }
+
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /astronauts/1
+
+    + Body
+
+            {
+                "id": 1,
+                "birth": "27/09/1976",
+                "name": "Luca Parmitano",
+                "nationality": "Italy",
+                "img": "",
+                "agency": "ESA",
+            }
+
+### Delete a specific astronaut [DELETE]
+
+You may delete an existing astronaut using this action. It takes a JSON object containing the id of the mission to delete.
+
++ Request (application/json)
+
+        {
+            "id": 4,
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /astronauts/4
+
+    + Body
+
+            {
+                "id": 4,
+            }
+
+## Latest astronauts [/astronauts/{size}]
+
+### Get the latest mission [GET]
+
+You may get the latest astronauts using this action. You need to specify the number of how many astronauts you want to be returned.
+
++ Response 200 (application/json)
+
+            {
+                "astronauts": [
+                    {
+                        "id": 1,
+                        "birth": "27/09/1976",
+                        "name": "Luca Parmitano",
+                        "nationality": "Italy",
+                        "img": "",
+                        "agency": "ESA",
+                    }, {
+                        "id": 2,
+                        "birth": "19/09/1987",
+                        "name": "Kayla Barron",
+                        "nationality": "US",
+                        "img": "",
+                        "agency": "NASA",
+                    }
+                ]
+            }
