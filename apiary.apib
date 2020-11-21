@@ -659,3 +659,167 @@ You may get the latest telescopes using this action. You need to specify the num
                     }
                 ]
             }
+            
+## Exoplanets [/exoplanets]
+
+### List all exoplanets [GET]
+
++ Response 200 (application/json)
+
+            {
+                "exoplanets": [
+                    {
+                        "id": 1,
+                        "discovery_date": "21/10/2013",
+                        "name": "WASP-76b",
+                        "description": "WASP-76b is a hot Jupiter exoplanet discovered during 2013 that can be found in the constellation Pisces. It orbits a F-type star BD+01 316 (WASP-76) and has a size 0.92 that of Jupiter's mass.",
+                        "img": "",
+                        "source": "https://en.wikipedia.org/wiki/WASP-76b",
+                        "tags": ["nasa"],
+                    }, {
+                        "id": 2,
+                        "date": "15/04/2020",
+                        "title": "Kepler-1649c",
+                        "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+                        "img": []
+                        "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+                        "tags": ["kepler"],
+                    }
+                ]
+            }
+
+### Add a new exoplanet [POST]
+
+You may add a newly discovered exoplanet using this action. It takes a JSON object containing the necessary information.
+
++ Request (application/json)
+
+            {
+                "id": 2,
+                "date": "15/04/2020",
+                "title": "Kepler-1649c",
+                "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+                "img": []
+                "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+                "tags": ["kepler"],
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /exoplanets/2
+
+    + Body
+
+            {
+                "id": 2,
+                "date": "15/04/2020",
+                "title": "Kepler-1649c",
+                "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+                "img": []
+                "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+                "tags": ["kepler"],
+            }
+
+## Specific exoplanet [/exoplanets/{id}]
+
+### Get a specific exoplanet [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 2,
+            "date": "15/04/2020",
+            "title": "Kepler-1649c",
+            "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+            "img": []
+            "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+            "tags": ["kepler"],
+        }
+
+### Update a specific exoplanet [POST]
+
+You may update an existing exoplanet using this action. It takes a JSON object containing the new complete information.
+
++ Request (application/json)
+
+        {
+            "id": 2,
+            "date": "15/04/2020",
+            "title": "Kepler-1649c",
+            "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+            "img": []
+            "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+            "tags": ["kepler"],
+        }
+
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /exoplanets/2
+
+    + Body
+
+            {
+                "id": 2,
+                "date": "15/04/2020",
+                "title": "Kepler-1649c",
+                "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+                "img": []
+                "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+                "tags": ["kepler"],
+            }
+
+### Delete a specific exoplanet [DELETE]
+
+You may delete an existing exoplanet using this action. It takes a JSON object containing the id of the telescope to delete.
+
++ Request (application/json)
+
+        {
+            "id": 4,
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /exoplanets/4
+
+    + Body
+
+            {
+                "id": 4,
+            }
+
+## Latest exoplanets [/exoplanets/{size}]
+
+### Get the latest exoplanets [GET]
+
+You may get the latest exoplanets using this action. You need to specify the number of how many exoplanets you want to be returned.
+
++ Response 200 (application/json)
+
+            {
+                "exoplanets": [
+                    {
+                        "id": 1,
+                        "discovery_date": "21/10/2013",
+                        "name": "WASP-76b",
+                        "description": "WASP-76b is a hot Jupiter exoplanet discovered during 2013 that can be found in the constellation Pisces. It orbits a F-type star BD+01 316 (WASP-76) and has a size 0.92 that of Jupiter's mass.",
+                        "img": "",
+                        "source": "https://en.wikipedia.org/wiki/WASP-76b",
+                        "tags": ["nasa"],
+                    }, {
+                        "id": 2,
+                        "date": "15/04/2020",
+                        "title": "Kepler-1649c",
+                        "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+                        "img": []
+                        "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+                        "tags": ["kepler"],
+                    }
+                ]
+            }
