@@ -496,3 +496,166 @@ You may get the latest astronauts using this action. You need to specify the num
                     }
                 ]
             }
+            
+## Telescopes [/telescopes]
+
+### List all telescopes [GET]
+
++ Response 200 (application/json)
+
+            {
+                "telescopes": [
+                    {
+                        "id": 1,
+                        "launch_date": "24/04/1990",
+                        "name": "Hubble Space Telescope",
+                        "description": "The Hubble Space Telescope (often referred to as HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, well known both as a vital research tool and as a public relations boon for astronomy.",
+                        "img": [],
+                        "source": "https://www.nasa.gov/mission_pages/hubble/main/index.html",
+                        "tags": ["nasa", "esa"],
+                    }, {
+                        "id": 2,
+                        "date": "14/09/2013",
+                        "title": "Hisaki Satellite",
+                        "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                        "img": []
+                        "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+                        "tags": ["jaxa"],
+                    }
+                ]
+            }
+
+### Add a new telescope [POST]
+
+You may add a new telescope using this action. It takes a JSON object containing the necessary information.
+
++ Request (application/json)
+
+            {
+                "date": "14/09/2013",
+                "title": "Hisaki Satellite",
+                "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                "img": []
+                "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+                "tags": ["jaxa"],
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /telescopes/2
+
+    + Body
+
+            {
+                "id": 2,
+                "date": "14/09/2013",
+                "title": "Hisaki Satellite",
+                "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                "img": []
+                "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+                "tags": ["jaxa"],
+            }
+
+## Specific telescope [/telescopes/{id}]
+
+### Get a specific telescope [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 2,
+            "date": "14/09/2013",
+            "title": "Hisaki Satellite",
+            "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+            "img": []
+            "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+            "tags": ["jaxa"],
+        }
+
+### Update a specific telescope [POST]
+
+You may update an existing telescope using this action. It takes a JSON object containing the new complete information.
+
++ Request (application/json)
+
+        {
+            "id": 2,
+            "date": "14/09/2013",
+            "title": "Hisaki Satellite",
+            "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+            "img": []
+            "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+            "tags": ["jaxa"],
+        }
+
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /telescopes/2
+
+    + Body
+
+            {
+                "id": 2,
+                "date": "14/09/2013",
+                "title": "Hisaki Satellite",
+                "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                "img": []
+                "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+                "tags": ["jaxa"],
+            }
+
+### Delete a specific telescope [DELETE]
+
+You may delete an existing telescope using this action. It takes a JSON object containing the id of the telescope to delete.
+
++ Request (application/json)
+
+        {
+            "id": 4,
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /telescopes/4
+
+    + Body
+
+            {
+                "id": 4,
+            }
+
+## Latest telescopes [/telescopes/{size}]
+
+### Get the latest telescopes [GET]
+
+You may get the latest telescopes using this action. You need to specify the number of how many telescopes you want to be returned.
+
++ Response 200 (application/json)
+
+            {
+                "telescopes": [
+                    {
+                        "id": 1,
+                        "launch_date": "24/04/1990",
+                        "name": "Hubble Space Telescope",
+                        "description": "The Hubble Space Telescope (often referred to as HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, well known both as a vital research tool and as a public relations boon for astronomy.",
+                        "img": [],
+                        "source": "https://www.nasa.gov/mission_pages/hubble/main/index.html",
+                        "tags": ["nasa", "esa"],
+                    }, {
+                        "id": 2,
+                        "date": "14/09/2013",
+                        "title": "Hisaki Satellite",
+                        "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                        "img": []
+                        "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+                        "tags": ["jaxa"],
+                    }
+                ]
+            }
