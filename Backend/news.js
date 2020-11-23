@@ -30,6 +30,17 @@ var newslist = [{
 router.get('', async (req, res) => {
     res.status(200).json(newslist);
 });
+
+router.get('/:id', async (req, res) => {
+    var id = req.params.id;
+    var news = newslist.find( (p) => p.id == id );
+    var n_elements = 3;
+    if (news !== undefined){
+        res.status(200).send(news);
+    } else {
+        res.status(404).send('Not found');
+    }
+});
 /*
 router.post('', async (req, res) => {
 
