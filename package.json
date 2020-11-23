@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "cd Frontend && vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "cd Frontend && vue-cli-service build",
+    "lint": "cd Frontend && vue-cli-service lint"
   },
   "repository": {
     "type": "git",
