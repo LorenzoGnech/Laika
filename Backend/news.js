@@ -50,21 +50,13 @@ router.get('/latest/:size', async (req, res) => {
     }
 });
 
-/*
 router.post('', async (req, res) => {
 
-	let book = new Book({
-        title: req.body.title
-    });
+    console.log(req.body)
     
-	book = await book.save();
-    
-    let bookId = book.id;
-
-    console.log('Book saved successfully');
+    console.log('News saved successfully');
 
     res.location("/api/v1/books/" + bookId).status(201).send();
 });
-*/
 
 module.exports = router;
