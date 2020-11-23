@@ -19,8 +19,21 @@ var astronauts = [
     }
 ];
 
+
+
 router.get('', async (req, res) => {
     res.status(200).json(astronauts);
 });
+
+router.get('/:id', async (req, res) => {
+    var id = req.params.id;
+    var astro = astronauts.find( (p) => p.id == id );
+    if (astro !== undefined){
+        res.status(200).send(astro);
+    } else {
+        res.status(404).send('Not found');
+    }
+});
+
 
 module.exports = router;
