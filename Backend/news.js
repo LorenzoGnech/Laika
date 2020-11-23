@@ -34,13 +34,22 @@ router.get('', async (req, res) => {
 router.get('/:id', async (req, res) => {
     var id = req.params.id;
     var news = newslist.find( (p) => p.id == id );
-    var n_elements = 3;
     if (news !== undefined){
         res.status(200).send(news);
     } else {
         res.status(404).send('Not found');
     }
 });
+
+router.get('/latest/:size', async (req, res) => {
+    var size = req.params.size;
+    if (size <= newslist.length){
+        res.status(200).send(newslist.slice(0, size));
+    } else {
+        res.status(200).send(newslist);
+    }
+});
+
 /*
 router.post('', async (req, res) => {
 
