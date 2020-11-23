@@ -1,0 +1,22 @@
+{
+  "name": "laika",
+  "version": "1.0.0",
+  "description": "Laika project for \"Ingegneria del Software 2\" 2020",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LorenzoGnech/Laika.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LorenzoGnech/Laika/issues"
+  },
+  "homepage": "https://github.com/LorenzoGnech/Laika",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
