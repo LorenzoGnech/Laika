@@ -26,4 +26,14 @@ router.get('', async (req, res) => {
     res.status(200).json(missionslist);
 });
 
+router.get('/:id', async (req,res) => {
+    var id = req.params.id;
+    var mission = missionslist.find( (p) => p.id == id );
+    if (mission !== undefined){
+        res.status(200).send(mission)
+    }else{
+        res.status(404).send('Page not found');
+    }
+});
+
 module.exports = router;
