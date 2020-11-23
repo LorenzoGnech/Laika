@@ -897,20 +897,88 @@ You may sign in to an existing user account by providing a username and password
                 "followed_missions": [],
             }
             
-## Updating your profile picture [/updatepic]
+## Saved News [/save]
             
-### Update your user pic [POST]
+### Save a specific article [POST]
 
-You may update your profile picture if you're signed into your account.
+If you're signed into your account, you may save an article to then read it later.
 
 + Request (application/json)
 
             {
                 "token": 2,
-                "img": "",
+                "article_id": 3,
             }
 
-+ Response 200 (application/json)
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
+            }
+
+### Delete a specific article [DELETE]
+
+If you're signed into your account, you may delete an article you saved previously.
+
++ Request (application/json)
+
+            {
+                "token": 2,
+                "article_id": 3,
+            }
+
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
+            }
+
+## Followed Missions [/follow]
+            
+### Follow a specific mission [POST]
+
+If you're signed into your account, you may follow a specific mission to receive updates of it by name.
+
++ Request (application/json)
+
+            {
+                "token": 2,
+                "mission_id": 3,
+            }
+
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
+            }
+
+### Unfollow a specific mission [DELETE]
+
+If you're signed into your account, you unfollow a mission you followed earlier.
+
++ Request (application/json)
+
+            {
+                "token": 2,
+                "mission_id": 3,
+            }
+
++ Response 202 (application/json)
 
     + Headers
 
