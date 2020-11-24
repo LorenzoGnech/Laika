@@ -74,4 +74,22 @@ router.delete('/:id', async (req,res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+
+    var id = req.params.id;
+
+    var index = astronauts.findIndex(p => p.id == id);
+
+    if(index !== undefined && index >= 0){
+        astronauts[index].birth = req.body.birth;
+        astronauts[index].name = req.body.name;
+        astronauts[index].nationality = req.body.nationality;
+        astronauts[index].img = req.body.img;
+        astronauts[index].agency = req.body.agency;
+        res.status(200).send('Astronaut updated');
+    } else {
+        res.status(404).send('Not found');
+    }
+});
+
 module.exports = router;
