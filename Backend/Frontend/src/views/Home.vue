@@ -41,7 +41,7 @@ export default {
   },
   data: function(){
     return {
-      news: {},
+      info: "",
       cardsHeight: 450,
       cardsWidth: 320,
       missions: {
@@ -80,8 +80,10 @@ export default {
   },
   mounted(){
     axios
-      .get('https://laikapp.herokuapp.com/api/v1/news')
+      .get('http://localhost:3000/api/v1/news')
       .then(response => (console.log(response.data)));
+  },
+  computed: {
   },
   methods: {
     scrollToSecondPage(e){
