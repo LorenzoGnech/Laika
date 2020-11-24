@@ -45,4 +45,10 @@ router.get('/latest/:size', async (req,res) => {
     }
 });
 
+
+router.delete('/delete/:id', async (req,res) => {
+    var id = req.params.id;
+    console.log("DELETE mission ID="+id);
+});
+
 module.exports = router;
