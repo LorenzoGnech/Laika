@@ -63,4 +63,15 @@ router.post('', async (req, res) => {
     res.location("/api/v1/telescopes/").status(201).send('telescope saved successfully');
 });
 
+router.delete('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = telescopes.findIndex(p => p.id == id);
+    if (index !== undefined && index >= 0){
+        telescopes.splice(index, 1)
+        res.status(200).send('telescope deleted');
+    } else {
+        res.status(404).send('Not found');
+    }
+});
+
 module.exports = router;

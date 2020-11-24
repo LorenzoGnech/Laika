@@ -71,7 +71,7 @@ router.post('', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     var id = req.params.id;
     var index = newslist.findIndex(p => p.id == id);
-    if (index !== undefined && id >= 0){
+    if (index !== undefined && index >= 0){
         newslist.splice(index, 1)
         res.status(200).send('News deleted');
     } else {
