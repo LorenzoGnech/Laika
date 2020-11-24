@@ -68,4 +68,14 @@ router.post('', async (req, res) => {
     res.location("/api/v1/news/").status(201).send('News saved successfully');
 });
 
+router.delete('/:id', async (req, res) => {
+    var id = req.params.id;
+    if (id <= newslist.length){
+        newslist.splice(id, 1)
+        res.status(200).send('News deleted');
+    } else {
+        res.status(404).send('Not found');
+    }
+});
+
 module.exports = router;
