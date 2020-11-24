@@ -57,16 +57,22 @@ router.post('', async (req,res) => {
         "content": req.body.content,
         "img": req.body.img,
         "source": req.body.source,
-        "tags": ""
-    }
+        "tags": req.body.tags
+    };
     missionslist.push(newMission);
     ++nextId;
     res.location("/api/v1/missions/").status(201).send('News saved successfully');
 });
 
-router.delete('/delete/:id', async (req,res) => {
+router.delete('/:id', async (req,res) => {
     var id = req.params.id;
-    console.log("DELETE mission ID="+id);
+    var index = missionslist.findIndex(p => p.id == id );
+    if (index !== undefined && index >= 0){
+        missionslist.splice(index,1);
+        res.status(200).send("Mission deleted");
+    }else{
+        res.status(404).send('Not found');
+    }
 });
 
 module.exports = router;
