@@ -4,7 +4,7 @@ const router = express.Router();
 var exoplanetsList = [
     {
         "id": 1,
-        "discovery_date": "21/10/2013",
+        "date": "21/10/2013",
         "name": "WASP-76b",
         "description": "WASP-76b is a hot Jupiter exoplanet discovered during 2013 that can be found in the constellation Pisces. It orbits a F-type star BD+01 316 (WASP-76) and has a size 0.92 that of Jupiter's mass.",
         "img": "",
@@ -13,8 +13,8 @@ var exoplanetsList = [
     }, {
         "id": 2,
         "date": "15/04/2020",
-        "title": "Kepler-1649c",
-        "content": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+        "name": "Kepler-1649c",
+        "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
         "img": "",
         "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
         "tags": ["kepler"],
@@ -45,13 +45,53 @@ router.get('/latest/:size', async (req, res) => {
 });
 
 router.post('', async (req, res) => {
-    let newExoplanet = req.body;
+    
+    var newexoplanet = {
+        "id": exoplanetsList.length + 1,
+        "date": req.body.date,
+        "name": req.body.name,
+        "description": req.body.description,
+        "img": req.body.img,
+        "source": req.body.source,
+        "tags": req.body.tags,
+    }
 
-    exoplanetsList.push(newExoplanet);
+    console.log('Exoplanet saved successfully');
+    
+    res.location("/api/v1/exoplanets/").status(201).send('Exoplanet saved successfully');
 
-    res.location('/' + newExoplanet.id).status(201).send();
+    exoplanetsList.push(newexoplanet);
+
 });
 
+
+router.delete('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = exoplanetsList.findIndex(p => p.id == id );
+    if (index !== undefined && index >= 0){
+        exoplanetsList.splice(index,1);
+        res.status(200).send("Exoplanet with ID="+id+" has been deleted");
+    }else{
+        res.status(404).send('Not found');
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = exoplanetsList.findIndex(p => p.id == id );
+    if (index !== undefined && index >= 0){
+        exoplanetsList[index].date = req.body.date;
+        exoplanetsList[index].name = req.body.name;
+        exoplanetsList[index].description = req.body.description;
+        exoplanetsList[index].img = req.body.img;
+        exoplanetsList[index].source = req.body.source;
+        exoplanetsList[index].tags = req.body.tags;
+
+        res.status(200).send("Exoplanet with ID="+id+" has been deleted");
+    }else{
+        res.status(404).send('Not found');
+    }
+});
 
 
 module.exports = router;

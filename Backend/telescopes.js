@@ -45,5 +45,49 @@ router.get('/latest/:size', async (req, res) => {
     }
 });
 
+router.post('', async (req, res) => {
+    
+    var newtelescope = {
+        "id": (telescopes.length + 1),
+        "date": req.body.date,
+        "title": req.body.title,
+        "content": req.body.content,
+        "img": req.body.img,
+        "source": req.body.source,
+        "tags": req.body.tags
+    }
+
+    telescopes.push(newtelescope)
+
+    console.log('telescope saved successfully');
+    res.location("/api/v1/telescopes/").status(201).send('telescope saved successfully');
+});
+
+router.delete('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = telescopes.findIndex(p => p.id == id);
+    if (index !== undefined && index >= 0){
+        telescopes.splice(index, 1)
+        res.status(200).send('telescope deleted');
+    } else {
+        res.status(404).send('Not found');
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = telescopes.findIndex(p => p.id == id);
+    if(index !== undefined && index >= 0){
+        telescopes[index].date = req.body.date;
+        telescopes[index].title = req.body.title;
+        telescopes[index].content = req.body.content;
+        telescopes[index].img = req.body.img;
+        telescopes[index].source = req.body.source;
+        telescopes[index].tags = req.body.tags;
+        res.status(200).send('telescope updated');
+    } else {
+        res.status(404).send('Not found');
+    }
+});
 
 module.exports = router;
