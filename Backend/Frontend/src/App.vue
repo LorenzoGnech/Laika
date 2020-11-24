@@ -22,6 +22,10 @@ export default {
 
 <style lang="scss">
 
+html {
+  scroll-behavior: smooth;
+}
+
 #app {
   font-family: "Playfair Display", "Roboto";
   -webkit-font-smoothing: antialiased;

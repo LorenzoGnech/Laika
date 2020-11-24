@@ -18,7 +18,10 @@
               </ul>
             </div>
           </div>
-    <div class="container" id="latestnews">
+    <div class="scrollButton">
+      <img @click="scrollToSecondPage" id="scrollImage" src="@/assets/scrollDown.svg">
+    </div>
+    <div class="container" id="latestnews" ref="latestnews">
       <h2 class="containertitle">LATEST NEWS</h2>
       <CardGrid :cards=missions :cardsHeight="cardsHeight" :cardsWidth="cardsWidth"/>
     </div>
@@ -26,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import CardGrid from '../components/CardGrid.vue'
 import NavMenu from '../components/NavMenu.vue'
 
@@ -37,6 +41,7 @@ export default {
   },
   data: function(){
     return {
+      info: "",
       cardsHeight: 450,
       cardsWidth: 320,
       missions: {
@@ -73,7 +78,20 @@ export default {
       }
     }
   },
+  mounted(){
+    axios
+      .get('http://localhost:3000/api/v1/news')
+      .then(response => (console.log(response.data)));
+  },
   computed: {
+  },
+  methods: {
+    scrollToSecondPage(e){
+      scroll({
+        top: this.$refs.latestnews.offsetTop - 100,
+        behavior: "smooth"
+      })
+    }
   }
 }
 </script>
@@ -88,11 +106,24 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   font-family: "Sansation", Arial;
 }
 
+#scrollImage{
+  cursor: pointer;
+  width: 50px;
+  margin: auto;
+  height: 100%;
+}
+
+.scrollButton{
+  width: 100%;
+  height: 165px;
+}
+
 .containertitle{
   letter-spacing: 3px;
   color: whitesmoke;
   font-size: 30px;
-  margin: 0 75% 0 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 body {
@@ -151,6 +182,10 @@ p {
 
 h1+p, p+p {
   margin-top: 10px;
+}
+
+#latestnews{
+  padding-top: 0px !important;
 }
 
 .container {
