@@ -10,12 +10,15 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(serveStatic(__dirname + "/Frontend/dist"));
-app.use('/news', news);
-app.use('/missions', missions)
-app.use('/astronauts', astronauts);
-app.use('/exoplanets', exoplanets);
-app.use('/telescopes', telescopes);
+app.use('/api/v1/news', news);
+app.use('/api/v1/missions', missions)
+app.use('/api/v1/astronauts', astronauts);
+app.use('/api/v1/exoplanets', exoplanets);
+app.use('/api/v1/telescopes', telescopes);
 
 app.listen(port, function() {
   console.log('Server running on port ', port);

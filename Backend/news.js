@@ -51,12 +51,9 @@ router.get('/latest/:size', async (req, res) => {
 });
 
 router.post('', async (req, res) => {
-
-    console.log(req.body)
     
     console.log('News saved successfully');
-
-    res.location("/api/v1/books/" + bookId).status(201).send();
+    res.location("/api/v1/books/").status(201).send('News saved successfully');
 });
 
 module.exports = router;
