@@ -6,9 +6,25 @@ const telescopes = require('./telescopes.js')
 var express = require('express');
 var path = require('path');
 var serveStatic = require('serve-static');
+var cors = require('cors');
+
 var app = express();
 
 var port = process.env.PORT || 3000;
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
+
+app.get('/', function(req, res, next) {
+  // Handle the get for this route
+});
+
+app.post('/', function(req, res, next) {
+ // Handle the post for this route
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
