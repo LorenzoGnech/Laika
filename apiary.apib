@@ -5,7 +5,7 @@ HOST: http://laikapp.herokuapp.com
 
 Laika is an API service to return astronomy information and data. It can be used to obtain information about past and future space missions, astronauts, telescopes in function, newly discovered exoplanets and much more. Everything is returned in a standard JSON format.
 
-## News [/news]
+## News [/api/v1/news]
 
 ### List all news [GET]
 
@@ -73,7 +73,7 @@ You may add a new news using this action. It takes a JSON object containing the 
                 "source": "https://www.esa.int",
             }
 
-## Specific News [/news/{id}]
+## Specific News [/api/v1/news/{id}]
 
 ### Get a specific news [GET]
 
@@ -89,7 +89,7 @@ You may add a new news using this action. It takes a JSON object containing the 
             "tags": ["nasa"],
         }
 
-### Update a specific news [POST]
+### Update a specific news [PUT]
 
 You may update an existing news using this action. It takes a JSON object containing the new complete information.
 
@@ -144,7 +144,7 @@ You may delete an existing news using this action. It takes a JSON object contai
                 "id": 4,
             }
 
-## Latest News [/news/{size}]
+## Latest News [/api/v1/news/latest/{size}]
 
 ### Get the latest news [GET]
 
@@ -182,7 +182,7 @@ You may get the latest news using this action. You need to specify the number of
                 ]
             }
             
-## Missions [/missions]
+## Missions [/api/v1/missions]
 
 ### List all missions [GET]
 
@@ -242,7 +242,7 @@ You may add a new mission using this action. It takes a JSON object containing t
                 "tags": ["esa", "exoplanets"],
             }
 
-## Specific Missions [/missions/{id}]
+## Specific Missions [/api/v1/missions/{id}]
 
 ### Get a specific mission [GET]
 
@@ -313,7 +313,7 @@ You may delete an existing mission using this action. It takes a JSON object con
                 "id": 4,
             }
 
-## Latest Missions [/missions/{size}]
+## Latest Missions [/api/v1/missions/latest/{size}]
 
 ### Get the latest mission [GET]
 
@@ -343,7 +343,7 @@ You may get the latest missions using this action. You need to specify the numbe
                 ]
             }
             
-## Astronauts [/astronauts]
+## Astronauts [/api/v1/astronauts]
 
 ### List all astronauts [GET]
 
@@ -400,7 +400,7 @@ You may add a new astronaut using this action. It takes a JSON object containing
                 "agency": "NASA",
             }
 
-## Specific astronauts [/astronauts/{id}]
+## Specific astronauts [/api/v1/astronauts/{id}]
 
 ### Get a specific astronaut [GET]
 
@@ -469,9 +469,9 @@ You may delete an existing astronaut using this action. It takes a JSON object c
                 "id": 4,
             }
 
-## Latest astronauts [/astronauts/{size}]
+## Latest astronauts [/api/v1/astronauts/latest/{size}]
 
-### Get the latest mission [GET]
+### Get the latest astronauts [GET]
 
 You may get the latest astronauts using this action. You need to specify the number of how many astronauts you want to be returned.
 
@@ -497,7 +497,7 @@ You may get the latest astronauts using this action. You need to specify the num
                 ]
             }
             
-## Telescopes [/telescopes]
+## Telescopes [/api/v1/telescopes]
 
 ### List all telescopes [GET]
 
@@ -558,7 +558,7 @@ You may add a new telescope using this action. It takes a JSON object containing
                 "tags": ["jaxa"],
             }
 
-## Specific telescope [/telescopes/{id}]
+## Specific telescope [/api/v1/telescopes/{id}]
 
 ### Get a specific telescope [GET]
 
@@ -630,7 +630,7 @@ You may delete an existing telescope using this action. It takes a JSON object c
                 "id": 4,
             }
 
-## Latest telescopes [/telescopes/{size}]
+## Latest telescopes [/api/v1/telescopes/latest/{size}]
 
 ### Get the latest telescopes [GET]
 
@@ -660,7 +660,7 @@ You may get the latest telescopes using this action. You need to specify the num
                 ]
             }
             
-## Exoplanets [/exoplanets]
+## Exoplanets [/api/v1/exoplanets]
 
 ### List all exoplanets [GET]
 
@@ -722,7 +722,7 @@ You may add a newly discovered exoplanet using this action. It takes a JSON obje
                 "tags": ["kepler"],
             }
 
-## Specific exoplanet [/exoplanets/{id}]
+## Specific exoplanet [/api/v1/exoplanets/{id}]
 
 ### Get a specific exoplanet [GET]
 
@@ -794,7 +794,7 @@ You may delete an existing exoplanet using this action. It takes a JSON object c
                 "id": 4,
             }
 
-## Latest exoplanets [/exoplanets/{size}]
+## Latest exoplanets [/api/v1/exoplanets/latest/{size}]
 
 ### Get the latest exoplanets [GET]
 
@@ -824,7 +824,7 @@ You may get the latest exoplanets using this action. You need to specify the num
                 ]
             }
             
-## Creating and deleting user accounts [/signup]
+## Creating and deleting user accounts [/api/v1/signup]
 
 ### Sign up [POST]
 
@@ -869,7 +869,7 @@ You may delete your account if you're signed in.
             {
             }
             
-## Signing in [/signin]
+## Signing in [/api/v1/signin]
             
 ### Sign in [POST]
 
@@ -897,7 +897,7 @@ You may sign in to an existing user account by providing a username and password
                 "followed_missions": [],
             }
             
-## Saved News [/save]
+## Saved News [/api/v1/save]
             
 ### Save a specific article [POST]
 
@@ -943,7 +943,7 @@ If you're signed into your account, you may delete an article you saved previous
             {
             }
 
-## Followed Missions [/follow]
+## Followed Missions [/api/v1/follow]
             
 ### Follow a specific mission [POST]
 

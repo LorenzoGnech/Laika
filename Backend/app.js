@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(serveStatic(__dirname + "/Frontend/dist"));
+
 app.use('/api/v1/news', news);
 app.use('/api/v1/missions', missions)
 app.use('/api/v1/astronauts', astronauts);

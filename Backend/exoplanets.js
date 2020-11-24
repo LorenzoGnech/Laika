@@ -44,7 +44,6 @@ router.get('/latest/:size', async (req, res) => {
     }
 });
 
-
 router.post('', async (req, res) => {
     
     var newexoplanet = {
