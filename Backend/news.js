@@ -52,6 +52,18 @@ router.get('/latest/:size', async (req, res) => {
 
 router.post('', async (req, res) => {
     
+    var newnews = {
+        "id": (newslist.length + 1),
+        "date": req.body.date,
+        "title": req.body.title,
+        "content": req.body.content,
+        "img": req.body.img,
+        "source": req.body.source,
+        "tags": req.body.tags
+    }
+
+    newslist.push(newnews)
+
     console.log('News saved successfully');
     res.location("/api/v1/books/").status(201).send('News saved successfully');
 });
