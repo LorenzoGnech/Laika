@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+
+var nextId = 3;
+
 var missionslist = [
     {
         "id": 1,
@@ -45,6 +48,21 @@ router.get('/latest/:size', async (req,res) => {
     }
 });
 
+
+router.post('', async (req,res) => {
+    var newMission = {
+        "id": nextId,
+        "date": req.body.date,
+        "title": req.body.title,
+        "content": req.body.content,
+        "img": req.body.img,
+        "source": req.body.source,
+        "tags": ""
+    }
+    missionslist.push(newMission);
+    ++nextId;
+    res.location("/api/v1/missions/").status(201).send('News saved successfully');
+});
 
 router.delete('/delete/:id', async (req,res) => {
     var id = req.params.id;
