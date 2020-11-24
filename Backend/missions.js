@@ -1,4 +1,5 @@
 const express = require('express');
+const { route } = require('./news');
 const router = express.Router();
 
 
@@ -69,7 +70,24 @@ router.delete('/:id', async (req,res) => {
     var index = missionslist.findIndex(p => p.id == id );
     if (index !== undefined && index >= 0){
         missionslist.splice(index,1);
-        res.status(200).send("Mission deleted");
+        res.status(200).send("Mission with ID="+id+" has been deleted");
+    }else{
+        res.status(404).send('Not found');
+    }
+});
+
+router.put('/:id', async (req,res) => {
+    var id = req.params.id;
+    var index = missionslist.findIndex(p => p.id == id );
+    if (index !== undefined && index >= 0){
+        missionslist[index].date = req.body.date;
+        missionslist[index].title = req.body.title;
+        missionslist[index].content = req.body.content;
+        missionslist[index].img = req.body.img;
+        missionslist[index].source = req.body.source;
+        missionslist[index].tags = req.body.tags;
+
+        res.status(200).send("Mission with ID="+id+" has been updated");
     }else{
         res.status(404).send('Not found');
     }
