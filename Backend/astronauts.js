@@ -44,5 +44,22 @@ router.get('/latest/:size', async (req, res) => {
     }
 });
 
+router.post('', async (req, res) => {
+    
+    var newastronaut = {
+        "id": astronauts.length + 1,
+        "birth": req.body.birth,
+        "name": req.body.name,
+        "nationality": req.body.nationality,
+        "img": req.body.img,
+        "agency": req.body.agency,
+    }
+
+    console.log('Astronaut saved successfully');
+    res.location("/api/v1/astronauts/").status(201).send('Astronaut saved successfully');
+
+    astronauts.push(newastronaut);
+
+});
 
 module.exports = router;
