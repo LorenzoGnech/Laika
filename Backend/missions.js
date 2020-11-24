@@ -36,4 +36,13 @@ router.get('/:id', async (req,res) => {
     }
 });
 
+router.get('/latest/:size', async (req,res) => {
+    var size = req.params.size;
+    if (size < missionslist.length){
+        res.status(200).send(missionslist.slice(missionslist.length-size, size+1));        
+    } else {
+        res.status(200).send(missionslist);        
+    }
+});
+
 module.exports = router;
