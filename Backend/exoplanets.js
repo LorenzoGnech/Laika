@@ -66,4 +66,17 @@ router.post('', async (req, res) => {
 });
 
 
+router.delete('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = exoplanetsList.findIndex(p => p.id == id );
+    if (index !== undefined && index >= 0){
+        exoplanetsList.splice(index,1);
+        res.status(200).send("Exoplanet deleted");
+    }else{
+        res.status(404).send('Not found');
+    }
+});
+
+
+
 module.exports = router;
