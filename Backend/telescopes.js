@@ -45,4 +45,22 @@ router.get('/latest/:size', async (req, res) => {
     }
 });
 
+router.post('', async (req, res) => {
+    
+    var newtelescope = {
+        "id": (telescopes.length + 1),
+        "date": req.body.date,
+        "title": req.body.title,
+        "content": req.body.content,
+        "img": req.body.img,
+        "source": req.body.source,
+        "tags": req.body.tags
+    }
+
+    telescopes.push(newtelescope)
+
+    console.log('telescope saved successfully');
+    res.location("/api/v1/telescopes/").status(201).send('telescope saved successfully');
+});
+
 module.exports = router;

@@ -65,7 +65,7 @@ router.post('', async (req, res) => {
     newslist.push(newnews)
 
     console.log('News saved successfully');
-    res.location("/api/v1/books/").status(201).send('News saved successfully');
+    res.location("/api/v1/news/").status(201).send('News saved successfully');
 });
 
 module.exports = router;
