@@ -44,14 +44,26 @@ router.get('/latest/:size', async (req, res) => {
     }
 });
 
+
 router.post('', async (req, res) => {
-    let newExoplanet = req.body;
+    
+    var newexoplanet = {
+        "id": exoplanetsList.length + 1,
+        "discovery_date": req.body.discovery_date,
+        "name": req.body.name,
+        "description": req.body.description,
+        "img": req.body.img,
+        "source": req.body.source,
+        "tags": req.body.tags,
+    }
 
-    exoplanetsList.push(newExoplanet);
+    console.log('Exoplanet saved successfully');
+    
+    res.location("/api/v1/exoplanets/").status(201).send('Exoplanet saved successfully');
 
-    res.location('/' + newExoplanet.id).status(201).send();
+    exoplanetsList.push(newexoplanet);
+
 });
-
 
 
 module.exports = router;
