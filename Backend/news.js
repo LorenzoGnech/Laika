@@ -43,20 +43,56 @@ router.get('/:id', async (req, res) => {
 
 router.get('/latest/:size', async (req, res) => {
     var size = req.params.size;
-    if (size <= newslist.length){
-        res.status(200).send(newslist.slice(0, size));
+    if (size < newslist.length){
+        res.status(200).send(newslist.slice(newslist.length-size, size+1));
     } else {
         res.status(200).send(newslist);
     }
 });
 
 router.post('', async (req, res) => {
-
-    console.log(req.body)
     
-    console.log('News saved successfully');
+    var newnews = {
+        "id": (newslist.length + 1),
+        "date": req.body.date,
+        "title": req.body.title,
+        "content": req.body.content,
+        "img": req.body.img,
+        "source": req.body.source,
+        "tags": req.body.tags
+    }
 
-    res.location("/api/v1/books/" + bookId).status(201).send();
+    newslist.push(newnews)
+
+    console.log('News saved successfully');
+    res.location("/api/v1/news/").status(201).send('News saved successfully');
+});
+
+router.delete('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = newslist.findIndex(p => p.id == id);
+    if (index !== undefined && index >= 0){
+        newslist.splice(index, 1)
+        res.status(200).send('News deleted');
+    } else {
+        res.status(404).send('Not found');
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = newslist.findIndex(p => p.id == id);
+    if(index !== undefined && index >= 0){
+        newslist[index].date = req.body.date;
+        newslist[index].title = req.body.title;
+        newslist[index].content = req.body.content;
+        newslist[index].img = req.body.img;
+        newslist[index].source = req.body.source;
+        newslist[index].tags = req.body.tags;
+        res.status(200).send('News updated');
+    } else {
+        res.status(404).send('Not found');
+    }
 });
 
 module.exports = router;
