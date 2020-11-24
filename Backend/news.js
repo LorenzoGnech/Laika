@@ -79,4 +79,20 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    var id = req.params.id;
+    var index = newslist.findIndex(p => p.id == id);
+    if(index !== undefined && index >= 0){
+        newslist[index].date = req.body.date;
+        newslist[index].title = req.body.title;
+        newslist[index].content = req.body.content;
+        newslist[index].img = req.body.img;
+        newslist[index].source = req.body.source;
+        newslist[index].tags = req.body.tags;
+        res.status(200).send('News updated');
+    } else {
+        res.status(404).send('Not found');
+    }
+});
+
 module.exports = router;
