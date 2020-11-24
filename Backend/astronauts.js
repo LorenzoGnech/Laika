@@ -37,8 +37,8 @@ router.get('/:id', async (req, res) => {
 
 router.get('/latest/:size', async (req, res) => {
     var size = req.params.size;
-    if (size <= astronauts.length){
-        res.status(200).send(astronauts.slice(1, size+1));        
+    if (size < astronauts.length){
+        res.status(200).send(astronauts.slice(astronauts.length-size, size+1));        
     } else {
         res.status(200).send(astronauts);        
     }

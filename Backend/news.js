@@ -43,8 +43,8 @@ router.get('/:id', async (req, res) => {
 
 router.get('/latest/:size', async (req, res) => {
     var size = req.params.size;
-    if (size <= newslist.length){
-        res.status(200).send(newslist.slice(0, size));
+    if (size < newslist.length){
+        res.status(200).send(newslist.slice(newslist.length-size, size+1));
     } else {
         res.status(200).send(newslist);
     }
