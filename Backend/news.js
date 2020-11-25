@@ -4,7 +4,7 @@ const router = express.Router();
 var newslist = [{
     "id": 1,
     "date": "17/11/2020",
-    "title": "NASA’s SpaceX Crew-1 Astronauts Arrive at Space Station, NASA Leaders and Crew to Discuss Mission",
+    "title": "NASA’s SpaceX Crew-1 Astronauts Arrive at Space Station",
     "content": `
     The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11:01 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.
 
@@ -85,7 +85,7 @@ JPL, a division of Caltech in Pasadena, California, is contributing three scienc
     "content": `On Saturday, November 21 at 9:17 a.m. PST, SpaceX launched the Sentinel-6 Michael Freilich mission from Space Launch Complex 4E (SLC-4E) at Vandenberg Air Force Base in California.
 
     Following stage separation, Falcon 9’s first stage returned to Earth and landed on Landing Zone 4 at Vandenberg Air Force Base. The spacecraft deployed approximately 58 minutes after liftoff.`,
-    "img": "",
+    "img": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/izXqxY8NPA38/v2/1000x-1.jpg",
     "source": "https://www.spacex.com",
     "tags": ["spacex"]
 }, {
@@ -99,7 +99,7 @@ JPL, a division of Caltech in Pasadena, California, is contributing three scienc
     About 12 minutes after launch, Dragon will separate from the Falcon 9 rocket’s second stage and begin a carefully choreographed series of thruster firings to reach the space station. Arrival to the space station is planned for Sunday, Dec. 6. Dragon will autonomously dock to the station’s Harmony module with Expedition 64 Flight Engineers Kate Rubins and Victor Glover of NASA monitoring operations.
     
     The Dragon spacecraft will spend about one month attached to the space station before it returns to Earth with research and return cargo, with splashdown in the Atlantic Ocean.  `,
-    "img": "",
+    "img": "https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/ksc-20200306-ph-awg07_0007_medium.jpg?itok=2Q-n-sUT",
     "source": "https://www.nasa.gov",
     "tags": ["nasa", "spacex", "iss"]
 }];
