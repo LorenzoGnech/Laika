@@ -57,6 +57,11 @@ export default {
       }
     },
     cardBgImage() {
+      if(this.img == ""){
+        return {
+          backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
+        }
+      }
       return {
         backgroundImage: `url(${this.img})`
       }
@@ -193,7 +198,9 @@ $returnEasing: cubic-bezier(0.44, 0.05, 0.56, 0.95);
 }
 
 .card-info h1 {
-  font-size: 36px;
+  margin: 15px;
+  padding-bottom: 30px;
+  font-size: 28px;
   font-weight: 700;
   text-align: center;
   text-shadow: rgba(black, 0.5) 0 10px 10px;

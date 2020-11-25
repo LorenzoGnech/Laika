@@ -25,7 +25,7 @@ export default {
       }
   },
   props: {
-      cards: Object,
+      cards: Array,
       cardsHeight: Number,
       cardsWidth: Number
   },
