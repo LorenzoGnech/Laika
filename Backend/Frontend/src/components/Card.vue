@@ -1,5 +1,6 @@
 <template>
     <div class="card-wrap"
+      @click="handleClick"
       @mousemove="handleMouseMove"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
@@ -29,7 +30,9 @@ export default {
     width: Number,
     height: Number,
     header: String,
-    content: String
+    content: String,
+    type: String,
+    id: Number,
   },
   mounted(){
   },
@@ -68,6 +71,11 @@ export default {
     }
   },
   methods: {
+    handleClick(e){
+      let host = document.location.origin;
+      let url =  this.type + '/' + this.id;
+      this.$router.push(url);
+    },
     handleMouseMove(e) {
       this.mouseX = e.pageX - this.$refs.card.offsetLeft - this.width/2;
       this.mouseY = e.pageY - this.$refs.card.offsetTop - this.height/2;

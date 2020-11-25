@@ -23,7 +23,7 @@
     </div>
     <div class="container" id="latestnews" ref="latestnews">
       <h2 class="containertitle">LATEST NEWS</h2>
-      <CardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth"/>
+      <CardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
     </div>
   </div>
 </template>
@@ -43,32 +43,6 @@ export default {
     return {
       cNews: [],
       news: [],
-      /*{
-          "id": 1,
-          "date": "16/11/2020",
-          "title": "NASA’s SpaceX Crew-1 Astronauts Headed to International Space Station",
-          "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
-          "img": "",
-          "source": "https://www.nasa.gov/",
-          "tags": ["nasa", "spacex", "iss"] 
-      }, {
-          "id": 2,
-          "date": "17/11/2020",
-          "title": "NASA’s SpaceX Crew-1 Astronauts Arrive at Space Station",
-          "content": " The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.",
-          "img": "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2046a.jpg",
-          "source": "https://www.nasa.gov",
-          "tags": ["nasa", "spacex", "iss"]
-      }, {
-          "id": 3,
-          "date": "17/11/2020",
-          "title": "NASA Highlights Science, New Airlock on Space Station Resupply Mission",
-          "content": "NASA will host a media teleconference at 1 p.m. EST Friday, Nov. 20, to discuss science investigations and a new privately funded airlock launching on SpaceX’s 21st commercial cargo resupply mission for the agency to the International Space Station.",
-          "img": "",
-          "source": "https://www.nasa.gov",
-          "tags": ["nasa"]
-      }
-      */
       info: "",
       cardsHeight: 450,
       cardsWidth: 320,

@@ -3,10 +3,18 @@
           <div class="sticky" v-sticky="true" sticky-offset="{top: 0, right: 0}" sticky-side="both" on-stick="onStick" sticky-z-index="20">
               <NavMenu/>
           </div>
-    <div class="blueline"></div>
-    <div class="container">
+    <div class="header">
+        <div class="blueline"></div>
         <div class="newsTitle" :style="bgImage">
             <h1 class="newsH1">{{news.title}}</h1>
+        </div>
+        <div class="blueline"></div>
+    </div>
+    <div class="container">
+        <p class="newsContent">{{news.content}}</p>
+        <div class="newsFooter">
+            <p class="footerText">Date: {{news.date}} </p>
+            <p class="footerText">Source: {{news.source}}</p>
         </div>
     </div>
   </div>
@@ -62,16 +70,41 @@ mounted(){
 }
 
 .blueline{
-    
     width: 100%;
-    height: 10px;
-    background-color: black;
+    height: 2px;
+    background-color: #00ffff;
 }
 
 .newsTitle{
+  top: 40%;
+  margin: 0 auto;
   width: 80%;
   height: 650px;
   background-size: cover;
+}
+
+.header{
+    padding-top: 5%;
+    width: 100%;
+}
+
+.container{
+    margin: 0 auto;
+    width: 80%;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.newsContent{
+    color: white;
+    font-size: 1vw;
+}
+
+.newsFooter{
+    text-align: center;
+    float: right;
+    color: lightblue;
+    font-size: 0.7vw;
 }
 
 </style>
