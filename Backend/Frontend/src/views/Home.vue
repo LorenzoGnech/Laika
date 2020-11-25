@@ -23,7 +23,7 @@
     </div>
     <div class="container" id="latestnews" ref="latestnews">
       <h2 class="containertitle">LATEST NEWS</h2>
-      <CardGrid :cards=computedNews :cardsHeight="cardsHeight" :cardsWidth="cardsWidth"/>
+      <CardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth"/>
     </div>
   </div>
 </template>
@@ -128,6 +128,12 @@ export default {
        this.cNews.push(t)
       });
       return this.cNews;
+    },
+    getCardsHeight(){
+      return window.innerHeight/2.1;
+    },
+    getCardsWidth(){
+      return window.innerWidth/6;
     }
   },
   methods: {

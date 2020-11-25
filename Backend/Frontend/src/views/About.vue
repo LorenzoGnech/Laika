@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    Work in progress...
   </div>
 </template>
 

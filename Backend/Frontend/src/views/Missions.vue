@@ -4,6 +4,7 @@
               <NavMenu/>
           </div>
     <div class="container">
+            <h1 style="color: white">Work in progress...</h1>
     </div>
   </div>
 </template>
