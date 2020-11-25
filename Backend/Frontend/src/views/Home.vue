@@ -187,12 +187,12 @@ body {
 .solar_div{
   padding-top: 50px;
   margin: 0;
-  height: 700px;
   width: 100%;
 }
 
 .system_div{
   margin: 0;
+  height: 630px;
   width: 100%;
 }
 
