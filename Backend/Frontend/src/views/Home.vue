@@ -193,7 +193,6 @@ body {
 
 .system_div{
   margin: 0;
-  height: 630px;
   width: 100%;
 }
 
