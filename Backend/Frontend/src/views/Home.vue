@@ -107,7 +107,7 @@ export default {
       return window.innerHeight/2.1;
     },
     getCardsWidth(){
-      return window.innerWidth/6;
+      return window.innerWidth/6.25;
     }
   },
   methods: {
