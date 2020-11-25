@@ -139,8 +139,10 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .scrollButton{
+  position: absolute;
   width: 100%;
-  height: 165px;
+  height: 80px;
+  bottom: 0;
 }
 
 .containertitle{
@@ -215,6 +217,7 @@ h1+p, p+p {
 }
 
 .container {
+  margin-top: 150px;
   padding: 40px 80px;
   display: flex;
   flex-wrap: wrap;
