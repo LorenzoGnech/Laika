@@ -2,7 +2,7 @@
     <div class="grid-wrap">
         <div class="grid">
             <li v-for="card in cards" :key="card.id">
-                <Card :img=card.img :width="getCardWidth" :height="getCardHeight" :header=card.header :content=card.content />
+                <Card :img=card.img :width="getCardWidth" :height="getCardHeight" :header=card.header :content=card.content :type=type :id=card.id />
             </li>
         </div>
     </div>
@@ -27,7 +27,8 @@ export default {
   props: {
       cards: Array,
       cardsHeight: Number,
-      cardsWidth: Number
+      cardsWidth: Number,
+      type: String,
   },
   mounted(){
       this.parentHeight = this.$parent.$el.offsetHeight;
