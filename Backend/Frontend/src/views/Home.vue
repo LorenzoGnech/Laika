@@ -109,7 +109,7 @@ export default {
   mounted(){
     axios
       .get('https://laikapp.herokuapp.com/api/v1/news/latest/5')
-      .then(response => (this.news = response));
+      .then(response => (this.news = response.data));
   },
   computed: {
     computedNews(){
