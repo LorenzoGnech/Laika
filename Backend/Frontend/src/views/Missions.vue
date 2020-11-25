@@ -24,5 +24,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url(//db.onlinewebfonts.com/c/00370d92f1b404768d34ac7dc664289e?family=Sansation);
 </style>
