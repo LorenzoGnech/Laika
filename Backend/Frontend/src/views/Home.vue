@@ -113,6 +113,7 @@ export default {
   },
   computed: {
     computedNews(){
+      console.log(this.news);
       this.news.forEach( (item, index) => {
         var t = {
           id: item.id,
