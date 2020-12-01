@@ -230,7 +230,7 @@ h1+p, p+p {
 }
 
 #venus_li:hover #venus{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -242,7 +242,7 @@ h1+p, p+p {
 }
 
 #mercury_li:hover #mercury{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -254,7 +254,7 @@ h1+p, p+p {
 }
 
 #earth_li:hover #earth{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -266,7 +266,7 @@ h1+p, p+p {
 }
 
 #mars_li:hover #mars{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -278,7 +278,7 @@ h1+p, p+p {
 }
 
 #jupyter_li:hover #jupyter{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -290,7 +290,7 @@ h1+p, p+p {
 }
 
 #saturn_li:hover #saturn{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -302,7 +302,7 @@ h1+p, p+p {
 }
 
 #uranus_li:hover #uranus{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -314,7 +314,7 @@ h1+p, p+p {
 }
 
 #neptune_li:hover #neptune{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
@@ -326,7 +326,7 @@ h1+p, p+p {
 }
 
 #pluto_li:hover #pluto{
-  opacity: 100%;
+  opacity: 1;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   transition:opacity 800ms;
 }
