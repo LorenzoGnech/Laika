@@ -6,15 +6,20 @@
           <div class="solar_div">
             <div class="system_div">
               <ul id="pianeti">
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/1.jpg"/></router-link></li> 
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/2.jpg"/></router-link></li>
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/3.jpg"/></router-link></li>
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/4.jpg"/></router-link></li>
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/5.jpg"/></router-link></li>
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/6.jpg"/></router-link></li>
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/7.jpg"/></router-link></li>
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/8.jpg"/></router-link></li>
-                <li class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/9.jpg"/></router-link></li>
+                <li id="mercury_li" class="new_li">
+                  <router-link to="/missions">
+                  <img class="image" src="@/assets/solarsystem/1.jpg"/>
+                  <p id="mercury" class="planets">MERCURY</p>
+                  </router-link>
+                </li> 
+                <li id="venus_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/2.jpg"/><p id="venus" class="planets">VENUS</p></router-link></li>
+                <li id="earth_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/3.jpg"/><p id="earth" class="planets">EARTH</p></router-link></li>
+                <li id="mars_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/4.jpg"/><p id="mars" class="planets">MARS</p></router-link></li>
+                <li id="jupyter_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/5.jpg"/><p id="jupyter" class="planets">JUPYTER</p></router-link></li>
+                <li id="saturn_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/6.jpg"/><p id="saturn" class="planets">SATURN</p></router-link></li>
+                <li id="uranus_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/7.jpg"/><p id="uranus" class="planets">URANUS</p></router-link></li>
+                <li id="neptune_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/8.jpg"/><p id="neptune" class="planets">NEPTUNE</p></router-link></li>
+                <li id="pluto_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/9.jpg"/><p id="pluto" class="planets">PLUTO</p></router-link></li>
               </ul>
             </div>
           </div>
@@ -223,4 +228,142 @@ h1+p, p+p {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+#venus_li:hover #venus{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#venus_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#mercury_li:hover #mercury{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#mercury_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#earth_li:hover #earth{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#earth_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#mars_li:hover #mars{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#mars_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#jupyter_li:hover #jupyter{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#jupyter_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#saturn_li:hover #saturn{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#saturn_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#uranus_li:hover #uranus{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#uranus_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#neptune_li:hover #neptune{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#neptune_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#pluto_li:hover #pluto{
+  opacity: 100%;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+}
+
+#pluto_li:hover img{
+  filter: blur(1px);
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:filter 800ms;
+}
+
+#venus, #earth, #pluto{
+  letter-spacing: 5.1vw !important;
+}
+
+#saturn, #uranus{
+  letter-spacing: 3.4vw !important;
+}
+
+#mars{
+  letter-spacing: 7.9vw !important;
+}
+
+.planets{
+  opacity: 0%;
+  transition:filter 800ms;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition:opacity 800ms;
+  text-shadow: 1px 1px 5px black;
+  padding-top: 0.3vw;
+  color: whitesmoke;
+  letter-spacing: 2.3vw;
+  text-align:justify;
+  line-height: 70%;
+  font-size: 3vw;
+  position: absolute;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
 </style>
