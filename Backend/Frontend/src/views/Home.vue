@@ -112,7 +112,7 @@ export default {
       return window.innerHeight/2.1;
     },
     getCardsWidth(){
-      return window.innerWidth/6.25;
+      return window.innerWidth/6.4;
     }
   },
   methods: {
@@ -137,10 +137,26 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 #scrollImage{
+  float: right;
+  padding-right: 2%;
   cursor: pointer;
   width: 50px;
   margin: auto;
   height: 100%;
+}
+
+#scrollImage:hover{
+  animation: shake 3s;  
+}
+
+@keyframes shake {
+  0% { transform: translate(0px, 0px); }
+  15% { transform: translate(0px, -7px); }
+  30% { transform: translate(0px, 0px); }
+  45% { transform: translate(0px, -7px); }
+  60% { transform: translate(0px, 0px); }
+  75% { transform: translate(0px, -7px); }
+  90% { transform: translate(0px, 0px); }
 }
 
 .scrollButton{
