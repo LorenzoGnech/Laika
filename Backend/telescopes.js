@@ -29,7 +29,7 @@ router.get('', async (req, res) => {
 router.get('/:id', async (req, res) => {
     var id = req.params.id;
     var tel = telescopes.find( (p) => p.id == id );
-    if (astro !== undefined){
+    if (tel !== undefined){
         res.status(200).send(tel);
     } else {
         res.status(404).send('Not found');
