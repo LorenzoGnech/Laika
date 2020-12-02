@@ -12,9 +12,9 @@ var telescopes = [
                 "tags": ["nasa", "esa"],
             }, {
                 "id": 2,
-                "date": "14/09/2013",
-                "title": "Hisaki Satellite",
-                "content": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                "launch_date": "14/09/2013",
+                "name": "Hisaki Satellite",
+                "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
                 "img": [],
                 "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
                 "tags": ["jaxa"],
