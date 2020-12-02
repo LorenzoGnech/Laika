@@ -45,7 +45,7 @@
     </div>
     <div class="container" id="latesttelescopes" ref="latesttelescopes">
       <h2 class="containertitle">LATEST TELESCOPES</h2>
-      <CardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+      <CardGrid :cards=computedTelescopes :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
     </div>
     <div class="container" id="latestexoplanets" ref="latestexoplanets">
       <h2 class="containertitle">LATEST EXOPLANETS</h2>
@@ -121,13 +121,15 @@ export default {
     },
     computedTelescopes(){
       this.telescopes.forEach( (item, index) => {
+        console.log(index);
+        console.log(item);
         var t = {
           id: item.id,
-          header: item.title,
-          date: item.date,
-          content: item.content.slice(0, 100) + "...",
-          fullContent: item.content,
-          img: item.img,
+          header: item.name,
+          date: item.launch_date,
+          content: item.description.slice(0, 100) + "...",
+          fullContent: item.description,
+          img: item.img[0],
           source: item.source,
           tags: item.tags,
         };
