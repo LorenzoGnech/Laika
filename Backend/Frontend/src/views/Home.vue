@@ -121,8 +121,9 @@ export default {
     },
     computedTelescopes(){
       this.telescopes.forEach( (item, index) => {
-        console.log(index);
-        console.log(item);
+        if(item.img != undefined && item.img.length == 0){
+          item.img.push("");
+        }
         var t = {
           id: item.id,
           header: item.name,
