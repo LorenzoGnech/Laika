@@ -26,9 +26,37 @@
     <div class="scrollButton">
       <img @click="scrollToSecondPage" id="scrollImage" src="@/assets/scrollDown.svg">
     </div>
+    <div id="divisor"></div>
     <div class="container" id="latestnews" ref="latestnews">
       <h2 class="containertitle">LATEST NEWS</h2>
       <CardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
+    </div>
+    <div class="container" id="latestmissions" ref="latestmissions">
+      <h2 class="containertitle">LATEST MISSIONS</h2>
+      <CardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+    </div>
+    <div class="container">
+      <div class="blueline"></div>
+      <h2 class="containertitle">Do you like space?<br>Subscribe to our newsletter!</h2>
+      <form id="newsletterform" action="#" method="post">
+        <input id="newslettermail" style="text-align:center;" type="email" placeholder="Email" name="email" required>
+        <button type="submit" style="visibility: hidden;">Subscribe</button>
+      </form>
+      <div class="blueline"></div>
+    </div>
+    <div class="container" id="latesttelescopes" ref="latesttelescopes">
+      <h2 class="containertitle">LATEST TELESCOPES</h2>
+      <CardGrid :cards=computedTelescopes :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+    </div>
+    <div class="container" id="latestexoplanets" ref="latestexoplanets">
+      <h2 class="containertitle">LATEST EXOPLANETS</h2>
+      <CardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+    </div>
+    <div class="container">
+      <div class="blueline"></div>
+      <h2 class="containertitle" style="margin: 15px;">Are you a developer?<br> Take a look at our APIs!</h2>
+      <a href="#/api" id="api-button">LAIKA APIs</a>
+      <div class="blueline"></div>
     </div>
   </div>
 </template>
@@ -46,53 +74,27 @@ export default {
   },
   data: function(){
     return {
+      cExoplanets: [],
+      exoplanets: [],
+      cTelescopes: [],
+      telescopes: [],
+      cMissions: [],
+      missions: [],
       cNews: [],
       news: [],
       info: "",
       cardsHeight: 450,
       cardsWidth: 320,
-      missions: {
-        "1" : {
-          id: 1, 
-          header: "Saturn",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLRngWRtusnSjujML2IuDO4NDkF0wdAjRbRg&usqp=CAU",
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        },
-        "2" : { 
-          id: 2,   
-          header: "Pluto",
-          img: "https://i.pinimg.com/originals/05/7f/9a/057f9afad62b6b4b4988fa5ca003fe87.jpg",
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        },
-        "3" : {    
-          id: 3,
-          header: "Venus",
-          img: "https://images.creativemarket.com/0.1.0/ps/1626035/300/200/m2/fpc/wm0/vjgnffpklazgjyzse4qi3n8limeczpisrgq35l6cbyxyrbnwtprs8iaopu4xhzir-.jpg?1473091169&s=49ea4d73823d558c8746a4f86863a9db",
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        },
-        "4" : {
-          id: 4, 
-          header: "Saturn",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLRngWRtusnSjujML2IuDO4NDkF0wdAjRbRg&usqp=CAU",
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        },
-        "5" : { 
-          id: 5,   
-          header: "Pluto",
-          img: "https://i.pinimg.com/originals/05/7f/9a/057f9afad62b6b4b4988fa5ca003fe87.jpg",
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        },
-      }
     }
   },
   mounted(){
-    axios
-      .get('https://laikapp.herokuapp.com/api/v1/news/latest/5')
-      .then(response => (this.news = response.data));
+    this.getLatestNews();
+    this.getLatestMissions();
+    this.getLatestTelescopes();
+    this.getLatestExoplanets();
   },
   computed: {
     computedNews(){
-      console.log(this.news);
       this.news.forEach( (item, index) => {
         var t = {
           id: item.id,
@@ -108,6 +110,57 @@ export default {
       });
       return this.cNews;
     },
+    computedMissions(){
+      this.missions.forEach( (item, index) => {
+        var t = {
+          id: item.id,
+          header: item.title,
+          date: item.date,
+          content: item.content.slice(0, 100) + "...",
+          fullContent: item.content,
+          img: item.img,
+          source: item.source,
+          tags: item.tags,
+        };
+       this.cMissions.push(t)
+      });
+      return this.cMissions;
+    },
+    computedTelescopes(){
+      this.telescopes.forEach( (item, index) => {
+        if(item.img != undefined && item.img.length == 0){
+          item.img.push("");
+        }
+        var t = {
+          id: item.id,
+          header: item.name,
+          date: item.launch_date,
+          content: item.description.slice(0, 100) + "...",
+          fullContent: item.description,
+          img: item.img[0],
+          source: item.source,
+          tags: item.tags,
+        };
+       this.cTelescopes.push(t)
+      });
+      return this.cTelescopes;
+    },
+    computedExoplanets(){
+      this.exoplanets.forEach( (item, index) => {
+        var t = {
+          id: item.id,
+          header: item.name,
+          date: item.date,
+          content: item.description.slice(0, 100) + "...",
+          fullContent: item.description,
+          img: item.img,
+          source: item.source,
+          tags: item.tags,
+        };
+       this.cExoplanets.push(t)
+      });
+      return this.cExoplanets;
+    },
     getCardsHeight(){
       return window.innerHeight/2.1;
     },
@@ -121,6 +174,26 @@ export default {
         top: this.$refs.latestnews.offsetTop - 100,
         behavior: "smooth"
       })
+    },
+    async getLatestNews(){
+      axios
+        .get('https://laikapp.herokuapp.com/api/v1/news/latest/5')
+        .then(response => (this.news = response.data));
+    },
+    async getLatestMissions(){
+      axios
+        .get('https://laikapp.herokuapp.com/api/v1/missions/latest/5')
+        .then(response => (this.missions = response.data));
+    },
+    async getLatestTelescopes(){
+      axios
+        .get('https://laikapp.herokuapp.com/api/v1/telescopes/latest/5')
+        .then(response => (this.telescopes = response.data));
+    },
+    async getLatestExoplanets(){
+      axios
+        .get('https://laikapp.herokuapp.com/api/v1/exoplanets/latest/5')
+        .then(response => (this.exoplanets = response.data));
     }
   }
 }
@@ -134,6 +207,54 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 *{
   font-family: "Sansation", Arial;
+}
+
+#api-button{
+  position: relative;
+	padding: 10px 40px;
+  margin: 0px 10px 30px 0px;
+  float: left;
+	border-radius: 300px;
+	font-family: 'Lato', sans-serif;
+	font-size: 30px;
+	color: #FFF;
+	text-decoration: none;	
+	background-color: #3498db;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+  transition: all 0.1s;
+	-webkit-transition: all 0.1s;
+}
+
+#api-button:active
+{
+	transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+	border-bottom: 1px solid;
+}
+
+#divisor{
+  height: 10vh;
+  width: 100%;
+}
+
+#newslettermail{
+  background-color: whitesmoke;
+  width: 100%;
+  height: 75px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 100px;
+  font-size: 25px;
+}
+
+input:focus {
+    outline:none;
+}
+
+#newsletterform{
+  width: 400px;
+  padding: 10px 10px;
 }
 
 #scrollImage{
@@ -238,11 +359,17 @@ h1+p, p+p {
 }
 
 .container {
-  margin-top: 150px;
+  margin-top: 4vh;
   padding: 40px 80px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.blueline{
+    width: 100%;
+    height: 2px;
+    background-color: #00ffff;
 }
 
 #venus_li:hover #venus{
