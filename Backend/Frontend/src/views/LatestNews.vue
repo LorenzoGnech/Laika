@@ -4,12 +4,12 @@
               <NavMenu/>
           </div>
     <div class="sectiontitle">
-       <h1 id="maintitle">Telescopes</h1>
+       <h1 id="maintitle">Latest News</h1>
        <div class="blueline"></div>
        <img src="@/assets/filter.png" class="filter">
     </div>
     <div class="container" ref="gridcontainer">
-       <HCardGrid :cards=computedTelescopes :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="telescopes"/>
+       <HCardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="telescopes"/>
     </div>
   </div>
 </template>
@@ -20,39 +20,36 @@ import NavMenu from '../components/NavMenu.vue';
 import HCardGrid from '../components/HCardGrid.vue'
 
 export default {
-  name: 'Telescopes',
+  name: 'LatestNews',
   components: {
     NavMenu,
     HCardGrid
   },
   data: function(){
     return {
-      cTelescopes: [],
-      telescopes: [],
+      cNews: [],
+      news: [],
     }
   },
   mounted(){
-    this.getTelescopes();
+    this.getNews();
   },
   computed: {
-    computedTelescopes(){
-      this.telescopes.forEach( (item, index) => {
-        if(item.img != undefined && item.img.length == 0){
-          item.img.push("");
-        }
+    computedNews(){
+      this.news.forEach( (item, index) => {
         var t = {
           id: item.id,
-          header: item.name,
-          date: item.launch_date,
-          content: item.description.slice(0, 100) + "...",
-          fullContent: item.description,
-          img: item.img[0],
+          header: item.title,
+          date: item.date,
+          content: item.content.slice(0, 100) + "...",
+          fullContent: item.content,
+          img: item.img,
           source: item.source,
           tags: item.tags,
         };
-       this.cTelescopes.push(t)
+       this.cNews.push(t)
       });
-      return this.cTelescopes;
+      return this.cNews;
     },
     getCardsHeight(){
       return window.innerHeight/3.5;
@@ -62,10 +59,10 @@ export default {
     }
   },
   methods: {
-    async getTelescopes(){
+    async getNews(){
       axios
-        .get('https://laikapp.herokuapp.com/api/v1/telescopes/')
-        .then(response => (this.telescopes = response.data));
+        .get('https://laikapp.herokuapp.com/api/v1/news/')
+        .then(response => (this.news = response.data));
     }
   }
 }
