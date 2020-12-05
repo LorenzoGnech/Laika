@@ -4,7 +4,7 @@
   "description": "Laika project for \"Ingegneria del Software 2\" 2020",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "serve": "cd Backend/Frontend && vue-cli-service serve",
     "build": "cd Backend/Frontend && vue-cli-service build",
     "lint": "cd Backend/Frontend && vue-cli-service lint"
@@ -43,8 +43,10 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "jest": "^26.6.3",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.3",
+    "supertest": "^6.0.1",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -62,5 +64,9 @@
     "rules": {
       "no-unused-vars": "off"
     }
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": false
   }
 }
