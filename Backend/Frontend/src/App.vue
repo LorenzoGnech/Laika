@@ -21,6 +21,18 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {font-family: "Sansation";
+    src: url("https://db.onlinewebfonts.com/t/00370d92f1b404768d34ac7dc664289e.eot"); /* IE9*/
+    src: url("https://db.onlinewebfonts.com/t/00370d92f1b404768d34ac7dc664289e.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://db.onlinewebfonts.com/t/00370d92f1b404768d34ac7dc664289e.woff2") format("woff2"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/00370d92f1b404768d34ac7dc664289e.woff") format("woff"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/00370d92f1b404768d34ac7dc664289e.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("https://db.onlinewebfonts.com/t/00370d92f1b404768d34ac7dc664289e.svg#Sansation") format("svg"); /* iOS 4.1- */
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 #app {
   font-family: "Playfair Display", "Roboto";

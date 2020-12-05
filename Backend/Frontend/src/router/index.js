@@ -41,6 +41,11 @@ const routes = [
     name: 'SignIn',
     component: Login,
   },
+  {
+    path: '/news/:value(.*)',
+    name: 'News',
+    component: () => import('../views/News.vue')
+  }
 ]
 
 const router = new VueRouter({

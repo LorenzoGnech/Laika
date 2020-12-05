@@ -1,5 +1,6 @@
 <template>
     <div class="card-wrap"
+      @click="handleClick"
       @mousemove="handleMouseMove"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
@@ -29,7 +30,9 @@ export default {
     width: Number,
     height: Number,
     header: String,
-    content: String
+    content: String,
+    type: String,
+    id: Number,
   },
   mounted(){
   },
@@ -57,12 +60,22 @@ export default {
       }
     },
     cardBgImage() {
+      if(this.img == ""){
+        return {
+          backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
+        }
+      }
       return {
         backgroundImage: `url(${this.img})`
       }
     }
   },
   methods: {
+    handleClick(e){
+      let host = document.location.origin;
+      let url =  this.type + '/' + this.id;
+      this.$router.push(url);
+    },
     handleMouseMove(e) {
       this.mouseX = e.pageX - this.$refs.card.offsetLeft - this.width/2;
       this.mouseY = e.pageY - this.$refs.card.offsetTop - this.height/2;
@@ -193,7 +206,9 @@ $returnEasing: cubic-bezier(0.44, 0.05, 0.56, 0.95);
 }
 
 .card-info h1 {
-  font-size: 36px;
+  margin: 15px;
+  padding-bottom: 30px;
+  font-size: 28px;
   font-weight: 700;
   text-align: center;
   text-shadow: rgba(black, 0.5) 0 10px 10px;
