@@ -9,7 +9,7 @@
        <img src="@/assets/filter.png" class="filter">
     </div>
     <div class="container" ref="gridcontainer">
-       <HCardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="telescopes"/>
+       <HCardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="exoplanet"/>
     </div>
   </div>
 </template>
