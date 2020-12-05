@@ -1,10 +1,12 @@
 <template>
     <div id="menu-wrap">
       <div id="opaque"></div>
-      <form id="searchbar" action="">
-        <input id="searchbar_input" type="search">
+      <form id="searchbar" v-on:submit.prevent="searchquery();">
+        <input id="searchbar_input" type="search" v-model="query" name="search">
         <i class="fa fa-search"></i>
-        <img id="searchicon" src="@/assets/searchbar.png"/>
+        <button id="diocane" type="submit" style="border-width: 0px; background-color: white;">
+          <img id="searchicon" src="@/assets/searchbar.png"/>
+        </button>
       </form>
       <div id="line1"></div>
       <div id="line2"></div>
@@ -42,6 +44,7 @@ export default {
       return{
           username: "",
           burgerActive: true,
+          query: "",
       }
   },
   props: {
@@ -52,6 +55,15 @@ export default {
   computed: {
   },
   methods: {
+    searchquery(){
+      if (this.query != ""){
+        var url = this.query.split(" ");
+        url = "search/search=" + url.join("+");
+        console.log(url);
+        this.query = "";
+        this.$router.push(url);
+      }
+    },
     burgerTrigger(){
       this.burgerActive = !this.burgerActive
     }

@@ -32,6 +32,11 @@ const routes = [
     component: () => import('../views/Exoplanets.vue')
   },
   {
+    path: '/search/:value(.*)',
+    name: 'Search',
+    component: () => import('../views/Search.vue')
+  },
+  {
     path: '/api',
     name: 'API',
     component: () => import('../views/Api.vue')
