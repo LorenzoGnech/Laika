@@ -6,21 +6,19 @@
           <div class="container">
             <div class="row">
               <div class="column">
-                <div class="center">
-                  <form action="#" method="post">
-                    <p class="title"><b>Sign In</b></p>
-                    <input type="email" placeholder="Email" name="email" required>
-                    <input type="password" placeholder="Password" name="psw" required>
-                    <button type="submit">Sign In</button>
-                  </form>
-                </div>
-              </div>
-              <div class="column">
                 <form action="#" method="post">
                   <p class="title"><b>Sign Up</b></p>
-                    <input type="email" placeholder="Email" name="email" required>
-                    <input type="password" placeholder="Password" name="psw" required>
-                    <button type="submit">Sign Up</button>
+                  <input type="email" placeholder="Email" name="email" required>
+                  <input type="password" placeholder="Password" name="psw" required>
+                  <button type="submit">Sign Up</button>
+                </form>
+              </div>
+              <div class="column" id="signin">
+                <form action="#" method="post">
+                  <p class="title"><b>Sign In</b></p>
+                  <input type="email" placeholder="Email" name="email" required>
+                  <input type="password" placeholder="Password" name="psw" required>
+                  <button type="submit">Sign In</button>
                 </form> 
               </div>
             </div>
@@ -97,19 +95,12 @@ button:hover {
   opacity: 0.8;
 }
 
-.row {
-  display: flex;
-}
-
 /* Create two equal columns that sits next to each other */
 .column {
   flex: 50%;
-  padding: 10px;
-  margin: 0px 100px;
 }
 
-.center {
-  height: 200px;
-  position: relative;
+#signin{
+  margin-top: 30px;
 }
 </style>
