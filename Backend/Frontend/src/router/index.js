@@ -42,6 +42,11 @@ const routes = [
     component: Login,
   },
   {
+    path: '/LatestNews',
+    name: 'LatestNews',
+    component: () => import('../views/LatestNews.vue')
+  },
+  {
     path: '/news/:value(.*)',
     name: 'News',
     component: () => import('../views/News.vue')

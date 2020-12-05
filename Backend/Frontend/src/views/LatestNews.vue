@@ -4,12 +4,12 @@
               <NavMenu/>
           </div>
     <div class="sectiontitle">
-       <h1 id="maintitle">Exoplanets</h1>
+       <h1 id="maintitle">Latest News</h1>
        <div class="blueline"></div>
        <img src="@/assets/filter.png" class="filter">
     </div>
     <div class="container" ref="gridcontainer">
-       <HCardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="telescopes"/>
+       <HCardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="telescopes"/>
     </div>
   </div>
 </template>
@@ -20,36 +20,36 @@ import NavMenu from '../components/NavMenu.vue';
 import HCardGrid from '../components/HCardGrid.vue'
 
 export default {
-  name: 'Exoplanets',
+  name: 'LatestNews',
   components: {
     NavMenu,
     HCardGrid
   },
   data: function(){
     return {
-      cExoplanets: [],
-      exoplanets: [],
+      cNews: [],
+      news: [],
     }
   },
   mounted(){
-    this.getExoplanets();
+    this.getNews();
   },
   computed: {
-    computedExoplanets(){
-      this.exoplanets.forEach( (item, index) => {
+    computedNews(){
+      this.news.forEach( (item, index) => {
         var t = {
           id: item.id,
-          header: item.name,
+          header: item.title,
           date: item.date,
-          content: item.description.slice(0, 100) + "...",
-          fullContent: item.description,
+          content: item.content.slice(0, 100) + "...",
+          fullContent: item.content,
           img: item.img,
           source: item.source,
           tags: item.tags,
         };
-       this.cExoplanets.push(t)
+       this.cNews.push(t)
       });
-      return this.cExoplanets;
+      return this.cNews;
     },
     getCardsHeight(){
       return window.innerHeight/3.5;
@@ -59,10 +59,10 @@ export default {
     }
   },
   methods: {
-    async getExoplanets(){
+    async getNews(){
       axios
-        .get('https://laikapp.herokuapp.com/api/v1/exoplanets/')
-        .then(response => (this.exoplanets = response.data));
+        .get('https://laikapp.herokuapp.com/api/v1/news/')
+        .then(response => (this.news = response.data));
     }
   }
 }
