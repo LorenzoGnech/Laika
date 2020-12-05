@@ -58,7 +58,7 @@ export default {
     searchquery(){
       if (this.query != ""){
         var url = this.query.split(" ");
-        url = "search/search=" + url.join("+");
+        url = "search/?search=" + url.join("+");
         console.log(url);
         this.query = "";
         this.$router.push(url);

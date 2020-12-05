@@ -11,16 +11,30 @@
 
 <script>
 import NavMenu from '../components/NavMenu.vue'
+import axios from 'axios'
 
 export default {
-  name: 'Exoplanets',
+  name: 'Search',
   components: {
     NavMenu
   },
   data: function(){
     return {
+      result: [],
     }
   },
+  mounted(){
+    this.getSearchResults();
+  },
+  methods: {
+    async getSearchResults(){
+      var aa = 'http://localhost:3000/api/v1' + this.$router.currentRoute.path
+      console.log(aa)
+      axios
+        .get(aa)
+        .then(response => (this.result = response.data));
+    }
+  }
 }
 </script>
 
