@@ -1,7 +1,11 @@
 <template>
     <div id="menu-wrap">
       <div id="opaque"></div>
-      <img src="@/assets/searchbar.png" id="searchicon">
+      <form id="searchbar" action="">
+        <input id="searchbar_input" type="search">
+        <i class="fa fa-search"></i>
+        <img id="searchicon" src="@/assets/searchbar.png"/>
+      </form>
       <div id="line1"></div>
       <div id="line2"></div>
       <router-link to="/"><img src="@/assets/LaikaLogo.png" id="logo"></router-link>
@@ -256,6 +260,64 @@ ul {
     a{
         color:lightskyblue
     }
+}
+
+#searchbar{
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+#searchbar_input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  display: none;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #0F154D;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+#searchbar:hover{
+    width: 250px;
+    cursor: pointer;
+}
+
+#searchbar:hover input{
+    display: block;
+}
+
+#searchbar:hover .fa{
+    background: white;
+    color: white;
 }
 
 </style>
