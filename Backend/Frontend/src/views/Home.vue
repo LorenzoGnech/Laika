@@ -26,6 +26,7 @@
     <div class="scrollButton">
       <img @click="scrollToSecondPage" id="scrollImage" src="@/assets/scrollDown.svg">
     </div>
+    <div id="divisor"></div>
     <div class="container" id="latestnews" ref="latestnews">
       <h2 class="containertitle">LATEST NEWS</h2>
       <CardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
@@ -38,7 +39,7 @@
       <div class="blueline"></div>
       <h2 class="containertitle">Do you like space?<br>Subscribe to our newsletter!</h2>
       <form id="newsletterform" action="#" method="post">
-        <input id="newslettermail" type="email" placeholder="Email" name="email" required>
+        <input id="newslettermail" style="text-align:center;" type="email" placeholder="Email" name="email" required>
         <button type="submit" style="visibility: hidden;">Subscribe</button>
       </form>
       <div class="blueline"></div>
@@ -50,6 +51,12 @@
     <div class="container" id="latestexoplanets" ref="latestexoplanets">
       <h2 class="containertitle">LATEST EXOPLANETS</h2>
       <CardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+    </div>
+    <div class="container">
+      <div class="blueline"></div>
+      <h2 class="containertitle" style="margin: 15px;">Are you a developer?<br> Take a look at our APIs!</h2>
+      <a href="#/api" id="api-button">LAIKA APIs</a>
+      <div class="blueline"></div>
     </div>
   </div>
 </template>
@@ -200,6 +207,35 @@ $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 *{
   font-family: "Sansation", Arial;
+}
+
+#api-button{
+  position: relative;
+	padding: 10px 40px;
+  margin: 0px 10px 30px 0px;
+  float: left;
+	border-radius: 300px;
+	font-family: 'Lato', sans-serif;
+	font-size: 30px;
+	color: #FFF;
+	text-decoration: none;	
+	background-color: #3498db;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+  transition: all 0.1s;
+	-webkit-transition: all 0.1s;
+}
+
+#api-button:active
+{
+	transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+	border-bottom: 1px solid;
+}
+
+#divisor{
+  height: 10vh;
+  width: 100%;
 }
 
 #newslettermail{
