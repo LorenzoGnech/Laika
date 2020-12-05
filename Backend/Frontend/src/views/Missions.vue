@@ -9,7 +9,7 @@
        <img src="@/assets/filter.png" class="filter">
     </div>
     <div class="container" ref="gridcontainer">
-       <HCardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+       <HCardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="mission"/>
     </div>
   </div>
 </template>
