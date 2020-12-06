@@ -13,12 +13,14 @@ describe('GET methods for astronauts', () =>
 
 describe('POST methods for astronauts', () => 
 {
+    const errMsg = { error: 'object sent is not an astronaut' };
+
     // Id non specificato
     test('POST /api/v1/astronauts with id not specified', () => {
         return request(app)
             .post('/api/v1/astronauts')
             .set('Accept', 'application/json')
-            .expect(400, { error: 'id not specified' });
+            .expect(400, errMsg);
     });
 
     // Birth non specificato
@@ -27,7 +29,7 @@ describe('POST methods for astronauts', () =>
             .post('/api/v1/astronauts')
             .set('Accept', 'application/json')
             .send({ id: 1010 })
-            .expect(400, { error: 'birth not specified' });
+            .expect(400, errMsg);
     });
 
     // Name non specificato
@@ -36,7 +38,7 @@ describe('POST methods for astronauts', () =>
             .post('/api/v1/astronauts')
             .set('Accept', 'application/json')
             .send({ id: 1010, birth: "01/01/1900" })
-            .expect(400, { error: 'name not specified' });
+            .expect(400, errMsg);
     });
 
     // Nationality non specificato
@@ -45,7 +47,7 @@ describe('POST methods for astronauts', () =>
             .post('/api/v1/astronauts')
             .set('Accept', 'application/json')
             .send({ id: 1010, birth: "01/01/1900", name: "Mario Rossi" })
-            .expect(400, { error: 'nationality not specified' });
+            .expect(400, errMsg);
     });
 
     // Img non specificato
@@ -54,7 +56,7 @@ describe('POST methods for astronauts', () =>
             .post('/api/v1/astronauts')
             .set('Accept', 'application/json')
             .send({ id: 1010, birth: "01/01/1900", name: "Mario Rossi", nationality: "ita"})
-            .expect(400, { error: 'img not specified' });
+            .expect(400, errMsg);
     });
 
     // Agency non specificato
@@ -63,6 +65,8 @@ describe('POST methods for astronauts', () =>
             .post('/api/v1/astronauts')
             .set('Accept', 'application/json')
             .send({ id: 1010, birth: "01/01/1900", name: "Mario Rossi", nationality: "ita", img: ""})
-            .expect(400, { error: 'agency not specified' });
+            .expect(400, errMsg);
     });
+
+    // Tests for incorrect number of properties is not needed, since strange properties are automatically discarded.
 });
