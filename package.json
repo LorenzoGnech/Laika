@@ -7,7 +7,8 @@
     "test": "jest",
     "serve": "cd Backend/Frontend && vue-cli-service serve",
     "build": "cd Backend/Frontend && vue-cli-service build",
-    "lint": "cd Backend/Frontend && vue-cli-service lint"
+    "lint": "cd Backend/Frontend && vue-cli-service lint",
+    "start_local": "node -r dotenv/config Backend/app.js"
   },
   "repository": {
     "type": "git",
