@@ -2,3 +2,4 @@
 /node_modules/
 /Backend/Frontend/node_modules/*
 /coverage/
+.env
