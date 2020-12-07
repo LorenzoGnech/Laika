@@ -33,7 +33,7 @@
     </div>
     <div class="container containertitle-link" id="latestmissions" ref="latestmissions">
       <h2 class="containertitle" @click="handleClick('missions')">LATEST MISSIONS</h2>
-      <CardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+      <CardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="mission"/>
     </div>
     <div class="container">
       <div class="blueline"></div>
@@ -46,11 +46,11 @@
     </div>
     <div class="container containertitle-link" id="latesttelescopes" ref="latesttelescopes">
       <h2 class="containertitle" @click="handleClick('telescopes')">LATEST TELESCOPES</h2>
-      <CardGrid :cards=computedTelescopes :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+      <CardGrid :cards=computedTelescopes :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="telescope"/>
     </div>
     <div class="container containertitle-link" id="latestexoplanets" ref="latestexoplanets">
       <h2 class="containertitle" @click="handleClick('exoplanets')">LATEST EXOPLANETS</h2>
-      <CardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+      <CardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="exoplanet"/>
     </div>
     <div class="container">
       <div class="blueline"></div>

@@ -32,7 +32,8 @@
     "vue-navigation-bar": "^4.0.2",
     "vue-router": "^3.2.0",
     "vue-sticky-directive": "0.0.10",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

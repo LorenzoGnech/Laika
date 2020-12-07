@@ -11,7 +11,7 @@
         <div class="blueline"></div>
     </div>
     <div class="container">
-        <p class="newsContent">{{exoplanet.description}}</p>
+        <pre class="newsContent">{{exoplanet.description}}</pre>
         <div class="newsFooter">
             <p class="footerText">Date: {{exoplanet.date}} </p>
             <p class="footerText">Source: {{exoplanet.source}}</p>
@@ -98,6 +98,7 @@ mounted(){
 .newsContent{
     color: white;
     font-size: 1vw;
+    white-space:pre-line;
 }
 
 .newsFooter{

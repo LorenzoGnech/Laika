@@ -11,7 +11,7 @@
         <div class="blueline"></div>
     </div>
     <div class="container">
-        <p class="newsContent">{{telescope.description}}</p>
+        <pre class="newsContent">{{telescope.description}}</pre>
         <div class="newsFooter">
             <p class="footerText">Launch Date: {{telescope.launch_date}} </p>
             <p class="footerText">Source: {{telescope.source}}</p>
@@ -98,6 +98,7 @@ mounted(){
 .newsContent{
     color: white;
     font-size: 1vw;
+    white-space:pre-line;
 }
 
 .newsFooter{
