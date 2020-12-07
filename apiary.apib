@@ -48,12 +48,15 @@ You may add a new news using this action. It takes a JSON object containing the 
 + Request (application/json)
 
         {
-            "date": "21/11/2020",
-            "title": "Sea-level monitoring satellite in position for liftoff",
-            "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
-            "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
-            "source": "https://www.esa.int",
-            "tags": ["nasa"],
+            "newNews": {
+                "date": "21/11/2020",
+                "title": "Sea-level monitoring satellite in position for liftoff",
+                "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
+                "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
+                "source": "https://www.esa.int",
+                "tags": ["nasa"],
+            },
+            "userID": "unique ID",
         }
 
 + Response 201 (application/json)
@@ -71,6 +74,14 @@ You may add a new news using this action. It takes a JSON object containing the 
                 "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
                 "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
                 "source": "https://www.esa.int",
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Specific News [/api/v1/news/{id}]
@@ -96,13 +107,16 @@ You may update an existing news using this action. It takes a JSON object contai
 + Request (application/json)
 
         {
-            "id": 4,
-            "date": "21/11/2020",
-            "title": "Sea-level monitoring satellite in position for liftoff",
-            "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
-            "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
-            "source": "https://www.esa.int",
-            "tags": ["nasa"],
+            "updatedNews": {
+                "id": 4,
+                "date": "21/11/2020",
+                "title": "Sea-level monitoring satellite in position for liftoff",
+                "content": "With liftoff set for today at 17:17 GMT (18:17 CET, 09:17 PST), the Copernicus Sentinel-6 Michael Freilich satellite is poised for liftoff – atop a Falcon 9 rocket on the launch pad at the Vandenberg Air Force Base in California, US.",
+                "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
+                "source": "https://www.esa.int",
+                "tags": ["nasa"],
+            },
+            "userID": "unique ID",
         }
 
 + Response 202 (application/json)
@@ -121,6 +135,14 @@ You may update an existing news using this action. It takes a JSON object contai
                 "img": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/11/copernicus_sentinel-6_on_a_roll/22337310-2-eng-GB/Copernicus_Sentinel-6_on_a_roll_pillars.jpg"
                 "source": "https://www.esa.int",
             }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
+            }
 
 ### Delete a specific news [DELETE]
 
@@ -130,6 +152,7 @@ You may delete an existing news using this action. It takes a JSON object contai
 
         {
             "id": 4,
+            "userID": "unique ID",
         }
 
 + Response 200 (application/json)
@@ -142,6 +165,14 @@ You may delete an existing news using this action. It takes a JSON object contai
 
             {
                 "id": 4,
+            }
+
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Latest News [/api/v1/news/latest/{size}]
@@ -217,12 +248,15 @@ You may add a new mission using this action. It takes a JSON object containing t
 + Request (application/json)
 
         {
-            "date": "18/12/2019",
-            "title": "Cheops",
-            "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
-            "img": ""
-            "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
-            "tags": ["esa", "exoplanets"],
+            "newMission": {
+                "date": "18/12/2019",
+                "title": "Cheops",
+                "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
+                "img": ""
+                "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+                "tags": ["esa", "exoplanets"],
+            },
+            "UserID": "unique ID",
         }
 
 + Response 201 (application/json)
@@ -240,6 +274,14 @@ You may add a new mission using this action. It takes a JSON object containing t
                 "img": ""
                 "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
                 "tags": ["esa", "exoplanets"],
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Specific Missions [/api/v1/missions/{id}]
@@ -264,13 +306,16 @@ You may update an existing news using this action. It takes a JSON object contai
 + Request (application/json)
 
         {
-            "id": 2
-            "date": "18/12/2019",
-            "title": "Cheops",
-            "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
-            "img": ""
-            "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
-            "tags": ["esa", "exoplanets"],
+            "updatedMission": {
+                "id": 2
+                "date": "18/12/2019",
+                "title": "Cheops",
+                "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
+                "img": ""
+                "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
+                "tags": ["esa", "exoplanets"],
+            },
+            "UserID": "unique ID",
         }
 
 + Response 202 (application/json)
@@ -290,6 +335,14 @@ You may update an existing news using this action. It takes a JSON object contai
                 "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
                 "tags": ["esa", "exoplanets"],
             }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
+            }
 
 ### Delete a specific mission [DELETE]
 
@@ -299,6 +352,7 @@ You may delete an existing mission using this action. It takes a JSON object con
 
         {
             "id": 4,
+            "userId": "unique ID",
         }
 
 + Response 200 (application/json)
@@ -311,6 +365,14 @@ You may delete an existing mission using this action. It takes a JSON object con
 
             {
                 "id": 4,
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Latest Missions [/api/v1/missions/latest/{size}]
@@ -376,11 +438,14 @@ You may add a new astronaut using this action. It takes a JSON object containing
 + Request (application/json)
 
             {
-                "birth": "11/01/1975",
-                "name": "Robert Hines",
-                "nationality": "US",
-                "img": "",
-                "agency": "NASA",
+                "newAstronaut": {
+                    "birth": "11/01/1975",
+                    "name": "Robert Hines",
+                    "nationality": "US",
+                    "img": "",
+                    "agency": "NASA",
+                },
+                "userId": "unique ID",
             }
 
 + Response 201 (application/json)
@@ -398,6 +463,14 @@ You may add a new astronaut using this action. It takes a JSON object containing
                 "nationality": "US",
                 "img": "",
                 "agency": "NASA",
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Specific astronauts [/api/v1/astronauts/{id}]
@@ -422,12 +495,15 @@ You may update an existing astronaut using this action. It takes a JSON object c
 + Request (application/json)
 
         {
-            "id": 1,
-            "birth": "27/09/1976",
-            "name": "Luca Parmitano",
-            "nationality": "Italy",
-            "img": "",
-            "agency": "ESA",
+            "updatedAstronaut": {
+                "id": 1,
+                "birth": "27/09/1976",
+                "name": "Luca Parmitano",
+                "nationality": "Italy",
+                "img": "",
+                "agency": "ESA",
+            },
+            "userId": "unique ID",
         }
 
 + Response 202 (application/json)
@@ -446,6 +522,14 @@ You may update an existing astronaut using this action. It takes a JSON object c
                 "img": "",
                 "agency": "ESA",
             }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
+            }
 
 ### Delete a specific astronaut [DELETE]
 
@@ -455,6 +539,7 @@ You may delete an existing astronaut using this action. It takes a JSON object c
 
         {
             "id": 4,
+            "userId": "unique ID",
         }
 
 + Response 200 (application/json)
@@ -467,6 +552,14 @@ You may delete an existing astronaut using this action. It takes a JSON object c
 
             {
                 "id": 4,
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Latest astronauts [/api/v1/astronauts/latest/{size}]
@@ -532,12 +625,15 @@ You may add a new telescope using this action. It takes a JSON object containing
 + Request (application/json)
 
             {
-                "date": "14/09/2013",
-                "name": "Hisaki Satellite",
-                "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
-                "img": []
-                "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
-                "tags": ["jaxa"],
+                "newTelescope": {
+                    "date": "14/09/2013",
+                    "name": "Hisaki Satellite",
+                    "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                    "img": []
+                    "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+                    "tags": ["jaxa"],
+                },
+                "userId": "unique ID",
             }
 
 + Response 201 (application/json)
@@ -556,6 +652,14 @@ You may add a new telescope using this action. It takes a JSON object containing
                 "img": []
                 "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
                 "tags": ["jaxa"],
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Specific telescope [/api/v1/telescopes/{id}]
@@ -581,13 +685,16 @@ You may update an existing telescope using this action. It takes a JSON object c
 + Request (application/json)
 
         {
-            "id": 2,
-            "date": "14/09/2013",
-            "name": "Hisaki Satellite",
-            "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
-            "img": []
-            "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
-            "tags": ["jaxa"]
+            "updatedTelescope": {
+                "id": 2,
+                "date": "14/09/2013",
+                "name": "Hisaki Satellite",
+                "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
+                "img": []
+                "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
+                "tags": ["jaxa"],
+            },
+            "userId": "unique ID",
         }
 
 + Response 202 (application/json)
@@ -607,6 +714,14 @@ You may update an existing telescope using this action. It takes a JSON object c
                 "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
                 "tags": ["jaxa"]
             }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
+            }
 
 ### Delete a specific telescope [DELETE]
 
@@ -616,6 +731,7 @@ You may delete an existing telescope using this action. It takes a JSON object c
 
         {
             "id": 4,
+            "userId": "unique ID",
         }
 
 + Response 200 (application/json)
@@ -628,6 +744,14 @@ You may delete an existing telescope using this action. It takes a JSON object c
 
             {
                 "id": 4,
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Latest telescopes [/api/v1/telescopes/latest/{size}]
@@ -695,13 +819,16 @@ You may add a newly discovered exoplanet using this action. It takes a JSON obje
 + Request (application/json)
 
             {
-                "id": 2,
-                "date": "15/04/2020",
-                "name": "Kepler-1649c",
-                "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
-                "img": []
-                "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
-                "tags": ["kepler"]
+                "newExoplanet": {
+                    "id": 2,
+                    "date": "15/04/2020",
+                    "name": "Kepler-1649c",
+                    "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+                    "img": []
+                    "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+                    "tags": ["kepler"]
+                },
+                "userID": "unique ID",
             }
 
 + Response 201 (application/json)
@@ -720,6 +847,14 @@ You may add a newly discovered exoplanet using this action. It takes a JSON obje
                 "img": []
                 "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
                 "tags": ["kepler"],
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Specific exoplanet [/api/v1/exoplanets/{id}]
@@ -745,13 +880,16 @@ You may update an existing exoplanet using this action. It takes a JSON object c
 + Request (application/json)
 
         {
-            "id": 2,
-            "date": "15/04/2020",
-            "name": "Kepler-1649c",
-            "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
-            "img": []
-            "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
-            "tags": ["kepler"],
+            "updatedExoplanet": {
+                "id": 2,
+                "date": "15/04/2020",
+                "name": "Kepler-1649c",
+                "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
+                "img": []
+                "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
+                "tags": ["kepler"],
+            },
+            "userID": "unique ID",
         }
 
 + Response 202 (application/json)
@@ -771,6 +909,14 @@ You may update an existing exoplanet using this action. It takes a JSON object c
                 "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
                 "tags": ["kepler"],
             }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
+            }
 
 ### Delete a specific exoplanet [DELETE]
 
@@ -780,6 +926,7 @@ You may delete an existing exoplanet using this action. It takes a JSON object c
 
         {
             "id": 4,
+            "userID": "unique ID",
         }
 
 + Response 200 (application/json)
@@ -792,6 +939,14 @@ You may delete an existing exoplanet using this action. It takes a JSON object c
 
             {
                 "id": 4,
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid token, or not authorized"
             }
 
 ## Latest exoplanets [/api/v1/exoplanets/latest/{size}]
@@ -848,6 +1003,14 @@ You may sign up by providing a username and password. It takes a JSON object con
             {
             }
             
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Username already taken",
+            }
+            
 ### Delete an account [DELETE]
 
 You may delete your account if you're signed in.
@@ -855,7 +1018,7 @@ You may delete your account if you're signed in.
 + Request (application/json)
 
             {
-                "token": 2
+                "userID": "unique ID"
             }
 
 + Response 200 (application/json)
@@ -867,6 +1030,14 @@ You may delete your account if you're signed in.
     + Body
 
             {
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid ID or not logged in",
             }
             
 ## Signing in [/api/v1/signin]
@@ -891,10 +1062,18 @@ You may sign in to an existing user account by providing a username and password
     + Body
 
             {
-                "token": 2,
+                "userID": "unique ID",
                 "img": "",
                 "saved_articles": [],
                 "followed_missions": [],
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid username or password"
             }
             
 ## Saved News [/api/v1/save]
@@ -906,7 +1085,7 @@ If you're signed into your account, you may save an article to then read it late
 + Request (application/json)
 
             {
-                "token": 2,
+                "userID": "unique ID",
                 "article_id": 3,
             }
 
@@ -919,6 +1098,14 @@ If you're signed into your account, you may save an article to then read it late
     + Body
 
             {
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid ID or not logged in",
             }
 
 ### Delete a specific article [DELETE]
@@ -928,7 +1115,7 @@ If you're signed into your account, you may delete an article you saved previous
 + Request (application/json)
 
             {
-                "token": 2,
+                "userID": "unique ID",
                 "article_id": 3,
             }
 
@@ -941,6 +1128,14 @@ If you're signed into your account, you may delete an article you saved previous
     + Body
 
             {
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid ID or not logged in",
             }
 
 ## Followed Missions [/api/v1/follow]
@@ -952,7 +1147,7 @@ If you're signed into your account, you may follow a specific mission to receive
 + Request (application/json)
 
             {
-                "token": 2,
+                "userID": "unique ID",
                 "mission_id": 3,
             }
 
@@ -965,6 +1160,14 @@ If you're signed into your account, you may follow a specific mission to receive
     + Body
 
             {
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid ID or not logged in",
             }
 
 ### Unfollow a specific mission [DELETE]
@@ -974,7 +1177,7 @@ If you're signed into your account, you unfollow a mission you followed earlier.
 + Request (application/json)
 
             {
-                "token": 2,
+                "userID": "unique ID",
                 "mission_id": 3,
             }
 
@@ -987,4 +1190,12 @@ If you're signed into your account, you unfollow a mission you followed earlier.
     + Body
 
             {
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+    
+            {
+                "error": "Invalid ID or not logged in",
             }
