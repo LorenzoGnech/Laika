@@ -3,7 +3,6 @@ const astronauts = require('./astronauts.js');
 const missions = require('./missions.js');
 const exoplanets = require('./exoplanets.js');
 const telescopes = require('./telescopes.js');
-const prova = require("./prova.js");
 var express = require('express');
 const mongoose = require('mongoose');
 var path = require('path');
@@ -12,8 +11,10 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-const DB_URI = "mongodb+srv://admin:laika2020@laika.5s6t8.mongodb.net/laika?retryWrites=true&w=majority";
+// URL for DB connection
+const DB_URI = "mongodb+srv://user:HoWTpgx6OOtFZUh3@laika.5s6t8.mongodb.net/laika?retryWrites=true&w=majority";
 
+// Try to connect to DB
 try {
     mongoose.connect(DB_URI, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log("connected"));    
@@ -41,7 +42,6 @@ app.use('/api/v1/missions', missions)
 app.use('/api/v1/astronauts', astronauts);
 app.use('/api/v1/exoplanets', exoplanets);
 app.use('/api/v1/telescopes', telescopes);
-app.use('/api/v1/prova', prova);
 
 app.listen(port, function() {
   console.log('Server running on port ', port);
