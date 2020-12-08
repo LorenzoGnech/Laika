@@ -63,7 +63,7 @@ router.post('', async (req, res) => {
     
     let mission = new Missions({
         _id: mongoose.Types.ObjectId(),
-        date: req.body.date,
+        date: new Date(Date.now(req.body.date)).toISOString(),
         title: req.body.title,
         description: req.body.description,
         img_path: req.body.img_path,
@@ -98,13 +98,14 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     var id = req.params.id;
     
-    let valuesToUpdate = {};
-    valuesToUpdate.date = req.body.date;
-    valuesToUpdate.title = req.body.title;
-    valuesToUpdate.description = req.body.description;
-    valuesToUpdate.img_path = req.body.img_path;
-    valuesToUpdate.source_url = req.body.source_url;
-    valuesToUpdate.tags = req.body.tags;
+    let valuesToUpdate = {
+        "date": new Date(Date.parse(req.body.date)).toISOString(),
+        "title": req.body.title,
+        "description": req.body.description,
+        "img_path": req.body.img_path,
+        "source_url": req.body.source_url,
+        "tags": req.body.tags
+    };
 
     Missions.updateOne({_id: id}, {$set: valuesToUpdate})
     .exec()

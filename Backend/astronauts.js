@@ -61,17 +61,6 @@ router.get('/latest/:size', async (req, res) =>
     }
 });
 
-// TO UPDATE
-/*
-router.get('/latest/:size', async (req, res) => {
-    var size = req.params.size;
-    if (size < astronauts.length){
-        res.status(200).send(astronauts.slice(astronauts.length-size, size+1));        
-    } else {
-        res.status(200).send(astronauts);        
-    }
-}); */
-
 router.post('', async (req, res) =>
 {
     let newTempAstronaut = {
@@ -133,7 +122,7 @@ router.put('/:id', async (req, res) =>
     let id = req.params.id;
     
     let valuesToUpdate = {
-        "birth": req.body.birth,
+        "birth": new Date(Date.parse(req.body.birth)).toISOString(),
         "name": req.body.name,
         "nationality": req.body.nationality,
         "img_path": req.body.img_path,

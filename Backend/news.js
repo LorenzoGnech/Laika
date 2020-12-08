@@ -99,13 +99,14 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     var id = req.params.id;
     
-    let valuesToUpdate = {};
-    valuesToUpdate.date = new Date(Date.now()).toISOString();
-    valuesToUpdate.title = req.body.title;
-    valuesToUpdate.content = req.body.content;
-    valuesToUpdate.img_path = req.body.img_path;
-    valuesToUpdate.source_url = req.body.source_url;
-    valuesToUpdate.tags = req.body.tags;
+    let valuesToUpdate = {
+        "date": new Date(Date.now()).toISOString(),
+        "title": req.body.title,
+        "content": req.body.content,
+        "img_path": req.body.img_path,
+        "source_url": req.body.source_url,
+        "tags": req.body.tags
+    };
 
     News.updateOne({_id: id}, {$set: valuesToUpdate})
     .exec()
