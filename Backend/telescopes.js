@@ -61,12 +61,12 @@ router.get('/latest/:size', async (req, res) =>
 });
 
 router.post('', async (req, res) => {
-    
+   
     let telescope = new telescopes({
         _id: mongoose.Types.ObjectId(),
         name: req.body.name,
         description: req.body.description,
-        launch_date: req.body.launch_date,
+        launch_date: new Date(Date.parse(req.body.launch_date)).toISOString(),
         img_path: req.body.img_path,
         source_url: req.body.source_url,
         tags: req.body.tags
@@ -87,7 +87,7 @@ router.put('/:id', async (req, res) => {
     let valuesToUpdate = {};
     valuesToUpdate.name = req.body.name;
     valuesToUpdate.description = req.body.description;
-    valuesToUpdate.launch_date = req.body.launch_date;
+    valuesToUpdate.launch_date = new Date(Date.parse(req.body.launch_date)).toISOString();
     valuesToUpdate.img_path = req.body.img_path;
     valuesToUpdate.source_url = req.body.source_url;
     valuesToUpdate.tags = req.body.tags;
