@@ -36,10 +36,23 @@ router.get('/:id', async (req, res) => {
 
 router.get('/latest/:size', async (req, res) => {
     var size = req.params.size;
-    if (size < newslist.length){
-        res.status(200).send(newslist.slice(newslist.length-size, size+1));
-    } else {
-        res.status(200).send(newslist);
+    var len = parseInt(size);
+
+    if(len>0){    
+        News.find().sort({date: -1 }).limit(len)
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }else{
+        res.status(200).json(null);
     }
 });
 
@@ -47,7 +60,7 @@ router.post('', async (req, res) => {
     
     let news = new News({
         _id: mongoose.Types.ObjectId(),
-        date: req.body.date,
+        date: new Date(Date.now()).toISOString(),
         title: req.body.title,
         content: req.body.content,
         img_path: req.body.img_path,
@@ -83,7 +96,7 @@ router.put('/:id', async (req, res) => {
     var id = req.params.id;
     
     let valuesToUpdate = {};
-    valuesToUpdate.date = req.body.date;
+    valuesToUpdate.date = new Date(Date.now()).toISOString();
     valuesToUpdate.title = req.body.title;
     valuesToUpdate.content = req.body.content;
     valuesToUpdate.img_path = req.body.img_path;
