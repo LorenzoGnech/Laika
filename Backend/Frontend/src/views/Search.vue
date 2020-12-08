@@ -28,8 +28,7 @@ export default {
   },
   methods: {
     async getSearchResults(){
-      var aa = 'http://localhost:3000/api/v1' + this.$router.currentRoute.path
-      console.log(aa)
+      var aa = 'https://laikapp.herokuapp.com/api/v1' + this.$router.currentRoute.path
       axios
         .get(aa)
         .then(response => (this.result = response.data));

@@ -56,12 +56,20 @@ export default {
   },
   methods: {
     searchquery(){
-      if (this.query != ""){
-        var url = this.query.split(" ");
-        url = "search/?search=" + url.join("+");
-        console.log(url);
+      if (this.$route.params.value != this.query){
+        if (this.query != ""){
+          var url = this.query.split(" ");
+          url = "search/" + url.join("+");
+          this.query = "";
+          if (this.$route.name == "Search"){
+            url = url.substring(7);
+          }
+          this.$router.push(url);
+          location.reload()
+        }
+      }else{
         this.query = "";
-        this.$router.push(url);
+        location.reload();
       }
     },
     burgerTrigger(){
