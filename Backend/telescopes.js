@@ -41,7 +41,7 @@ router.get('/latest/:size', async (req, res) =>
 
     if (len > 0)
     {    
-        Telescopes.find().sort({date: -1 }).limit(len)
+        Telescopes.find().sort({ launch_date: -1 }).limit(len)
         .exec()
         .then(docs => {
             console.log(docs);
