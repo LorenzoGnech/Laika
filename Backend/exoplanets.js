@@ -3,25 +3,6 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Exoplanets = require("./models/exoplanets");
 
-var exoplanetsList = [
-    {
-        "id": 1,
-        "date": "21/10/2013",
-        "name": "WASP-76b",
-        "description": "WASP-76b is a hot Jupiter exoplanet discovered during 2013 that can be found in the constellation Pisces. It orbits a F-type star BD+01 316 (WASP-76) and has a size 0.92 that of Jupiter's mass.",
-        "img": "",
-        "source": "https://en.wikipedia.org/wiki/WASP-76b",
-        "tags": ["nasa"],
-    }, {
-        "id": 2,
-        "date": "15/04/2020",
-        "name": "Kepler-1649c",
-        "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
-        "img": "",
-        "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
-        "tags": ["kepler"],
-    }
-];
 
 router.get('', async (req, res) => {
     Exoplanets.find()
@@ -80,7 +61,7 @@ router.post('', async (req, res) => {
     
     var newexoplanet = new Exoplanets({
         _id: mongoose.Types.ObjectId(),
-        discover_date: new Date(Date.now()).toISOString(),
+        discover_date: new Date(Date.parse(req.body.discover_date)).toISOString(),
         name: req.body.name,
         description: req.body.description,
         img_path: req.body.img_path,
@@ -118,14 +99,14 @@ router.put('/:id', async (req, res) => {
     var id = req.params.id;
 
     let valuesToUpdate = {};
-    valuesToUpdate.discover_date = new Date(Date.now()).toISOString();
+    valuesToUpdate.discover_date = new Date(Date.parse(req.body.discover_date)).toISOString();
     valuesToUpdate.name = req.body.name;
     valuesToUpdate.description = req.body.description;
     valuesToUpdate.img_path = req.body.img_path;
     valuesToUpdate.source_url = req.body.source_url;
     valuesToUpdate.tags = req.body.tags;
     
-    News.updateOne({_id: id}, {$set: valuesToUpdate})
+    Exoplanets.updateOne({_id: id}, {$set: valuesToUpdate})
     .exec()
     .then(result => {
         res.status(200).json({
