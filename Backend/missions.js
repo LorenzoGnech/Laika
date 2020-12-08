@@ -1,43 +1,39 @@
 const express = require('express');
-const { route } = require('./news');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Missions = require("./models/missions");
 
-
-var nextId = 3;
-
-var missionslist = [
-    {
-        "id": 1,
-        "date": "16/11/2020",
-        "title": "CREW-1 MISSION",
-        "content": "n Monday, November 16 at 11:01 p.m. EST, 04:01 UTC on November 17, SpaceX’s Dragon autonomously docked with the International Space Station (ISS) after Falcon 9 launched the spacecraft to orbit from historic Launch Complex 39A (LC-39A) at NASA’s Kennedy Space Center in Florida on Sunday, November 15, 2020.",
-        "img": "",
-        "source": "https://www.spacex.com/updates/crew-1-docks-to-iss/index.html",
-        "tags": ["iss", "spacex", "nasa"]
-    },
-    {
-        "id": 2,
-        "date": "18/12/2019",
-        "title": "Cheops",
-        "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
-        "img": "",
-        "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
-        "tags": ["esa", "exoplanets"],
-    }
-];
 
 router.get('', async (req, res) => {
-    res.status(200).json(missionslist);
+    Missions.find()
+    .exec()
+    .then(docs => {
+        console.log(docs);
+        res.status(200).json(docs);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
 });
 
-router.get('/:id', async (req,res) => {
+
+router.get('/:id', async (req, res) => {
     var id = req.params.id;
-    var mission = missionslist.find( (p) => p.id == id );
-    if (mission !== undefined){
-        res.status(200).send(mission)
-    }else{
-        res.status(404).send('Page not found');
-    }
+    Missions.findById(id)
+    .exec()
+    .then(doc => {
+        console.log(doc);
+        res.status(201).json(doc);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).status.json({
+            error: err
+        });
+    });
 });
 
 router.get('/latest/:size', async (req,res) => {
@@ -50,47 +46,66 @@ router.get('/latest/:size', async (req,res) => {
 });
 
 
-router.post('', async (req,res) => {
-    var newMission = {
-        "id": nextId,
-        "date": req.body.date,
-        "title": req.body.title,
-        "content": req.body.content,
-        "img": req.body.img,
-        "source": req.body.source,
-        "tags": req.body.tags
-    };
-    missionslist.push(newMission);
-    ++nextId;
-    res.location("/api/v1/missions/").status(201).send('News saved successfully');
+router.post('', async (req, res) => {
+    
+    let mission = new Missions({
+        _id: mongoose.Types.ObjectId(),
+        date: req.body.date,
+        title: req.body.title,
+        description: req.body.description,
+        img_path: req.body.img_path,
+        source_url: req.body.source_url,
+        tags: req.body.tags
+    });
+    mission.save()
+    .then(result => {
+        console.log(result);
+    })
+    .catch(err => console.log(err));
+    res.status(201).json({
+        insertedMission: mission
+    });
 });
 
-router.delete('/:id', async (req,res) => {
+router.delete('/:id', async (req, res) => {
     var id = req.params.id;
-    var index = missionslist.findIndex(p => p.id == id );
-    if (index !== undefined && index >= 0){
-        missionslist.splice(index,1);
-        res.status(200).send("Mission with ID="+id+" has been deleted");
-    }else{
-        res.status(404).send('Not found');
-    }
+    Missions.deleteOne({_id: id})
+    .exec()
+    .then(result => {
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    })
 });
 
-router.put('/:id', async (req,res) => {
+router.put('/:id', async (req, res) => {
     var id = req.params.id;
-    var index = missionslist.findIndex(p => p.id == id );
-    if (index !== undefined && index >= 0){
-        missionslist[index].date = req.body.date;
-        missionslist[index].title = req.body.title;
-        missionslist[index].content = req.body.content;
-        missionslist[index].img = req.body.img;
-        missionslist[index].source = req.body.source;
-        missionslist[index].tags = req.body.tags;
+    
+    let valuesToUpdate = {};
+    valuesToUpdate.date = req.body.date;
+    valuesToUpdate.title = req.body.title;
+    valuesToUpdate.description = req.body.description;
+    valuesToUpdate.img_path = req.body.img_path;
+    valuesToUpdate.source_url = req.body.source_url;
+    valuesToUpdate.tags = req.body.tags;
 
-        res.status(200).send("Mission with ID="+id+" has been updated");
-    }else{
-        res.status(404).send('Not found');
-    }
+    Missions.updateOne({_id: id}, {$set: valuesToUpdate})
+    .exec()
+    .then(result => {
+        res.status(200).json({
+            message: "Mission updated",
+        });
+    })
+    .catch(err =>{
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
 });
 
 module.exports = router;
