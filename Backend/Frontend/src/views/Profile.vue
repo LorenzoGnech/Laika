@@ -66,36 +66,36 @@ export default {
     },
     computed: {
         computedNews(){
-            this.savedNews.forEach( (item, index) => {
-                var t = {
-                id: item.id,
-                header: item.title,
-                date: item.date,
-                content: item.content.slice(0, 100) + "...",
-                fullContent: item.content,
-                img: item.img,
-                source: item.source,
-                tags: item.tags,
-                };
-            this.cSavedNews.push(t);
-            });
-            return this.cSavedNews;
+        this.savedNews.forEach( (item, index) => {
+            var t = {
+            id: item._id,
+            header: item.title,
+            date: item.date,
+            content: item.content.slice(0, 100) + "...",
+            fullContent: item.content,
+            img: item.img_path,
+            source: item.source_url,
+            tags: item.tags,
+            };
+        this.cSavedNews.push(t)
+        });
+        return this.cSavedNews;
         },
         computedMissions(){
-            this.followedMissions.forEach( (item, index) => {
-                var t = {
-                id: item.id,
-                header: item.title,
-                date: item.date,
-                content: item.content.slice(0, 100) + "...",
-                fullContent: item.content,
-                img: item.img,
-                source: item.source,
-                tags: item.tags,
-                };
-            this.cFollowedMissions.push(t)
-            });
-            return this.cFollowedMissions;
+        this.followedMissions.forEach( (item, index) => {
+            var t = {
+            id: item._id,
+            header: item.title,
+            date: item.date,
+            content: item.description.slice(0, 100) + "...",
+            fullContent: item.description,
+            img: item.img_path,
+            source: item.source_url,
+            tags: item.tags,
+            };
+        this.cFollowedMissions.push(t)
+        });
+        return this.cFollowedMissions;
         },
         getAvatar(){
             if(this.avatar == ""){

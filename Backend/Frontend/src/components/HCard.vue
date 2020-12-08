@@ -32,7 +32,7 @@ export default {
     header: String,
     content: String,
     type: String,
-    id: Number,
+    id: String,
   },
   mounted(){
   },
