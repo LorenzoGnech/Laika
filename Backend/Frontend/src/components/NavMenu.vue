@@ -63,9 +63,11 @@ export default {
           this.query = "";
           if (this.$route.name == "Search"){
             url = url.substring(7);
+            this.$router.push(url);
+            location.reload()
+          }else{
+            this.$router.push(url);
           }
-          this.$router.push(url);
-          location.reload()
         }
       }else{
         this.query = "";
