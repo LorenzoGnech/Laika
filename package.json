@@ -4,10 +4,11 @@
   "description": "Laika project for \"Ingegneria del Software 2\" 2020",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "serve": "cd Backend/Frontend && vue-cli-service serve",
     "build": "cd Backend/Frontend && vue-cli-service build",
-    "lint": "cd Backend/Frontend && vue-cli-service lint"
+    "lint": "cd Backend/Frontend && vue-cli-service lint",
+    "start_local": "node -r dotenv/config Backend/app.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,8 @@
     "vue-navigation-bar": "^4.0.2",
     "vue-router": "^3.2.0",
     "vue-sticky-directive": "0.0.10",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -41,10 +43,14 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "jest": "^26.6.3",
+    "jsonwebtoken": "^8.5.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.3",
+    "supertest": "^6.0.1",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -62,5 +68,9 @@
     "rules": {
       "no-unused-vars": "off"
     }
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": false
   }
 }

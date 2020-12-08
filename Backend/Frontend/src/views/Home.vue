@@ -27,13 +27,13 @@
       <img @click="scrollToSecondPage" id="scrollImage" src="@/assets/scrollDown.svg">
     </div>
     <div id="divisor"></div>
-    <div class="container" id="latestnews" ref="latestnews">
-      <h2 class="containertitle">LATEST NEWS</h2>
+    <div class="container containertitle-link" id="latestnews" ref="latestnews">
+      <h2 class="containertitle" @click="handleClick('LatestNews')">LATEST NEWS</h2>
       <CardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
     </div>
-    <div class="container" id="latestmissions" ref="latestmissions">
-      <h2 class="containertitle">LATEST MISSIONS</h2>
-      <CardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+    <div class="container containertitle-link" id="latestmissions" ref="latestmissions">
+      <h2 class="containertitle" @click="handleClick('missions')">LATEST MISSIONS</h2>
+      <CardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="mission"/>
     </div>
     <div class="container">
       <div class="blueline"></div>
@@ -44,13 +44,13 @@
       </form>
       <div class="blueline"></div>
     </div>
-    <div class="container" id="latesttelescopes" ref="latesttelescopes">
-      <h2 class="containertitle">LATEST TELESCOPES</h2>
-      <CardGrid :cards=computedTelescopes :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+    <div class="container containertitle-link" id="latesttelescopes" ref="latesttelescopes">
+      <h2 class="containertitle" @click="handleClick('telescopes')">LATEST TELESCOPES</h2>
+      <CardGrid :cards=computedTelescopes :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="telescope"/>
     </div>
-    <div class="container" id="latestexoplanets" ref="latestexoplanets">
-      <h2 class="containertitle">LATEST EXOPLANETS</h2>
-      <CardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="missions"/>
+    <div class="container containertitle-link" id="latestexoplanets" ref="latestexoplanets">
+      <h2 class="containertitle" @click="handleClick('exoplanets')">LATEST EXOPLANETS</h2>
+      <CardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="exoplanet"/>
     </div>
     <div class="container">
       <div class="blueline"></div>
@@ -169,6 +169,11 @@ export default {
     }
   },
   methods: {
+    handleClick(link){
+      //let url="/#/" + link;
+      //let url = document.location.origin + "/#/" + link;
+      this.$router.push(link);
+    },
     scrollToSecondPage(e){
       scroll({
         top: this.$refs.latestnews.offsetTop - 100,
@@ -294,6 +299,10 @@ input:focus {
   padding-top: 6px;
   padding-bottom: 6px;
   width: 100%;
+}
+
+.containertitle-link{
+cursor: pointer;
 }
 
 body {

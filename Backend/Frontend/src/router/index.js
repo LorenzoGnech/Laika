@@ -47,6 +47,31 @@ const routes = [
     component: Login,
   },
   {
+    path: '/LatestNews',
+    name: 'LatestNews',
+    component: () => import('../views/LatestNews.vue')
+  },
+  {
+    path: '/Mission/:value(.*)',
+    name: 'Mission',
+    component: () => import('../views/Mission.vue')
+  },
+  {
+    path: '/Astronaut/:value(.*)',
+    name: 'Astronaut',
+    component: () => import('../views/Astronaut.vue')
+  },
+  {
+    path: '/Exoplanet/:value(.*)',
+    name: 'Exoplanet',
+    component: () => import('../views/Exoplanet.vue')
+  },
+  {
+    path: '/Telescope/:value(.*)',
+    name: 'Telescope',
+    component: () => import('../views/Telescope.vue')
+  },
+  {
     path: '/news/:value(.*)',
     name: 'News',
     component: () => import('../views/News.vue')

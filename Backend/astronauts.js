@@ -1,3 +1,4 @@
+const utilities = require('./utilities');
 const express = require('express');
 const router = express.Router();
 
@@ -18,8 +19,6 @@ var astronauts = [
         "agency": "NASA",
     }
 ];
-
-
 
 router.get('', async (req, res) => {
     res.status(200).json(astronauts);
@@ -52,14 +51,20 @@ router.post('', async (req, res) => {
         "name": req.body.name,
         "nationality": req.body.nationality,
         "img": req.body.img,
-        "agency": req.body.agency,
+        "agency": req.body.agency
     }
 
-    console.log('Astronaut saved successfully');
-    res.location("/api/v1/astronauts/").status(201).send('Astronaut saved successfully');
-
-    astronauts.push(newastronaut);
-
+    if (!utilities.isAstronautCorrect(newastronaut))
+    {
+        res.status(400).send({ error: 'object sent is not an astronaut' });
+    }
+    else
+    {
+        console.log('Astronaut saved successfully');
+        res.location("/api/v1/astronauts/").status(201).send('Astronaut saved successfully');
+    
+        astronauts.push(newastronaut);
+    }
 });
 
 router.delete('/:id', async (req,res) => {

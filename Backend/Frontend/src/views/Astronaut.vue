@@ -6,15 +6,15 @@
     <div class="header">
         <div class="blueline"></div>
         <div class="newsTitle" :style="bgImage">
-            <h1 class="newsH1">{{news.title}}</h1>
+            <h1 class="newsH1">{{astronaut.name}}</h1>
         </div>
         <div class="blueline"></div>
     </div>
     <div class="container">
-        <pre class="newsContent">{{news.content}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Date: {{news.date}} </p>
-            <p class="footerText">Source: {{news.source}}</p>
+            <p class="footerText">Nationality: {{astronaut.nationality}} </p>
+            <p class="footerText">Birthdate: {{astronaut.birth}} </p>
+            <p class="footerText">Agency: {{astronaut.agency}}</p>
         </div>
     </div>
   </div>
@@ -25,33 +25,33 @@ import axios from 'axios'
 import NavMenu from '../components/NavMenu.vue'
 
 export default {
-  name: 'News',
+  name: 'Astronaut',
   components: {
     NavMenu
   },
   data: function(){
     return {
-        news: {}
+        astronaut: {}
     }
   },
 mounted(){
-    var newsNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(newsNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/news/' + newsNumber;
+    var astronautNumber = parseInt(this.$route.params.value);
+    if(Number.isInteger(astronautNumber)){
+        let url = 'https://laikapp.herokuapp.com/api/v1/astronauts/' + astronautNumber;
         axios
             .get(url)
-            .then(response => (this.news = response.data));
+            .then(response => (this.astronaut = response.data));
     }
   },
   computed:{
     bgImage() {
-      if(this.news.img == ""){
+      if(this.astronaut.img == ""){
         return {
           backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
         }
       }
       return {
-        backgroundImage: `url(${this.news.img})`
+        backgroundImage: `url(${this.astronaut.img})`
       }
     }
   }
@@ -96,16 +96,16 @@ mounted(){
 }
 
 .newsContent{
+    width: 100%;
     color: white;
     font-size: 1vw;
-     white-space:pre-line;
 }
 
 .newsFooter{
     text-align: center;
     float: right;
     color: lightblue;
-    font-size: 0.7vw;
+    font-size: 1vw;
 }
 
 </style>

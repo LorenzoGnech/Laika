@@ -6,15 +6,15 @@
     <div class="header">
         <div class="blueline"></div>
         <div class="newsTitle" :style="bgImage">
-            <h1 class="newsH1">{{news.title}}</h1>
+            <h1 class="newsH1">{{telescope.name}}</h1>
         </div>
         <div class="blueline"></div>
     </div>
     <div class="container">
-        <pre class="newsContent">{{news.content}}</pre>
+        <pre class="newsContent">{{telescope.description}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Date: {{news.date}} </p>
-            <p class="footerText">Source: {{news.source}}</p>
+            <p class="footerText">Launch Date: {{telescope.launch_date}} </p>
+            <p class="footerText">Source: {{telescope.source}}</p>
         </div>
     </div>
   </div>
@@ -25,33 +25,33 @@ import axios from 'axios'
 import NavMenu from '../components/NavMenu.vue'
 
 export default {
-  name: 'News',
+  name: 'Telescope',
   components: {
     NavMenu
   },
   data: function(){
     return {
-        news: {}
+        telescope: {}
     }
   },
 mounted(){
-    var newsNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(newsNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/news/' + newsNumber;
+    var telescopeNumber = parseInt(this.$route.params.value);
+    if(Number.isInteger(telescopeNumber)){
+        let url = 'https://laikapp.herokuapp.com/api/v1/telescopes/' + telescopeNumber;
         axios
             .get(url)
-            .then(response => (this.news = response.data));
+            .then(response => (this.telescope = response.data));
     }
   },
   computed:{
     bgImage() {
-      if(this.news.img == ""){
+      if(this.telescope.img != undefined && this.telescope.img.length > 0){
         return {
-          backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
+            backgroundImage: `url(${this.mission.img[0]})`
         }
       }
       return {
-        backgroundImage: `url(${this.news.img})`
+        backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
       }
     }
   }
@@ -98,7 +98,7 @@ mounted(){
 .newsContent{
     color: white;
     font-size: 1vw;
-     white-space:pre-line;
+    white-space:pre-line;
 }
 
 .newsFooter{

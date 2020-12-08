@@ -6,15 +6,15 @@
     <div class="header">
         <div class="blueline"></div>
         <div class="newsTitle" :style="bgImage">
-            <h1 class="newsH1">{{news.title}}</h1>
+            <h1 class="newsH1">{{exoplanet.name}}</h1>
         </div>
         <div class="blueline"></div>
     </div>
     <div class="container">
-        <pre class="newsContent">{{news.content}}</pre>
+        <pre class="newsContent">{{exoplanet.description}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Date: {{news.date}} </p>
-            <p class="footerText">Source: {{news.source}}</p>
+            <p class="footerText">Date: {{exoplanet.date}} </p>
+            <p class="footerText">Source: {{exoplanet.source}}</p>
         </div>
     </div>
   </div>
@@ -25,33 +25,33 @@ import axios from 'axios'
 import NavMenu from '../components/NavMenu.vue'
 
 export default {
-  name: 'News',
+  name: 'Exoplanet',
   components: {
     NavMenu
   },
   data: function(){
     return {
-        news: {}
+        exoplanet: {}
     }
   },
 mounted(){
-    var newsNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(newsNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/news/' + newsNumber;
+    var exoplanetNumber = parseInt(this.$route.params.value);
+    if(Number.isInteger(exoplanetNumber)){
+        let url = 'https://laikapp.herokuapp.com/api/v1/exoplanets/' + exoplanetNumber;
         axios
             .get(url)
-            .then(response => (this.news = response.data));
+            .then(response => (this.exoplanet = response.data));
     }
   },
   computed:{
     bgImage() {
-      if(this.news.img == ""){
+      if(this.exoplanet.img == ""){
         return {
           backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
         }
       }
       return {
-        backgroundImage: `url(${this.news.img})`
+        backgroundImage: `url(${this.exoplanet.img})`
       }
     }
   }
@@ -98,7 +98,7 @@ mounted(){
 .newsContent{
     color: white;
     font-size: 1vw;
-     white-space:pre-line;
+    white-space:pre-line;
 }
 
 .newsFooter{

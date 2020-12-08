@@ -12,7 +12,7 @@
       <div id="line2"></div>
       <router-link to="/"><img src="@/assets/LaikaLogo.png" id="logo"></router-link>
       <ul id="menulist">
-        <li id="login" class="navlink"><router-link to="/signin">{{username != "" ? username : "Login/Signup"}}</router-link></li>
+        <li id="login" class="navlink"><router-link to="/signin">{{this.$store.getters.isLoggedIn ? "My Profile" : "Login/Signup"}}</router-link></li>
         <li class="navlink"><router-link to="/api">API</router-link></li>
         <li class="navlink"><router-link to="/exoplanets">Exoplanets</router-link></li>
         <li class="navlink"><router-link to="/telescopes">Telescopes</router-link></li>
