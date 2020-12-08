@@ -10,4 +10,4 @@ const exoplanetsSchema = new mongoose.Schema({
     tags: [String]   
 });
 
-module.exports = mongoose.model('news', exoplanetsSchema, 'news');
+module.exports = mongoose.model('exoplanets', exoplanetsSchema, 'exoplanets');
