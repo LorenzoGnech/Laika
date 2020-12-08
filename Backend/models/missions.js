@@ -11,4 +11,4 @@ const missionsSchema = new mongoose.Schema({
     tags: [Array]
 });
 
-module.exports = mongoose.model('missions', newsSchema, 'missions');
+module.exports = mongoose.model('missions', missionsSchema, 'missions');
