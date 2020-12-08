@@ -4,7 +4,7 @@
       <form id="searchbar" v-on:submit.prevent="searchquery();">
         <input id="searchbar_input" type="search" v-model="query" name="search">
         <i class="fa fa-search"></i>
-        <button id="diocane" type="submit" style="border-width: 0px; background-color: white;">
+        <button type="submit" style="border-width: 0px; background-color: white;">
           <img id="searchicon" src="@/assets/searchbar.png"/>
         </button>
       </form>
