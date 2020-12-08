@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 const newsSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    date: String,
+    date: Date,
     title: String,
     content: String,
     img_path: String,
