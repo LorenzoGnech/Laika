@@ -35,21 +35,30 @@ router.get('/:id', async (req, res) => {
     });
 });
 
-router.get('/latest/:size', async (req, res) => {
+router.get('/latest/:size', async (req, res) =>
+{
     let size = req.params.size;
     let len = parseInt(size);
-    Astronauts.find().sort({ _id: -1 }).limit(len)
-    .exec()
-    .then(docs => {
-        console.log(docs);
-        res.status(201).json(docs);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).status.json({
-            error: err
+
+    if (len > 0)
+    {
+        Astronauts.find().sort({ _id: -1 }).limit(len)
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.status(201).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).status.json({
+                error: err
+            });
         });
-    });
+    }
+    else
+    {
+        res.status(200).json(null);
+    }
 });
 
 // TO UPDATE

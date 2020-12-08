@@ -3,8 +3,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Telescopes = require("./models/telescopes");
 
-
-
 router.get('', async (req, res) => {
     Telescopes.find()
     .exec()
@@ -36,13 +34,29 @@ router.get('/:id', async (req, res) => {
     });
 });
 
-//Da sistemare
-router.get('/latest/:size', async (req, res) => {
-    var size = req.params.size;
-    if (size <= telescopes.length){
-        res.status(200).send(telescopes.slice(1, size+1));        
-    } else {
-        res.status(200).send(telescopes);
+router.get('/latest/:size', async (req, res) =>
+{
+    let size = req.params.size;
+    let len = parseInt(size);
+
+    if (len > 0)
+    {    
+        Telescopes.find().sort({date: -1 }).limit(len)
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }
+    else
+    {
+        res.status(200).json(null);
     }
 });
 

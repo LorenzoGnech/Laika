@@ -34,11 +34,13 @@ router.get('/:id', async (req, res) => {
     });
 });
 
-router.get('/latest/:size', async (req, res) => {
-    var size = req.params.size;
-    var len = parseInt(size);
+router.get('/latest/:size', async (req, res) =>
+{
+    let size = req.params.size;
+    let len = parseInt(size);
 
-    if(len>0){    
+    if (len > 0)
+    {    
         News.find().sort({date: -1 }).limit(len)
         .exec()
         .then(docs => {
@@ -51,7 +53,9 @@ router.get('/latest/:size', async (req, res) => {
                 error: err
             });
         });
-    }else{
+    }
+    else
+    {
         res.status(200).json(null);
     }
 });
