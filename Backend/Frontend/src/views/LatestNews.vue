@@ -38,13 +38,13 @@ export default {
     computedNews(){
       this.news.forEach( (item, index) => {
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.title,
           date: item.date,
           content: item.content.slice(0, 100) + "...",
           fullContent: item.content,
-          img: item.img,
-          source: item.source,
+          img: item.img_path,
+          source: item.source_url,
           tags: item.tags,
         };
        this.cNews.push(t)

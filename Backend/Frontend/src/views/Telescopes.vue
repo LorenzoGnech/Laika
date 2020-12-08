@@ -41,13 +41,13 @@ export default {
           item.img.push("");
         }
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.name,
           date: item.launch_date,
           content: item.description.slice(0, 100) + "...",
           fullContent: item.description,
-          img: item.img[0],
-          source: item.source,
+          img: item.img_path,
+          source: item.source_url,
           tags: item.tags,
         };
        this.cTelescopes.push(t)

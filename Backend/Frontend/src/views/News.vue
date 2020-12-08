@@ -14,7 +14,7 @@
         <pre class="newsContent">{{news.content}}</pre>
         <div class="newsFooter">
             <p class="footerText">Date: {{news.date}} </p>
-            <p class="footerText">Source: {{news.source}}</p>
+            <p class="footerText">Source: {{news.source_url}}</p>
         </div>
     </div>
   </div>
@@ -35,23 +35,21 @@ export default {
     }
   },
 mounted(){
-    var newsNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(newsNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/news/' + newsNumber;
-        axios
-            .get(url)
-            .then(response => (this.news = response.data));
-    }
+    var newsId = this.$route.params.value;
+    let url = 'https://laikapp.herokuapp.com/api/v1/news/' + newsId;
+      axios
+          .get(url)
+          .then(response => (this.news = response.data));
   },
   computed:{
     bgImage() {
-      if(this.news.img == ""){
+      if(this.news.img == undefined){
         return {
           backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
         }
       }
       return {
-        backgroundImage: `url(${this.news.img})`
+        backgroundImage: `url(${this.news.img_path})`
       }
     }
   }

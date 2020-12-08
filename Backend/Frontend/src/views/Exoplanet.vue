@@ -13,8 +13,8 @@
     <div class="container">
         <pre class="newsContent">{{exoplanet.description}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Date: {{exoplanet.date}} </p>
-            <p class="footerText">Source: {{exoplanet.source}}</p>
+            <p class="footerText">Date: {{exoplanet.discover_date}} </p>
+            <p class="footerText">Source: {{exoplanet.source_url}}</p>
         </div>
     </div>
   </div>
@@ -35,23 +35,21 @@ export default {
     }
   },
 mounted(){
-    var exoplanetNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(exoplanetNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/exoplanets/' + exoplanetNumber;
-        axios
-            .get(url)
-            .then(response => (this.exoplanet = response.data));
-    }
-  },
+    var exoplanetNumber = this.$route.params.value;
+      let url = 'https://laikapp.herokuapp.com/api/v1/exoplanets/' + exoplanetNumber;
+      axios
+          .get(url)
+          .then(response => (this.exoplanet = response.data));
+    },
   computed:{
     bgImage() {
-      if(this.exoplanet.img == ""){
+      if(this.exoplanet.img == undefined){
         return {
           backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
         }
       }
       return {
-        backgroundImage: `url(${this.exoplanet.img})`
+        backgroundImage: `url(${this.exoplanet.img_path})`
       }
     }
   }

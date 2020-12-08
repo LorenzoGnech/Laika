@@ -97,13 +97,13 @@ export default {
     computedNews(){
       this.news.forEach( (item, index) => {
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.title,
           date: item.date,
           content: item.content.slice(0, 100) + "...",
           fullContent: item.content,
-          img: item.img,
-          source: item.source,
+          img: item.img_path,
+          source: item.source_url,
           tags: item.tags,
         };
        this.cNews.push(t)
@@ -113,13 +113,13 @@ export default {
     computedMissions(){
       this.missions.forEach( (item, index) => {
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.title,
           date: item.date,
-          content: item.content.slice(0, 100) + "...",
-          fullContent: item.content,
-          img: item.img,
-          source: item.source,
+          content: item.description.slice(0, 100) + "...",
+          fullContent: item.description,
+          img: item.img_path,
+          source: item.source_url,
           tags: item.tags,
         };
        this.cMissions.push(t)
@@ -132,13 +132,13 @@ export default {
           item.img.push("");
         }
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.name,
           date: item.launch_date,
           content: item.description.slice(0, 100) + "...",
           fullContent: item.description,
-          img: item.img[0],
-          source: item.source,
+          img: item.img_path,
+          source: item.source_url,
           tags: item.tags,
         };
        this.cTelescopes.push(t)
@@ -148,13 +148,13 @@ export default {
     computedExoplanets(){
       this.exoplanets.forEach( (item, index) => {
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.name,
-          date: item.date,
+          date: item.discover_date,
           content: item.description.slice(0, 100) + "...",
           fullContent: item.description,
-          img: item.img,
-          source: item.source,
+          img: item.img_path,
+          source: item.source_url,
           tags: item.tags,
         };
        this.cExoplanets.push(t)

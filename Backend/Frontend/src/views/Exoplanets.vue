@@ -38,13 +38,13 @@ export default {
     computedExoplanets(){
       this.exoplanets.forEach( (item, index) => {
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.name,
-          date: item.date,
+          date: item.discover_date,
           content: item.description.slice(0, 100) + "...",
           fullContent: item.description,
-          img: item.img,
-          source: item.source,
+          img: item.img_path,
+          source: item.source_url,
           tags: item.tags,
         };
        this.cExoplanets.push(t)

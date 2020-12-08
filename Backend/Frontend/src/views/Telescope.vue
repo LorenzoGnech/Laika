@@ -14,7 +14,7 @@
         <pre class="newsContent">{{telescope.description}}</pre>
         <div class="newsFooter">
             <p class="footerText">Launch Date: {{telescope.launch_date}} </p>
-            <p class="footerText">Source: {{telescope.source}}</p>
+            <p class="footerText">Source: {{telescope.source_url}}</p>
         </div>
     </div>
   </div>
@@ -35,19 +35,17 @@ export default {
     }
   },
 mounted(){
-    var telescopeNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(telescopeNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/telescopes/' + telescopeNumber;
-        axios
-            .get(url)
-            .then(response => (this.telescope = response.data));
-    }
-  },
+    var telescopeNumber = this.$route.params.value;
+    let url = 'https://laikapp.herokuapp.com/api/v1/telescopes/' + telescopeNumber;
+    axios
+        .get(url)
+        .then(response => (this.telescope = response.data));
+    },
   computed:{
     bgImage() {
-      if(this.telescope.img != undefined && this.telescope.img.length > 0){
+      if(this.telescope.img != undefined){
         return {
-            backgroundImage: `url(${this.mission.img[0]})`
+            backgroundImage: `url(${this.telescope.img_path})`
         }
       }
       return {

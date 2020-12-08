@@ -11,10 +11,10 @@
         <div class="blueline"></div>
     </div>
     <div class="container">
-        <pre class="newsContent">{{mission.content}}</pre>
+        <pre class="newsContent">{{mission.description}}</pre>
         <div class="newsFooter">
             <p class="footerText">Date: {{mission.date}} </p>
-            <p class="footerText">Source: {{mission.source}}</p>
+            <p class="footerText">Source: {{mission.source_url}}</p>
         </div>
     </div>
   </div>
@@ -35,23 +35,21 @@ export default {
     }
   },
 mounted(){
-    var missionNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(missionNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/missions/' + missionNumber;
-        axios
-            .get(url)
-            .then(response => (this.mission = response.data));
-    }
-  },
+    var missionNumber = this.$route.params.value;
+    let url = 'https://laikapp.herokuapp.com/api/v1/missions/' + missionNumber;
+    axios
+        .get(url)
+        .then(response => (this.mission = response.data));
+    },
   computed:{
     bgImage() {
-      if(this.mission.img == ""){
+      if(this.mission.img == undefined){
         return {
           backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
         }
       }
       return {
-        backgroundImage: `url(${this.mission.img})`
+        backgroundImage: `url(${this.mission.img_path})`
       }
     }
   }
