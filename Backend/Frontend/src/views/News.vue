@@ -43,7 +43,7 @@ mounted(){
   },
   computed:{
     bgImage() {
-      if(this.news.img == undefined){
+      if(this.news.img_path == undefined){
         return {
           backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
         }

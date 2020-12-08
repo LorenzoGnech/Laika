@@ -38,12 +38,12 @@ export default {
     computedAstronauts(){
       this.astronauts.forEach( (item, index) => {
         var t = {
-          id: item.id,
+          id: item._id,
           header: item.name,
           date: item.birth,
           content: item.nationality,
           fullContent: item.name,
-          img: item.img,
+          img: item.img_path,
           source: item.agency,
           tags: [],
         };

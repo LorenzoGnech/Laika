@@ -35,23 +35,21 @@ export default {
     }
   },
 mounted(){
-    var astronautNumber = parseInt(this.$route.params.value);
-    if(Number.isInteger(astronautNumber)){
-        let url = 'https://laikapp.herokuapp.com/api/v1/astronauts/' + astronautNumber;
-        axios
-            .get(url)
-            .then(response => (this.astronaut = response.data));
-    }
+    var astronautNumber = this.$route.params.value;
+      let url = 'https://laikapp.herokuapp.com/api/v1/astronauts/' + astronautNumber;
+      axios
+          .get(url)
+          .then(response => (this.astronaut = response.data));
   },
   computed:{
     bgImage() {
-      if(this.astronaut.img == ""){
+      if(this.astronaut.img_path == undefined){
         return {
           backgroundImage: `url(https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2120&q=80)`
         }
       }
       return {
-        backgroundImage: `url(${this.astronaut.img})`
+        backgroundImage: `url(${this.astronaut.img_path})`
       }
     }
   }
