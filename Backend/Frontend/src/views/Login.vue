@@ -3,7 +3,7 @@
           <div class="sticky" v-sticky="true" sticky-offset="{top: 0, right: 0}" sticky-side="both" on-stick="onStick" sticky-z-index="20">
               <NavMenu/>
           </div>
-          <div class="container">
+          <div v-if="!this.$store.getters.isLoggedIn" class="container">
             <div class="row">
               <div class="column">
                 <form action="#" method="post">
@@ -22,6 +22,12 @@
                 </form> 
               </div>
             </div>
+          </div>
+          <div v-else>
+              <div class="container">
+                  <h2 class="containertitle" style="margin: 15px;">You are already logged in.</h2>
+                  <a href="/#/profile/" id="api-button">Go to your profile page</a>
+              </div>
           </div>
   </div>
 </template>
