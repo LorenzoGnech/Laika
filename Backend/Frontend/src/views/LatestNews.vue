@@ -4,12 +4,12 @@
               <NavMenu/>
           </div>
     <div class="sectiontitle">
-       <h1 id="maintitle">Astronauts</h1>
+       <h1 id="maintitle">Latest News</h1>
        <div class="blueline"></div>
        <img src="@/assets/filter.png" class="filter">
     </div>
     <div class="container" ref="gridcontainer">
-       <HCardGrid :cards=computedAstronauts :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="astronaut"/>
+       <HCardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
     </div>
   </div>
 </template>
@@ -20,36 +20,36 @@ import NavMenu from '../components/NavMenu.vue';
 import HCardGrid from '../components/HCardGrid.vue'
 
 export default {
-  name: 'Astronauts',
+  name: 'LatestNews',
   components: {
     NavMenu,
     HCardGrid
   },
   data: function(){
     return {
-      cAstronauts: [],
-      astronauts: [],
+      cNews: [],
+      news: [],
     }
   },
   mounted(){
-    this.getAstronauts();
+    this.getNews();
   },
   computed: {
-    computedAstronauts(){
-      this.astronauts.forEach( (item, index) => {
+    computedNews(){
+      this.news.forEach( (item, index) => {
         var t = {
           id: item.id,
-          header: item.name,
-          date: item.birth,
-          content: item.nationality,
-          fullContent: item.name,
+          header: item.title,
+          date: item.date,
+          content: item.content.slice(0, 100) + "...",
+          fullContent: item.content,
           img: item.img,
-          source: item.agency,
-          tags: [],
+          source: item.source,
+          tags: item.tags,
         };
-       this.cAstronauts.push(t)
+       this.cNews.push(t)
       });
-      return this.cAstronauts;
+      return this.cNews;
     },
     getCardsHeight(){
       return window.innerHeight/3.5;
@@ -59,10 +59,10 @@ export default {
     }
   },
   methods: {
-    async getAstronauts(){
+    async getNews(){
       axios
-        .get('https://laikapp.herokuapp.com/api/v1/astronauts/')
-        .then(response => (this.astronauts = response.data));
+        .get('https://laikapp.herokuapp.com/api/v1/news/')
+        .then(response => (this.news = response.data));
     }
   }
 }

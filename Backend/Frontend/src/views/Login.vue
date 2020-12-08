@@ -3,27 +3,31 @@
           <div class="sticky" v-sticky="true" sticky-offset="{top: 0, right: 0}" sticky-side="both" on-stick="onStick" sticky-z-index="20">
               <NavMenu/>
           </div>
-          <div class="container">
+          <div v-if="!this.$store.getters.isLoggedIn" class="container">
             <div class="row">
-              <div class="column">
-                <div class="center">
-                  <form action="#" method="post">
-                    <p class="title"><b>Sign In</b></p>
-                    <input type="email" placeholder="Email" name="email" required>
-                    <input type="password" placeholder="Password" name="psw" required>
-                    <button type="submit">Sign In</button>
-                  </form>
-                </div>
-              </div>
               <div class="column">
                 <form action="#" method="post">
                   <p class="title"><b>Sign Up</b></p>
-                    <input type="email" placeholder="Email" name="email" required>
-                    <input type="password" placeholder="Password" name="psw" required>
-                    <button type="submit">Sign Up</button>
+                  <input type="email" placeholder="Email" name="email" required>
+                  <input type="password" placeholder="Password" name="psw" required>
+                  <button type="submit">Sign Up</button>
+                </form>
+              </div>
+              <div class="column" id="signin">
+                <form action="#" method="post">
+                  <p class="title"><b>Sign In</b></p>
+                  <input type="email" placeholder="Email" name="email" required>
+                  <input type="password" placeholder="Password" name="psw" required>
+                  <button type="submit">Sign In</button>
                 </form> 
               </div>
             </div>
+          </div>
+          <div v-else>
+              <div class="container">
+                  <h2 class="containertitle" style="margin: 15px;">You are already logged in.</h2>
+                  <a href="/#/profile/" id="api-button">Go to your profile page</a>
+              </div>
           </div>
   </div>
 </template>
@@ -97,19 +101,12 @@ button:hover {
   opacity: 0.8;
 }
 
-.row {
-  display: flex;
-}
-
 /* Create two equal columns that sits next to each other */
 .column {
   flex: 50%;
-  padding: 10px;
-  margin: 0px 100px;
 }
 
-.center {
-  height: 200px;
-  position: relative;
+#signin{
+  margin-top: 30px;
 }
 </style>

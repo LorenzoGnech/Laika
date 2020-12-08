@@ -32,6 +32,11 @@ const routes = [
     component: () => import('../views/Exoplanets.vue')
   },
   {
+    path: '/search/:value(.*)',
+    name: 'Search',
+    component: () => import('../views/Search.vue')
+  },
+  {
     path: '/api',
     name: 'API',
     component: () => import('../views/Api.vue')
@@ -40,6 +45,36 @@ const routes = [
     path: '/Signin',
     name: 'SignIn',
     component: Login,
+  },
+  {
+    path: '/LatestNews',
+    name: 'LatestNews',
+    component: () => import('../views/LatestNews.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/Profile.vue')
+  },
+  {
+    path: '/Mission/:value(.*)',
+    name: 'Mission',
+    component: () => import('../views/Mission.vue')
+  },
+  {
+    path: '/Astronaut/:value(.*)',
+    name: 'Astronaut',
+    component: () => import('../views/Astronaut.vue')
+  },
+  {
+    path: '/Exoplanet/:value(.*)',
+    name: 'Exoplanet',
+    component: () => import('../views/Exoplanet.vue')
+  },
+  {
+    path: '/Telescope/:value(.*)',
+    name: 'Telescope',
+    component: () => import('../views/Telescope.vue')
   },
   {
     path: '/news/:value(.*)',

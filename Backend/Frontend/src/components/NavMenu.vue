@@ -1,12 +1,18 @@
 <template>
     <div id="menu-wrap">
       <div id="opaque"></div>
-      <img src="@/assets/searchbar.png" id="searchicon">
+      <form id="searchbar" v-on:submit.prevent="searchquery();">
+        <input id="searchbar_input" type="search" v-model="query" name="search">
+        <i class="fa fa-search"></i>
+        <button type="submit" style="border-width: 0px; background-color: white;">
+          <img id="searchicon" src="@/assets/searchbar.png"/>
+        </button>
+      </form>
       <div id="line1"></div>
       <div id="line2"></div>
       <router-link to="/"><img src="@/assets/LaikaLogo.png" id="logo"></router-link>
       <ul id="menulist">
-        <li id="login" class="navlink"><router-link to="/signin">{{username != "" ? username : "Login/Signup"}}</router-link></li>
+        <li id="login" class="navlink"><router-link :to="this.$store.getters.isLoggedIn ? '/profile' : '/signin'">{{this.$store.getters.isLoggedIn ? "My Profile" : "Login/Signup"}}</router-link></li>
         <li class="navlink"><router-link to="/api">API</router-link></li>
         <li class="navlink"><router-link to="/exoplanets">Exoplanets</router-link></li>
         <li class="navlink"><router-link to="/telescopes">Telescopes</router-link></li>
@@ -23,11 +29,10 @@
         <li class="navlink"><router-link to="/telescopes">Telescopes</router-link></li>
         <li class="navlink"><router-link to="/exoplanets">Exoplanets</router-link></li>
         <li class="navlink"><router-link to="/api">API</router-link></li>
-        <li id="dropdownlogin" class="navlink"><router-link to="/signin">{{username != "" ? username : "Login/Signup"}}</router-link></li>
+        <li id="dropdownlogin" class="navlink"><router-link :to="this.$store.getters.isLoggedIn ? '/profile' : '/signin'">{{this.$store.getters.isLoggedIn ? "My Profile" : "Login/Signup"}}</router-link></li>
       </ul>
     </div>
 </template>
-
 <script>
 
 export default {
@@ -38,6 +43,7 @@ export default {
       return{
           username: "",
           burgerActive: true,
+          query: "",
       }
   },
   props: {
@@ -48,6 +54,25 @@ export default {
   computed: {
   },
   methods: {
+    searchquery(){
+      if (this.$route.params.value != this.query){
+        if (this.query != ""){
+          var url = this.query.split(" ");
+          url = "search/" + url.join("+");
+          this.query = "";
+          if (this.$route.name == "Search"){
+            url = url.substring(7);
+            this.$router.push(url);
+            location.reload()
+          }else{
+            this.$router.push(url);
+          }
+        }
+      }else{
+        this.query = "";
+        location.reload();
+      }
+    },
     burgerTrigger(){
       this.burgerActive = !this.burgerActive
     }
@@ -256,6 +281,64 @@ ul {
     a{
         color:lightskyblue
     }
+}
+
+#searchbar{
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+#searchbar_input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  display: none;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #0F154D;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+#searchbar:hover{
+    width: 250px;
+    cursor: pointer;
+}
+
+#searchbar:hover input{
+    display: block;
+}
+
+#searchbar:hover .fa{
+    background: white;
+    color: white;
 }
 
 </style>
