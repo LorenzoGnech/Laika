@@ -6,11 +6,24 @@ const telescopes = require('./telescopes.js')
 const search = require('./search.js')
 const jwtVerifier = require('./jwtVerifier.js');
 var express = require('express');
+const mongoose = require('mongoose');
 var path = require('path');
 var serveStatic = require('serve-static');
 var app = express();
 
 var port = process.env.PORT || 3000;
+
+// URL for DB connection
+const DB_URI = "mongodb+srv://user:HoWTpgx6OOtFZUh3@laika.5s6t8.mongodb.net/laika?retryWrites=true&w=majority";
+
+// Try to connect to DB
+try {
+    mongoose.connect(DB_URI, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
+    console.log("connected"));    
+}catch (error) { 
+    console.log("could not connect");    
+}
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", '*');
