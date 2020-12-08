@@ -32,6 +32,9 @@ export default new Vuex.Store({
   getters: {
     isLoggedIn: state => {
       return state.loggedIn;
+    },
+    getUsername: state => {
+      return state.username;
     }
   }
 })
