@@ -56,10 +56,23 @@ router.get('/:id', async (req, res) => {
 
 router.get('/latest/:size', async (req, res) => {
     var size = req.params.size;
-    if (size <= exoplanetsList.length){
-        res.status(200).send(exoplanetsList.slice(0, size));
-    } else {
-        res.status(200).send(exoplanetsList);
+    var len = parseInt(size);
+
+    if(len>0){    
+        Exoplanets.find().sort({discover_date: -1 }).limit(len)
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }else{
+        res.status(200).json(null);
     }
 });
 
@@ -67,7 +80,7 @@ router.post('', async (req, res) => {
     
     var newexoplanet = new Exoplanets({
         _id: mongoose.Types.ObjectId(),
-        discover_date: req.body.date,
+        discover_date: new Date(Date.now()).toISOString(),
         name: req.body.name,
         description: req.body.description,
         img_path: req.body.img_path,
@@ -105,7 +118,7 @@ router.put('/:id', async (req, res) => {
     var id = req.params.id;
 
     let valuesToUpdate = {};
-    valuesToUpdate.discover_date = req.body.discover_date;
+    valuesToUpdate.discover_date = new Date(Date.now()).toISOString();
     valuesToUpdate.name = req.body.name;
     valuesToUpdate.description = req.body.description;
     valuesToUpdate.img_path = req.body.img_path;

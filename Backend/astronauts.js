@@ -94,7 +94,7 @@ router.post('', async (req, res) =>
     
     let newAstronaut = new Astronauts({
         _id: mongoose.Types.ObjectId(),
-        birth: newTempAstronaut.birth,
+        birth: new Date(Date.parse(newTempAstronaut.birth)).toISOString(),
         name: newTempAstronaut.name,
         nationality: newTempAstronaut.nationality,
         img_path: newTempAstronaut.img,

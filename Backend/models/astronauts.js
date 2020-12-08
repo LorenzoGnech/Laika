@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 const astronautsSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    birth: String,
+    birth: Date,
     name: String,
     nationality: String,
     img_path: String,
