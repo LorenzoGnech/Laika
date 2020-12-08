@@ -175,6 +175,7 @@ export default {
       this.$router.push(link);
     },
     scrollToSecondPage(e){
+      this.$store.commit("_Login","Pietro Smusi", "a");
       scroll({
         top: this.$refs.latestnews.offsetTop - 100,
         behavior: "smooth"
