@@ -3,6 +3,7 @@ const astronauts = require('./astronauts.js');
 const missions = require('./missions.js');
 const exoplanets = require('./exoplanets.js')
 const telescopes = require('./telescopes.js')
+const search = require('./search.js')
 const jwtVerifier = require('./jwtVerifier.js');
 var express = require('express');
 var path = require('path');
@@ -36,6 +37,7 @@ app.use('/api/v1/missions', missions)
 app.use('/api/v1/astronauts', astronauts);
 app.use('/api/v1/exoplanets', exoplanets);
 app.use('/api/v1/telescopes', telescopes);
+app.use('/api/v1/search', search);
 
 app.listen(port, function() {
   console.log('Server running on port ', port);
