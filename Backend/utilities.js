@@ -1,18 +1,72 @@
-
-// Quick implementation, I believe mongodb should have a tool to check
-// if an object conforms with its model...
-exports.isAstronautCorrect = function isAstronautCorrect(astronaut)
+exports.isAstronautCorrect = function (astronaut)
 {
-    // To check how many properties it has.
-    if (Object.keys(astronaut).length != 6) return false;
-
     if ( 
-        typeof astronaut.id === 'undefined' ||
-        typeof astronaut.birth === 'undefined' ||
-        typeof astronaut.name === 'undefined' ||
-        typeof astronaut.nationality === 'undefined' ||
-        typeof astronaut.img === 'undefined' ||
-        typeof astronaut.agency === 'undefined'
+        typeof astronaut.birth !== typeof String ||
+        typeof astronaut.name !== typeof String ||
+        typeof astronaut.nationality !== typeof String ||
+        typeof astronaut.img_path !== typeof String ||
+        typeof astronaut.agency !== typeof String ||
+        Array.isArray(astronaut.tags)
+    )
+    { return false; }
+
+    return true;
+}
+
+exports.isExoplanetCorrect = function (exoplanet)
+{
+    if ( 
+        typeof exoplanet.discover_date !== typeof String ||
+        typeof exoplanet.name !== typeof String ||
+        typeof exoplanet.description !== typeof String ||
+        typeof exoplanet.img_path !== typeof String ||
+        typeof exoplanet.source_url !== typeof String ||
+        Array.isArray(exoplanet.tags)
+    )
+    { return false; }
+
+    return true;
+}
+
+exports.isMissionCorrect = function (mission)
+{
+    if ( 
+        typeof mission.date !== typeof String ||
+        typeof mission.title !== typeof String ||
+        typeof mission.description !== typeof String ||
+        typeof mission.img_path !== typeof String ||
+        typeof mission.source_url !== typeof String ||
+        Array.isArray(mission.tags)
+    )
+    { return false; }
+
+    return true;
+}
+
+// Non effettua controlli sulla data poiché è decisa dal server e non dal client.
+exports.isNewsCorrect = function (news)
+{
+    if ( 
+        typeof news.title !== typeof String ||
+        typeof news.content !== typeof String ||
+        typeof news.img_path !== typeof String ||
+        typeof news.source_url !== typeof String ||
+        Array.isArray(news.tags)
+    )
+    { return false; }
+
+    return true;
+}
+
+exports.isTelescopeCorrect = function (telescope)
+{
+    if ( 
+        typeof telescope.description !== typeof String ||
+        typeof telescope.name !== typeof String ||
+        typeof telescope.launch_date !== typeof String ||
+        typeof telescope.img_path !== typeof String ||
+        typeof telescope.source_url !== typeof String ||
+        Array.isArray(telescope.tags)
     )
     { return false; }
 

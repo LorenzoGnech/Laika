@@ -4,13 +4,19 @@ const mongoose = require('mongoose');
 const Astronauts = require("./models/astronauts");
 const router = express.Router();
 
-router.get('', async (req, res) => {
+// GET METHODS
+
+// GET all astronauts.
+router.get('', async (req, res) =>
+{
     Astronauts.find()
     .exec()
+
     .then(docs => {
         console.log(docs);
         res.status(200).json(docs);
     })
+
     .catch(err => {
         console.log(err);
         res.status(500).json({
@@ -19,22 +25,27 @@ router.get('', async (req, res) => {
     });
 });
 
-router.get('/:id', async (req, res) => {
-    var id = req.params.id;
+// GET a specific astronaut.
+router.get('/:id', async (req, res) =>
+{
+    let id = req.params.id;
     Astronauts.findById(id)
     .exec()
+
     .then(doc => {
         console.log(doc);
         res.status(201).json(doc);
     })
+
     .catch(err => {
         console.log(err);
-        res.status(500).status.json({
+        res.status(500).json({
             error: err
         });
     });
 });
 
+// GET all the latest added astronauts.
 router.get('/latest/:size', async (req, res) =>
 {
     let size = req.params.size;
@@ -44,15 +55,23 @@ router.get('/latest/:size', async (req, res) =>
     {
         Astronauts.find().sort({ _id: -1 }).limit(len)
         .exec()
+
         .then(docs => {
             console.log(docs);
             res.status(201).json(docs);
         })
+
         .catch(err => {
             console.log(err);
             res.status(500).status.json({
                 error: err
             });
+        });
+    }
+    else if (len === undefined)
+    {
+        res.status(400).json({
+             error: 'Invalid lenght passed, must be an integer.'
         });
     }
     else
@@ -61,54 +80,69 @@ router.get('/latest/:size', async (req, res) =>
     }
 });
 
+// POST, PUT and DELETE METHODS
+
+// POST a new astronaut. Requires authentication.
 router.post('', async (req, res) =>
 {
+    // TO IMPLEMENT AUTH
+
     let newTempAstronaut = {
-        "id": 0,
         "birth": req.body.birth,
         "name": req.body.name,
         "nationality": req.body.nationality,
-        "img": req.body.img_path,
-        "agency": req.body.agency
-    }
+        "img_path": req.body.img_path,
+        "agency": req.body.agency,
+        "tags": req.body.tags
+    };
 
-    // Devo cambiare utilities.js, ma bisogna prima mergiare
-    // con il main per evitare conflitti.
-    /*
     if (!util.isAstronautCorrect(newTempAstronaut))
     {
-        res.status(400).send({ error: 'object sent is not an astronaut' });
-        next();
-    } */
-    
-    let newAstronaut = new Astronauts({
-        _id: mongoose.Types.ObjectId(),
-        birth: new Date(Date.parse(newTempAstronaut.birth)).toISOString(),
-        name: newTempAstronaut.name,
-        nationality: newTempAstronaut.nationality,
-        img_path: newTempAstronaut.img,
-        agency: newTempAstronaut.agency,
-        tags: req.body.tags // sistemare prima utilities.js
-    });
+        res.status(400).send({ error: 'Object sent is not an astronaut.' });
+    }
+    else
+    {
+        let newAstronaut = new Astronauts({
+            _id: mongoose.Types.ObjectId(),
+            birth: new Date(Date.parse(newTempAstronaut.birth)).toISOString(),
+            name: newTempAstronaut.name,
+            nationality: newTempAstronaut.nationality,
+            img_path: newTempAstronaut.img_path,
+            agency: newTempAstronaut.agency,
+            tags: newTempAstronaut.tags
+        });
+        newAstronaut.save()
 
-    newAstronaut.save()
-    .then(result => {
-        console.log(result);
-    })
-    .catch(err => console.log(err));
+        .then(result => {
+            console.log(result);
+            res.location("/api/v1/astronauts/").status(201).send({
+                insertedAstronaut: newAstronaut
+            });
+        })
 
-    res.location("/api/v1/astronauts/").status(201).send({
-        insertedAstronaut: newAstronaut
-    });
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }
 });
 
-router.delete('/:id', async (req, res) => {
+// DELETE an already present astronaut. Requires authentication.
+router.delete('/:id', async (req, res) =>
+{
+    // TO IMPLEMENT AUTH
+
     let id = req.params.id;
     Astronauts.deleteOne({_id: id})
     .exec()
+
     .then(result => {
-        res.status(200).json(result);
+        console.log(result);
+        res.status(200).json(result); // non mi piace...
     })
+
     .catch(err => {
         console.log(err);
         res.status(500).json({
@@ -117,12 +151,14 @@ router.delete('/:id', async (req, res) => {
     })
 });
 
+// PUT an updated version of an already present astronaut. Requires authentication.
 router.put('/:id', async (req, res) =>
 {
+    // TO IMPLEMENT AUTH
+
     let id = req.params.id;
-    
     let valuesToUpdate = {
-        "birth": new Date(Date.parse(req.body.birth)).toISOString(),
+        "birth": req.body.birth,
         "name": req.body.name,
         "nationality": req.body.nationality,
         "img_path": req.body.img_path,
@@ -130,19 +166,31 @@ router.put('/:id', async (req, res) =>
         "tags": req.body.tags
     };
 
-    Astronauts.updateOne({_id: id}, {$set: valuesToUpdate})
-    .exec()
-    .then(result => {
-        res.status(200).json({
-            message: "Astronaut updated",
+    if (!util.isAstronautCorrect(valuesToUpdate))
+    {
+        res.status(400).send({ error: 'Object sent is not an astronaut.' });
+    }
+    else
+    {
+        valuesToUpdate.birth = new Date(Date.parse(req.body.birth)).toISOString();
+    
+        Astronauts.updateOne({_id: id}, {$set: valuesToUpdate})
+        .exec()
+    
+        .then(result => {
+            res.status(200).json({
+                message: "Astronaut updated",
+            });
+        })
+    
+        .catch(err =>{
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
         });
-    })
-    .catch(err =>{
-        console.log(err);
-        res.status(500).json({
-            error: err
-        });
-    });
+    }
 });
+
 
 module.exports = router;
