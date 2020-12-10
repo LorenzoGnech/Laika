@@ -61,12 +61,12 @@ exports.isNewsCorrect = function (news)
 exports.isTelescopeCorrect = function (telescope)
 {
     if ( 
-        typeof telescope.description !== typeof String ||
-        typeof telescope.name !== typeof String ||
-        typeof telescope.launch_date !== typeof Date ||
-        !Array.isArray(telescope.img_path) ||
-        typeof telescope.source_url !== typeof String ||
-        !Array.isArray(telescope.tags)
+        (telescope.description instanceof String) ||
+        (telescope.name instanceof String) ||
+        (telescope.launch_date instanceof Date) ||
+        !(Array.isArray(telescope.img_path)) ||
+        (telescope.source_url instanceof String) ||
+        !(Array.isArray(telescope.tags))
     )
     { return false; }
 
