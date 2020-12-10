@@ -6,7 +6,7 @@
           <div v-if="!this.$store.getters.isLoggedIn" class="container">
             <div class="row">
               <div class="column">
-                <form action="#" method="post">
+                <form action="#" method="post" @submit.prevent="Signup">
                   <p class="title"><b>Sign Up</b></p>
                   <input type="email" placeholder="Email" name="email" required>
                   <input type="password" placeholder="Password" name="psw" required>
@@ -14,7 +14,7 @@
                 </form>
               </div>
               <div class="column" id="signin">
-                <form action="#" method="post">
+                <form action="#" method="post" @submit.prevent="Signin">
                   <p class="title"><b>Sign In</b></p>
                   <input type="email" placeholder="Email" name="email" required>
                   <input type="password" placeholder="Password" name="psw" required>
@@ -34,15 +34,56 @@
 
 <script>
 import NavMenu from '../components/NavMenu.vue'
+import crypto from 'crypto-js'
+import axios from 'axios'
 
 export default {
   name: 'Login',
   components: {
     NavMenu
   },
+  methods: {
+    Signup(e){
+      let email = e.target.elements.email.value;
+      let password = e.target.elements.email.password;
+      let hash = crypto.SHA256(password).toString();
+      this.SendCredentials(email, hash);
+    },
+    Signin(e){
+      let email = e.target.elements.email.value;
+      let password = e.target.elements.email.password;
+      let hash = crypto.SHA256(password).toString();
+      this.Login(email, hash);
+    },
+    SendCredentials(email, hash){
+      var params = new URLSearchParams();
+      params.append('email', email);
+      params.append('password', hash);
+      axios.post('http://laikapp.herokuapp.com/api/v1/signup/', params)
+        .then(response => this.complete_auth(response.data))
+        .catch(err => console.warn(err));;
+    },
+    complete_auth(data){
+      this.Login(data.insertedUser.email, data.insertedUser.password)
+    },
+    Login(email, hash){
+      var params = new URLSearchParams();
+      params.append('email', email);
+      params.append('password', hash);
+      axios.post('http://laikapp.herokuapp.com/api/v1/signin/', params)
+        .then(response => this.redirect(response.data))
+        .catch(err => console.warn(err));;
+    },
+    redirect(data){
+      if (data.success == true){
+        this.$store.commit("_Login",data.email, data.token);
+        this.$router.push("/");
+      }
+    }
+  },
   data: function(){
     return {
-      loginTitle: 'Login'
+      loginTitle: 'Login',
     }
   },
 }

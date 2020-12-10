@@ -10,7 +10,6 @@ router.post('', async (req, res) =>
         "email": req.body.email,
         "password": req.body.password,
     };
-
     if (!util.isUserCorrect(newTempUser))
     {
         res.status(400).send({ error: 'Object sent is not a user' });
@@ -25,20 +24,19 @@ router.post('', async (req, res) =>
                 password: newTempUser.password,
             });
             newUser.save()
-    
             .then(result => {
                 console.log(result);
                 res.location("/").status(201).send({
                     insertedUser: newUser
                 });
             })
-    
             .catch(err => {
                 console.log(err);
                 res.status(500).json({
                     error: err
                 });
             });
+            
         } else{
             res.status(400).send({ error: 'User already registered' });
         }

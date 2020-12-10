@@ -35,15 +35,19 @@ router.post('', async (req, res) =>
                 );
                 console.log(token);
             
-                res.json({
-                    success: true,
-                    message: 'Enjoy your token!',
-                    token: token
-                });
-            }
-        }
-        else
-        {
+            // if user is found and password is right create a token
+            var token = jwt.sign({ email: user.email }, ACCESS_TOKEN_SECRET, { expiresIn: ACCESS_TOKEN_LIFE });
+            console.log(token);
+        
+            res.json({
+                success: true,
+                email: user.email,
+                message: 'Enjoy your token!',
+                token: token
+            });
+
+        } else{
+
             res.status(400).send({ error: 'User not registered' });
         }
     }
