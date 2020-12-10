@@ -63,7 +63,7 @@ exports.isTelescopeCorrect = function (telescope)
     if ( 
         typeof telescope.description !==  'string' ||
         typeof telescope.name !==  'string' ||
-        typeof telescope.launch_date !== 'string' ||
+        !(telescope.launch_date instanceof Date) ||
         !Array.isArray(telescope.img_path) ||
         typeof telescope.source_url !== 'string' ||
         !Array.isArray(telescope.tags)
