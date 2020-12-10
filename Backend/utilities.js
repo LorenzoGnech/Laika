@@ -4,7 +4,7 @@ exports.isAstronautCorrect = function (astronaut)
         typeof astronaut.birth !== typeof String ||
         typeof astronaut.name !== typeof String ||
         typeof astronaut.nationality !== typeof String ||
-        typeof astronaut.img_path !== typeof String ||
+        Array.isArray(astronaut.img_path) ||
         typeof astronaut.agency !== typeof String ||
         Array.isArray(astronaut.tags)
     )
@@ -34,7 +34,7 @@ exports.isMissionCorrect = function (mission)
         typeof mission.date !== typeof String ||
         typeof mission.title !== typeof String ||
         typeof mission.description !== typeof String ||
-        typeof mission.img_path !== typeof String ||
+        Array.isArray(mission.img_path) ||
         typeof mission.source_url !== typeof String ||
         Array.isArray(mission.tags)
     )
@@ -64,7 +64,7 @@ exports.isTelescopeCorrect = function (telescope)
         typeof telescope.description !== typeof String ||
         typeof telescope.name !== typeof String ||
         typeof telescope.launch_date !== typeof String ||
-        typeof telescope.img_path !== typeof String ||
+        Array.isArray(telescope.img_path) ||
         typeof telescope.source_url !== typeof String ||
         Array.isArray(telescope.tags)
     )
