@@ -2,6 +2,7 @@ const util = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const Astronauts = require("./models/astronauts");
+const AstronautsMissions = require("./models/astronauts_missions");
 const router = express.Router();
 
 // GET METHODS
