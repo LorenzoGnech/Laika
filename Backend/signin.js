@@ -33,6 +33,7 @@ router.post('', async (req, res) =>
         
             res.json({
                 success: true,
+                email: user.email,
                 message: 'Enjoy your token!',
                 token: token
             });
