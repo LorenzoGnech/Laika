@@ -1,11 +1,11 @@
 exports.isAstronautCorrect = function (astronaut)
 {
     if ( 
-        typeof astronaut.birth !== typeof String ||
-        typeof astronaut.name !== typeof String ||
-        typeof astronaut.nationality !== typeof String ||
-        typeof astronaut.img_path !== typeof String ||
-        typeof astronaut.agency !== typeof String ||
+        typeof astronaut.birth !== 'string' ||
+        typeof astronaut.name !== 'string' ||
+        typeof astronaut.nationality !== 'string' ||
+        typeof astronaut.img_path !== 'string' ||
+        typeof astronaut.agency !== 'string' ||
         Array.isArray(astronaut.tags)
     )
     { return false; }
@@ -16,11 +16,11 @@ exports.isAstronautCorrect = function (astronaut)
 exports.isExoplanetCorrect = function (exoplanet)
 {
     if ( 
-        typeof exoplanet.discover_date !== typeof String ||
-        typeof exoplanet.name !== typeof String ||
-        typeof exoplanet.description !== typeof String ||
-        typeof exoplanet.img_path !== typeof String ||
-        typeof exoplanet.source_url !== typeof String ||
+        typeof exoplanet.discover_date !== 'string' ||
+        typeof exoplanet.name !== 'string' ||
+        typeof exoplanet.description !== 'string' ||
+        typeof exoplanet.img_path !== 'string' ||
+        typeof exoplanet.source_url !== 'string' ||
         Array.isArray(exoplanet.tags)
     )
     { return false; }
@@ -31,11 +31,11 @@ exports.isExoplanetCorrect = function (exoplanet)
 exports.isMissionCorrect = function (mission)
 {
     if ( 
-        typeof mission.date !== typeof String ||
-        typeof mission.title !== typeof String ||
-        typeof mission.description !== typeof String ||
-        typeof mission.img_path !== typeof String ||
-        typeof mission.source_url !== typeof String ||
+        typeof mission.date !== 'string' ||
+        typeof mission.title !== 'string' ||
+        typeof mission.description !== 'string' ||
+        typeof mission.img_path !== 'string' ||
+        typeof mission.source_url !== 'string' ||
         Array.isArray(mission.tags)
     )
     { return false; }
@@ -47,10 +47,10 @@ exports.isMissionCorrect = function (mission)
 exports.isNewsCorrect = function (news)
 {
     if ( 
-        typeof news.title !== typeof String ||
-        typeof news.content !== typeof String ||
-        typeof news.img_path !== typeof String ||
-        typeof news.source_url !== typeof String ||
+        typeof news.title !== 'string' ||
+        typeof news.content !== 'string' ||
+        typeof news.img_path !== 'string' ||
+        typeof news.source_url !== 'string' ||
         Array.isArray(news.tags)
     )
     { return false; }
@@ -61,12 +61,23 @@ exports.isNewsCorrect = function (news)
 exports.isTelescopeCorrect = function (telescope)
 {
     if ( 
-        typeof telescope.description !== typeof String ||
-        typeof telescope.name !== typeof String ||
-        typeof telescope.launch_date !== typeof String ||
-        typeof telescope.img_path !== typeof String ||
-        typeof telescope.source_url !== typeof String ||
+        typeof telescope.description !== 'string' ||
+        typeof telescope.name !== 'string' ||
+        typeof telescope.launch_date !== 'string' ||
+        typeof telescope.img_path !== 'string' ||
+        typeof telescope.source_url !== 'string' ||
         Array.isArray(telescope.tags)
+    )
+    { return false; }
+
+    return true;
+}
+
+exports.isUserCorrect = function (user)
+{
+    if ( 
+        typeof user.email !== 'string' ||
+        typeof user.password !== 'string'
     )
     { return false; }
 

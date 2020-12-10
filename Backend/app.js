@@ -3,6 +3,8 @@ const astronauts = require('./astronauts.js');
 const missions = require('./missions.js');
 const exoplanets = require('./exoplanets.js')
 const telescopes = require('./telescopes.js')
+const signup = require('./signup.js')
+const signin = require('./signin.js')
 const search = require('./search.js')
 const jwtVerifier = require('./jwtVerifier.js');
 var express = require('express');
@@ -45,12 +47,34 @@ app.use(serveStatic(__dirname + "/Frontend/dist"));
 app.delete('', jwtVerifier);
 app.put('', jwtVerifier); */
 
+app.post('/api/v1/news', jwtVerifier);
+app.put('/api/v1/news', jwtVerifier);
+app.delete('/api/v1/news', jwtVerifier);
 app.use('/api/v1/news', news);
+
+app.post('/api/v1/missions', jwtVerifier);
+app.put('/api/v1/missions', jwtVerifier);
+app.delete('/api/v1/missions', jwtVerifier);
 app.use('/api/v1/missions', missions)
+
+app.post('/api/v1/astronauts', jwtVerifier);
+app.put('/api/v1/astronauts', jwtVerifier);
+app.delete('/api/v1/astronauts', jwtVerifier);
 app.use('/api/v1/astronauts', astronauts);
+
+app.post('/api/v1/exoplanets', jwtVerifier);
+app.put('/api/v1/exoplanets', jwtVerifier);
+app.delete('/api/v1/exoplanets', jwtVerifier);
 app.use('/api/v1/exoplanets', exoplanets);
+
+app.post('/api/v1/telescopes', jwtVerifier);
+app.put('/api/v1/telescopes', jwtVerifier);
+app.delete('/api/v1/telescopes', jwtVerifier);
 app.use('/api/v1/telescopes', telescopes);
+
 app.use('/api/v1/search', search);
+app.use('/api/v1/signup', signup);
+app.use('/api/v1/signin', signin);
 
 app.listen(port, function() {
   console.log('Server running on port ', port);
