@@ -90,7 +90,7 @@ router.post('', async (req, res) =>
     let newTempTelescope = {
         "name": req.body.name,
         "description": req.body.description,
-        "launch_date": new Date(Date.parse(req.body.launch_date)),
+        "launch_date": req.body.launch_date,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
         "tags": req.body.tags
@@ -106,7 +106,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             name: newTempTelescope.name,
             description: newTempTelescope.description,
-            launch_date: newTempTelescope.launch_date.toISOString(),
+            launch_date: new Date(Date.parse(newTempTelescope.launch_date)).toISOString(),
             img_path: newTempTelescope.img_path,
             source_url: newTempTelescope.source_url,
             tags: newTempTelescope.tags
