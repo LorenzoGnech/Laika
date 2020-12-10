@@ -15,12 +15,9 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-// URL for DB connection
-const DB_URI = "mongodb+srv://user:HoWTpgx6OOtFZUh3@laika.5s6t8.mongodb.net/laika?retryWrites=true&w=majority";
-
 // Try to connect to DB
 try {
-    mongoose.connect(DB_URI, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
+    mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log("connected"));    
 }catch (error) { 
     console.log("could not connect");    
@@ -40,33 +37,31 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(serveStatic(__dirname + "/Frontend/dist"));
 
-// Quando faremo login-sign up, dovremmo cambiare queste tre righe
-// Perché altrimenti il verifier si mette in mezzo dicendoci che non
-// abbiamo un token, quando il nostro obbiettivo è proprio ottenerne uno
-/*app.post('', jwtVerifier);
-app.delete('', jwtVerifier);
-app.put('', jwtVerifier); */
-
+// NEWS
 app.post('/api/v1/news', jwtVerifier);
 app.put('/api/v1/news', jwtVerifier);
 app.delete('/api/v1/news', jwtVerifier);
 app.use('/api/v1/news', news);
 
+// MISSIONS
 app.post('/api/v1/missions', jwtVerifier);
 app.put('/api/v1/missions', jwtVerifier);
 app.delete('/api/v1/missions', jwtVerifier);
 app.use('/api/v1/missions', missions)
 
+// ASTRONAUTS
 app.post('/api/v1/astronauts', jwtVerifier);
 app.put('/api/v1/astronauts', jwtVerifier);
 app.delete('/api/v1/astronauts', jwtVerifier);
 app.use('/api/v1/astronauts', astronauts);
 
+// EXOPLANETS
 app.post('/api/v1/exoplanets', jwtVerifier);
 app.put('/api/v1/exoplanets', jwtVerifier);
 app.delete('/api/v1/exoplanets', jwtVerifier);
 app.use('/api/v1/exoplanets', exoplanets);
 
+// TELESCOPES
 app.post('/api/v1/telescopes', jwtVerifier);
 app.put('/api/v1/telescopes', jwtVerifier);
 app.delete('/api/v1/telescopes', jwtVerifier);
