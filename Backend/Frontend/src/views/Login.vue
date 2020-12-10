@@ -59,7 +59,7 @@ export default {
       var params = new URLSearchParams();
       params.append('email', email);
       params.append('password', hash);
-      axios.post('http://laikapp.herokuapp.com/api/v1/signup/', params)
+      axios.post('https://laikapp.herokuapp.com/api/v1/signup/', params)
         .then(response => this.complete_auth(response.data))
         .catch(err => console.warn(err));;
     },
@@ -70,7 +70,7 @@ export default {
       var params = new URLSearchParams();
       params.append('email', email);
       params.append('password', hash);
-      axios.post('http://laikapp.herokuapp.com/api/v1/signin/', params)
+      axios.post('https://laikapp.herokuapp.com/api/v1/signin/', params)
         .then(response => this.redirect(response.data))
         .catch(err => console.warn(err));;
     },
