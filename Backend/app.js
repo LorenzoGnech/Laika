@@ -71,8 +71,9 @@ app.use('/api/v1/search', search);
 app.use('/api/v1/signup', signup);
 app.use('/api/v1/signin', signin);
 
-app.listen(port, function() {
+const server = app.listen(port, function() {
   console.log('Server running on port ', port);
 });
 
 module.exports = app;
+module.exports.server = server;

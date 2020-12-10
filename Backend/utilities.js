@@ -1,12 +1,12 @@
 exports.isAstronautCorrect = function (astronaut)
 {
     if ( 
-        typeof astronaut.birth !== 'string' ||
-        typeof astronaut.name !== 'string' ||
-        typeof astronaut.nationality !== 'string' ||
-        typeof astronaut.img_path !== 'string' ||
-        typeof astronaut.agency !== 'string' ||
-        Array.isArray(astronaut.tags)
+        (typeof astronaut.birth !== 'string' && typeof astronaut.birth === 'undefined') ||
+        (typeof astronaut.name !== 'string' && typeof astronaut.name === 'undefined') ||
+        (typeof astronaut.nationality !== 'string'  && typeof astronaut.nationality === 'undefined') ||
+        (typeof astronaut.img_path !== 'string'  && typeof astronaut.img_path === 'undefined') ||
+        (typeof astronaut.agency !== 'string'  && typeof astronaut.agency === 'undefined') ||
+        !Array.isArray(astronaut.tags)
     )
     { return false; }
 
@@ -21,7 +21,7 @@ exports.isExoplanetCorrect = function (exoplanet)
         typeof exoplanet.description !== 'string' ||
         typeof exoplanet.img_path !== 'string' ||
         typeof exoplanet.source_url !== 'string' ||
-        Array.isArray(exoplanet.tags)
+        !Array.isArray(exoplanet.tags)
     )
     { return false; }
 
@@ -36,7 +36,7 @@ exports.isMissionCorrect = function (mission)
         typeof mission.description !== 'string' ||
         typeof mission.img_path !== 'string' ||
         typeof mission.source_url !== 'string' ||
-        Array.isArray(mission.tags)
+        !Array.isArray(mission.tags)
     )
     { return false; }
 
@@ -51,7 +51,7 @@ exports.isNewsCorrect = function (news)
         typeof news.content !== 'string' ||
         typeof news.img_path !== 'string' ||
         typeof news.source_url !== 'string' ||
-        Array.isArray(news.tags)
+        !Array.isArray(news.tags)
     )
     { return false; }
 
@@ -66,7 +66,7 @@ exports.isTelescopeCorrect = function (telescope)
         typeof telescope.launch_date !== 'string' ||
         typeof telescope.img_path !== 'string' ||
         typeof telescope.source_url !== 'string' ||
-        Array.isArray(telescope.tags)
+        !Array.isArray(telescope.tags)
     )
     { return false; }
 
