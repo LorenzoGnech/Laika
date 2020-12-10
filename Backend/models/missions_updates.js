@@ -8,4 +8,4 @@ const missionsUpdatesSchema = new mongoose.Schema({
     insert_date: Date
 });
 
-module.exports = mongoose.model('missions_updates', missionsSchema, 'missions_updates');
+module.exports = mongoose.model('missions_updates', missionsUpdatesSchema, 'missions_updates');
