@@ -150,7 +150,7 @@ router.post('/update/:id', async (req, res) =>
         insert_date: newTempMissionUpdate.insert_date
     });
     newMissionUpdate.save()
-    commentato per il momento
+    
     .then(result => {
         console.log(result);
         // location da modificare?
