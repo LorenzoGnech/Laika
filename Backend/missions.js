@@ -2,7 +2,9 @@ const util = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const Missions = require("./models/missions");
+const MissionsUpdates = require("./models/missions_updates");
 const router = express.Router();
+
 
 // GET METHODS
 
@@ -129,6 +131,43 @@ router.post('', async (req, res) =>
     }
 });
 
+// POST 
+
+router.post('/update/:id', async (req, res) =>
+{
+    // TO IMPLEMENT AUTH
+
+    let newTempMissionUpdate = {
+        "missionId": req.params.id,
+        "content": req.body.content,
+        "insert_date": new Date(Date.now())
+    };
+
+    let newMissionUpdate = new MissionsUpdates({
+        _id: mongoose.Types.ObjectId(),
+        missionId: newTempMissionUpdate.missionId,
+        content: newTempMissionUpdate.content,
+        insert_date: newTempMissionUpdate.insert_date
+    });
+    newMissionUpdate.save()
+    commentato per il momento
+    .then(result => {
+        console.log(result);
+        // location da modificare?
+        res.location("/api/v1/missions/").status(201).send({
+            insertedMissionUpdate: newMissionUpdate
+        });
+    })
+
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+
+    
+});
 // DELETE an already present mission. Requires authentication.
 router.delete('/:id', async (req, res) =>
 {
