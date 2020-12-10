@@ -34,7 +34,7 @@ exports.isMissionCorrect = function (mission)
         //!(mission.date instanceof Date) ||
         typeof mission.title !== 'string' ||
         typeof mission.description !== 'string' ||
-        !Array.isArray(mission.img_path) ||
+        typeof mission.img_path !== 'string' ||
         typeof mission.source_url !== 'string' ||
         !Array.isArray(mission.tags)
     )
