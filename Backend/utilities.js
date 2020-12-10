@@ -1,7 +1,7 @@
 exports.isAstronautCorrect = function (astronaut)
 {
     if ( 
-        typeof astronaut.birth !== typeof String ||
+        typeof astronaut.birth !== typeof Date ||
         typeof astronaut.name !== typeof String ||
         typeof astronaut.nationality !== typeof String ||
         Array.isArray(astronaut.img_path) ||
@@ -16,7 +16,7 @@ exports.isAstronautCorrect = function (astronaut)
 exports.isExoplanetCorrect = function (exoplanet)
 {
     if ( 
-        typeof exoplanet.discover_date !== typeof String ||
+        typeof exoplanet.discover_date !== typeof Date ||
         typeof exoplanet.name !== typeof String ||
         typeof exoplanet.description !== typeof String ||
         typeof exoplanet.img_path !== typeof String ||
@@ -31,7 +31,7 @@ exports.isExoplanetCorrect = function (exoplanet)
 exports.isMissionCorrect = function (mission)
 {
     if ( 
-        typeof mission.date !== typeof String ||
+        typeof mission.date !== typeof Date ||
         typeof mission.title !== typeof String ||
         typeof mission.description !== typeof String ||
         Array.isArray(mission.img_path) ||
@@ -63,7 +63,7 @@ exports.isTelescopeCorrect = function (telescope)
     if ( 
         typeof telescope.description !== typeof String ||
         typeof telescope.name !== typeof String ||
-        typeof telescope.launch_date !== typeof String ||
+        typeof telescope.launch_date !== typeof Date ||
         Array.isArray(telescope.img_path) ||
         typeof telescope.source_url !== typeof String ||
         Array.isArray(telescope.tags)
