@@ -19,14 +19,10 @@ router.post('', async (req, res) =>
     else
     {
         let user = await User.findOne({ email: req.body.email }).exec();
-        if (user)
-        {
-            if (user.password != req.body.password)
-            {
+        if (user){
+            if (user.password != req.body.password){
                 res.json({ error: 'Password mismatch' });
-            }
-            else
-            {
+            }else{
                 // if user is found and password is right create a token
                 var token = jwt.sign(
                     { email: user.email },
@@ -45,7 +41,7 @@ router.post('', async (req, res) =>
                 message: 'Enjoy your token!',
                 token: token
             });
-
+            }
         } else{
 
             res.status(400).send({ error: 'User not registered' });
