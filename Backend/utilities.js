@@ -1,11 +1,11 @@
 exports.isAstronautCorrect = function (astronaut)
 {
     if ( 
-        typeof astronaut.birth !== typeof Date ||
-        typeof astronaut.name !== typeof String ||
-        typeof astronaut.nationality !== typeof String ||
+        !(astronaut.date instanceof Date) ||
+        typeof astronaut.name !== 'string' ||
+        typeof astronaut.nationality !== 'string' ||
         !Array.isArray(astronaut.img_path) ||
-        typeof astronaut.agency !== typeof String ||
+        typeof astronaut.agency !== 'string' ||
         !Array.isArray(astronaut.tags)
     )
     { return false; }
@@ -16,11 +16,11 @@ exports.isAstronautCorrect = function (astronaut)
 exports.isExoplanetCorrect = function (exoplanet)
 {
     if ( 
-        typeof exoplanet.discover_date !== typeof Date ||
-        typeof exoplanet.name !== typeof String ||
-        typeof exoplanet.description !== typeof String ||
-        typeof exoplanet.img_path !== typeof String ||
-        typeof exoplanet.source_url !== typeof String ||
+        !(exoplanet.date instanceof Date) ||
+        typeof exoplanet.name !== 'string' ||
+        typeof exoplanet.description !== 'string' ||
+        typeof exoplanet.img_path !== 'string' ||
+        typeof exoplanet.source_url !== 'string' ||
         !Array.isArray(exoplanet.tags)
     )
     { return false; }
@@ -31,11 +31,11 @@ exports.isExoplanetCorrect = function (exoplanet)
 exports.isMissionCorrect = function (mission)
 {
     if ( 
-        typeof mission.date !== typeof Date ||
-        typeof mission.title !== typeof String ||
-        typeof mission.description !== typeof String ||
+        !(mission.date instanceof Date) ||
+        typeof mission.title !== 'string' ||
+        typeof mission.description !== 'string' ||
         !Array.isArray(mission.img_path) ||
-        typeof mission.source_url !== typeof String ||
+        typeof mission.source_url !== 'string' ||
         !Array.isArray(mission.tags)
     )
     { return false; }
@@ -47,10 +47,11 @@ exports.isMissionCorrect = function (mission)
 exports.isNewsCorrect = function (news)
 {
     if ( 
-        typeof news.title !== typeof String ||
-        typeof news.content !== typeof String ||
-        typeof news.img_path !== typeof String ||
-        typeof news.source_url !== typeof String ||
+        typeof news.title !== 'string' ||
+        !(news.date instanceof Date) ||
+        typeof news.content !== 'string' ||
+        typeof news.img_path !== 'string' ||
+        typeof news.source_url !== 'string' ||
         !Array.isArray(news.tags)
     )
     { return false; }
