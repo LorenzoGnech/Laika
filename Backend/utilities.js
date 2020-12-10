@@ -4,9 +4,9 @@ exports.isAstronautCorrect = function (astronaut)
         typeof astronaut.birth !== typeof Date ||
         typeof astronaut.name !== typeof String ||
         typeof astronaut.nationality !== typeof String ||
-        Array.isArray(astronaut.img_path) ||
+        !Array.isArray(astronaut.img_path) ||
         typeof astronaut.agency !== typeof String ||
-        Array.isArray(astronaut.tags)
+        !Array.isArray(astronaut.tags)
     )
     { return false; }
 
@@ -21,7 +21,7 @@ exports.isExoplanetCorrect = function (exoplanet)
         typeof exoplanet.description !== typeof String ||
         typeof exoplanet.img_path !== typeof String ||
         typeof exoplanet.source_url !== typeof String ||
-        Array.isArray(exoplanet.tags)
+        !Array.isArray(exoplanet.tags)
     )
     { return false; }
 
@@ -34,9 +34,9 @@ exports.isMissionCorrect = function (mission)
         typeof mission.date !== typeof Date ||
         typeof mission.title !== typeof String ||
         typeof mission.description !== typeof String ||
-        Array.isArray(mission.img_path) ||
+        !Array.isArray(mission.img_path) ||
         typeof mission.source_url !== typeof String ||
-        Array.isArray(mission.tags)
+        !Array.isArray(mission.tags)
     )
     { return false; }
 
@@ -51,7 +51,7 @@ exports.isNewsCorrect = function (news)
         typeof news.content !== typeof String ||
         typeof news.img_path !== typeof String ||
         typeof news.source_url !== typeof String ||
-        Array.isArray(news.tags)
+        !Array.isArray(news.tags)
     )
     { return false; }
 
@@ -64,9 +64,9 @@ exports.isTelescopeCorrect = function (telescope)
         typeof telescope.description !== typeof String ||
         typeof telescope.name !== typeof String ||
         typeof telescope.launch_date !== typeof Date ||
-        Array.isArray(telescope.img_path) ||
+        !Array.isArray(telescope.img_path) ||
         typeof telescope.source_url !== typeof String ||
-        Array.isArray(telescope.tags)
+        !Array.isArray(telescope.tags)
     )
     { return false; }
 
