@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Missions = require("./models/missions");
 const MissionsUpdates = require("./models/missions_updates");
+const MissionsFollowed = require("./models/missions_followed");
 const router = express.Router();
 
 
@@ -315,5 +316,70 @@ router.delete('/update/:id', async (req, res) =>
 });
 
 
+router.get('/followed/:idUtente', async (req, res) =>
+{
+    let idUtente = req.params.idUtente;
+
+    MissionsFollowed.find({userId: idUtente})
+    .exec()
+    .then(docs => {
+        console.log(docs);
+        res.status(200).json(docs);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+});
+
+
+router.post('/followed', async (req, res) =>
+{
+    let newTempMissionFollowed = {
+        "missionId": req.body.missionId,
+        "userId": req.body.userId
+    };
+
+    let newMissionFollowed = new MissionsFollowed({
+        _id: mongoose.Types.ObjectId(),
+        missionId: newTempMissionFollowed.missionId,
+        userId: newTempMissionFollowed.userId
+    });
+    newMissionFollowed.save()    
+    .then(result => {
+        console.log(result);
+        res.location("/api/v1/missions").status(201).send({
+            insertedMissionUpdate: newMissionFollowed
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+});
+
+
+router.delete('/followed/:userId/:missionId', async (req, res) =>
+{
+    let idUtente = req.params.userId;
+    let idMissione = req.params.missionId;
+
+    MissionsFollowed.deleteOne({$and: [{userId: idUtente}, {missionId: idMissione}] })
+    .exec()
+    .then(result => {
+        console.log(result);
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+});
 
 module.exports = router;
