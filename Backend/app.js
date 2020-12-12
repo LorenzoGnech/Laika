@@ -8,20 +8,11 @@ const signin = require('./signin.js')
 const search = require('./search.js')
 const jwtVerifier = require('./jwtVerifier.js');
 var express = require('express');
-const mongoose = require('mongoose');
 var path = require('path');
 var serveStatic = require('serve-static');
 var app = express();
 
-var port = process.env.PORT || 3000;
-
 // Try to connect to DB
-try {
-    mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
-    console.log("connected"));    
-}catch (error) { 
-    console.log("could not connect");    
-}
 
 
 app.use(function(req, res, next) {
@@ -71,9 +62,4 @@ app.use('/api/v1/search', search);
 app.use('/api/v1/signup', signup);
 app.use('/api/v1/signin', signin);
 
-const server = app.listen(port, function() {
-  console.log('Server running on port ', port);
-});
-
 module.exports = app;
-module.exports.server = server;

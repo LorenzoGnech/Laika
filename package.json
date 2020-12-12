@@ -4,11 +4,11 @@
   "description": "Laika project for \"Ingegneria del Software 2\" 2020",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "serve": "cd Backend/Frontend && vue-cli-service serve",
     "build": "cd Backend/Frontend && vue-cli-service build",
     "lint": "cd Backend/Frontend && vue-cli-service lint",
-    "start_local": "node -r dotenv/config Backend/app.js"
+    "start_local": "node -r dotenv/config index.js"
   },
   "repository": {
     "type": "git",
@@ -72,6 +72,6 @@
   },
   "jest": {
     "verbose": true,
-    "collectCoverage": false
+    "collectCoverage": true
   }
 }
