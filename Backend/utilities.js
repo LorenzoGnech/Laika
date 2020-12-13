@@ -4,9 +4,10 @@ exports.isAstronautCorrect = function (astronaut)
         typeof astronaut.birth !== 'string' ||
         typeof astronaut.name !== 'string' ||
         typeof astronaut.nationality !== 'string' ||
-        typeof astronaut.img_path !== 'string' ||
+        !Array.isArray(astronaut.img_path) ||
         typeof astronaut.agency !== 'string' ||
-        Array.isArray(astronaut.tags)
+        !Array.isArray(astronaut.tags)
+
     )
     { return false; }
 
@@ -21,7 +22,7 @@ exports.isExoplanetCorrect = function (exoplanet)
         typeof exoplanet.description !== 'string' ||
         typeof exoplanet.img_path !== 'string' ||
         typeof exoplanet.source_url !== 'string' ||
-        Array.isArray(exoplanet.tags)
+        !Array.isArray(exoplanet.tags)
     )
     { return false; }
 
@@ -36,7 +37,7 @@ exports.isMissionCorrect = function (mission)
         typeof mission.description !== 'string' ||
         typeof mission.img_path !== 'string' ||
         typeof mission.source_url !== 'string' ||
-        Array.isArray(mission.tags)
+        !Array.isArray(mission.tags)
     )
     { return false; }
 
@@ -48,10 +49,11 @@ exports.isNewsCorrect = function (news)
 {
     if ( 
         typeof news.title !== 'string' ||
+        typeof news.date !== 'string' ||
         typeof news.content !== 'string' ||
         typeof news.img_path !== 'string' ||
         typeof news.source_url !== 'string' ||
-        Array.isArray(news.tags)
+        !Array.isArray(news.tags)
     )
     { return false; }
 
@@ -61,12 +63,12 @@ exports.isNewsCorrect = function (news)
 exports.isTelescopeCorrect = function (telescope)
 {
     if ( 
-        typeof telescope.description !== 'string' ||
-        typeof telescope.name !== 'string' ||
-        typeof telescope.launch_date !== 'string' ||
-        typeof telescope.img_path !== 'string' ||
+        typeof telescope.description !==  'string' ||
+        typeof telescope.name !==  'string' ||
+        typeof telescope.launch_date !==  'string' ||
+        !Array.isArray(telescope.img_path) ||
         typeof telescope.source_url !== 'string' ||
-        Array.isArray(telescope.tags)
+        !Array.isArray(telescope.tags)
     )
     { return false; }
 
