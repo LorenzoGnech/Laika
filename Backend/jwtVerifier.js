@@ -10,7 +10,7 @@ const jwtVerifier = function(req, res, next)
 	}
 
 	// decode token, verifies secret and checks exp
-    jwt.verify(token, process.env.JWT_ENCODER, function(err, decoded)
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function(err, decoded)
     {			
         if (err)
         {

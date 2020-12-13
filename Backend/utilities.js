@@ -1,12 +1,13 @@
 exports.isAstronautCorrect = function (astronaut)
 {
     if ( 
-        //!(astronaut.date instanceof Date) ||
+        typeof astronaut.birth !== 'string' ||
         typeof astronaut.name !== 'string' ||
         typeof astronaut.nationality !== 'string' ||
         !Array.isArray(astronaut.img_path) ||
         typeof astronaut.agency !== 'string' ||
         !Array.isArray(astronaut.tags)
+
     )
     { return false; }
 
@@ -16,7 +17,7 @@ exports.isAstronautCorrect = function (astronaut)
 exports.isExoplanetCorrect = function (exoplanet)
 {
     if ( 
-        //!(exoplanet.date instanceof Date) ||
+        typeof exoplanet.discover_date !== 'string' ||
         typeof exoplanet.name !== 'string' ||
         typeof exoplanet.description !== 'string' ||
         typeof exoplanet.img_path !== 'string' ||
@@ -31,7 +32,7 @@ exports.isExoplanetCorrect = function (exoplanet)
 exports.isMissionCorrect = function (mission)
 {
     if ( 
-        //!(mission.date instanceof Date) ||
+        typeof mission.date !== 'string' ||
         typeof mission.title !== 'string' ||
         typeof mission.description !== 'string' ||
         typeof mission.img_path !== 'string' ||
@@ -48,7 +49,7 @@ exports.isNewsCorrect = function (news)
 {
     if ( 
         typeof news.title !== 'string' ||
-        //!(news.date instanceof Date) ||
+        typeof news.date !== 'string' ||
         typeof news.content !== 'string' ||
         typeof news.img_path !== 'string' ||
         typeof news.source_url !== 'string' ||
@@ -64,10 +65,21 @@ exports.isTelescopeCorrect = function (telescope)
     if ( 
         typeof telescope.description !==  'string' ||
         typeof telescope.name !==  'string' ||
-        //!(telescope.launch_date instanceof Date) ||
+        typeof telescope.launch_date !==  'string' ||
         !Array.isArray(telescope.img_path) ||
         typeof telescope.source_url !== 'string' ||
         !Array.isArray(telescope.tags)
+    )
+    { return false; }
+
+    return true;
+}
+
+exports.isUserCorrect = function (user)
+{
+    if ( 
+        typeof user.email !== 'string' ||
+        typeof user.password !== 'string'
     )
     { return false; }
 
