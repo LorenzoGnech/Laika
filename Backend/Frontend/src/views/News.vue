@@ -10,12 +10,6 @@
         </div>
         <div class="blueline"></div>
     </div>
-    <div id="box_cuore">
-      <div class="wrapper">
-        <i id="cuore_cont" v-on:click="ChangeImg"><img id="1" class="cuore" src="@/assets/cuore1.png" style="visibility: visible;"/></i>
-        <i id="cuore_cont" v-on:click="ChangeImg"><img id="2" class="cuore" src="@/assets/cuore2.png" style="visibility: hidden;"/></i>
-      </div>
-    </div>
     <div class="container">
         <pre class="newsContent">{{news.content}}</pre>
         <div class="newsFooter">
@@ -46,25 +40,6 @@ mounted(){
       axios
           .get(url)
           .then(response => (this.news = response.data));
-  },
-  methods:{
-    Save(){
-
-    },
-    Remove(){
-
-    },
-    ChangeImg: function ChangeImg(){
-      if (document.getElementById("1").style.visibility == "hidden"){
-        document.getElementById("1").style.visibility = "visible";
-        document.getElementById("2").style.visibility = "hidden";
-        Remove();
-      } else {
-        document.getElementById("2").style.visibility = "visible";
-        document.getElementById("1").style.visibility = "hidden";
-        Save();
-      }
-    }
   },
   computed:{
     bgImage() {
@@ -112,11 +87,10 @@ mounted(){
 }
 
 .container{
-  padding-top: 3%;
-  margin: 0 auto;
-  width: 80%;
-  text-align: justify;
-  text-justify: inter-word;
+    margin: 0 auto;
+    width: 80%;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .newsContent{
@@ -130,14 +104,6 @@ mounted(){
     float: right;
     color: lightblue;
     font-size: 0.7vw;
-}
-
-.cuore{
-  position: absolute;
-  height: auto;
-  width: 3%;
-  padding-top: 0.5%;
-  cursor: pointer;
 }
 
 </style>
