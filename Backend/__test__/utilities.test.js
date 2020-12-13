@@ -6,7 +6,7 @@ test('Astronaut is correct', () =>
         "birth": "newborn",
         "name": "Mario Rossi",
         "nationality": "Ita",
-        "img_path": "file.jpg",
+        "img_path": ["file.jpg"],
         "agency": "ESA",
         "tags": ["nice", "boy"]
     }
@@ -62,7 +62,7 @@ test('Telescope is correct', () =>
         "launch_date": "newborn",
         "name": "Mario Rossi",
         "description": "Ita",
-        "img_path": "file.jpg",
+        "img_path": ["file.jpg"],
         "source_url": "ESA",
         "tags": ["nice", "boy"]
     }
