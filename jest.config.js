@@ -1,3 +1,5 @@
 module.exports = {
-    testEnvironment: "node"
+    testEnvironment: "node",
+    setupFiles: ["<rootDir>/jestEnvVars.js"],
+    collectCoverage: false
 };

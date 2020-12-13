@@ -86,8 +86,6 @@ router.get('/latest/:size', async (req, res) =>
 // POST a new astronaut. Requires authentication.
 router.post('', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
     let newTempAstronaut = {
         "birth": req.body.birth,
         "name": req.body.name,
