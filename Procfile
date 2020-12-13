@@ -1,1 +1,1 @@
-web: node Backend/app.js
+web: node -r dotenv/config index.js

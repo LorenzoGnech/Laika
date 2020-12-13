@@ -1,4 +1,4 @@
-const util = require('./utilities');
+const {isUserCorrect} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require("./models/user");
@@ -12,7 +12,7 @@ router.post('', async (req, res) =>
         "password": req.body.password,
     };
 
-    if (!util.isUserCorrect(newTempUser))
+    if (!isUserCorrect(newTempUser))
     {
         res.status(400).send({ error: 'Object sent is not a user' });
     }
@@ -28,7 +28,6 @@ router.post('', async (req, res) =>
             else
             {
                 // if user is found and password is right create a token
-                console.log('dioporco')
                 var token = jwt.sign(
                     { email: user.email },
                     process.env.ACCESS_TOKEN_SECRET,

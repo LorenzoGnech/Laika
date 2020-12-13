@@ -8,27 +8,19 @@ const signin = require('./signin.js')
 const search = require('./search.js')
 const jwtVerifier = require('./jwtVerifier.js');
 var express = require('express');
-const mongoose = require('mongoose');
 var path = require('path');
 var serveStatic = require('serve-static');
 var app = express();
 
-var port = process.env.PORT || 3000;
-
 // Try to connect to DB
-try {
-    mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
-    console.log("connected"));    
-}catch (error) { 
-    console.log("could not connect");    
-}
 
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  //res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json,text/plain,*/*');
+  res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   next();
 });
 
@@ -70,9 +62,5 @@ app.use('/api/v1/telescopes', telescopes);
 app.use('/api/v1/search', search);
 app.use('/api/v1/signup', signup);
 app.use('/api/v1/signin', signin);
-
-app.listen(port, function() {
-  console.log('Server running on port ', port);
-});
 
 module.exports = app;

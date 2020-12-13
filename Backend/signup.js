@@ -1,4 +1,4 @@
-const util = require('./utilities');
+const {isUserCorrect, dbErrorHandler} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require("./models/user");
@@ -10,7 +10,7 @@ router.post('', async (req, res) =>
         "email": req.body.email,
         "password": req.body.password,
     };
-    if (!util.isUserCorrect(newTempUser))
+    if (!isUserCorrect(newTempUser))
     {
         res.status(400).send({ error: 'Object sent is not a user' });
     }
@@ -31,9 +31,10 @@ router.post('', async (req, res) =>
                 });
             })
             .catch(err => {
-                console.log(err);
-                res.status(500).json({
-                    error: err
+                let {errorCode, errorMsg} = dbErrorHandler(err);
+            
+                res.status(errorCode).json({
+                    error: errorMsg
                 });
             });
             
