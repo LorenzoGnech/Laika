@@ -1,13 +1,16 @@
 exports.isAstronautCorrect = function (astronaut)
 {
-    if ( 
-        typeof astronaut.birth !== 'string' ||
-        typeof astronaut.name !== 'string' ||
-        typeof astronaut.nationality !== 'string' ||
-        !Array.isArray(astronaut.img_path) ||
-        typeof astronaut.agency !== 'string' ||
-        !Array.isArray(astronaut.tags)
+    const {
+        birth, name, nationality, img_path, agency, tags
+    } = astronaut;
 
+    if ( 
+        typeof birth !== 'string' ||
+        typeof name !== 'string' ||
+        typeof nationality !== 'string' ||
+        (!Array.isArray(img_path) && img_path.some(el => typeof el !== 'string')) ||
+        typeof agency !== 'string' ||
+        (!Array.isArray(tags) && tags.some(el => typeof el !== 'string'))
     )
     { return false; }
 
@@ -16,13 +19,17 @@ exports.isAstronautCorrect = function (astronaut)
 
 exports.isExoplanetCorrect = function (exoplanet)
 {
+    const {
+        discover_date, name, description, img_path, source_url, tags
+    } = exoplanet;
+
     if ( 
-        typeof exoplanet.discover_date !== 'string' ||
-        typeof exoplanet.name !== 'string' ||
-        typeof exoplanet.description !== 'string' ||
-        typeof exoplanet.img_path !== 'string' ||
-        typeof exoplanet.source_url !== 'string' ||
-        !Array.isArray(exoplanet.tags)
+        typeof discover_date !== 'string' ||
+        typeof name !== 'string' ||
+        typeof description !== 'string' ||
+        typeof img_path !== 'string' ||
+        typeof source_url !== 'string' ||
+        (!Array.isArray(tags) && tags.some(el => typeof el !== 'string'))
     )
     { return false; }
 
@@ -31,13 +38,17 @@ exports.isExoplanetCorrect = function (exoplanet)
 
 exports.isMissionCorrect = function (mission)
 {
+    const {
+        date, title, description, img_path, source_url, tags
+    } = mission;
+
     if ( 
-        typeof mission.date !== 'string' ||
-        typeof mission.title !== 'string' ||
-        typeof mission.description !== 'string' ||
-        typeof mission.img_path !== 'string' ||
-        typeof mission.source_url !== 'string' ||
-        !Array.isArray(mission.tags)
+        typeof date !== 'string' ||
+        typeof title !== 'string' ||
+        typeof description !== 'string' ||
+        typeof img_path !== 'string' ||
+        typeof source_url !== 'string' ||
+        (!Array.isArray(tags) && tags.some(el => typeof el !== 'string'))
     )
     { return false; }
 
@@ -47,13 +58,16 @@ exports.isMissionCorrect = function (mission)
 // Non effettua controlli sulla data poiché è decisa dal server e non dal client.
 exports.isNewsCorrect = function (news)
 {
+    const {
+        date, title, content, img_path, source_url, tags
+    } = news;
+
     if ( 
-        typeof news.title !== 'string' ||
-        typeof news.date !== 'string' ||
-        typeof news.content !== 'string' ||
-        typeof news.img_path !== 'string' ||
-        typeof news.source_url !== 'string' ||
-        !Array.isArray(news.tags)
+        typeof title !== 'string' ||
+        typeof content !== 'string' ||
+        typeof img_path !== 'string' ||
+        typeof source_url !== 'string' ||
+        (!Array.isArray(tags) && tags.some(el => typeof el !== 'string'))
     )
     { return false; }
 
@@ -62,13 +76,17 @@ exports.isNewsCorrect = function (news)
 
 exports.isTelescopeCorrect = function (telescope)
 {
+    const {
+        launch_date, name, description, img_path, source_url, tags
+    } = telescope;
+
     if ( 
-        typeof telescope.description !==  'string' ||
-        typeof telescope.name !==  'string' ||
-        typeof telescope.launch_date !==  'string' ||
-        !Array.isArray(telescope.img_path) ||
-        typeof telescope.source_url !== 'string' ||
-        !Array.isArray(telescope.tags)
+        typeof description !==  'string' ||
+        typeof name !==  'string' ||
+        typeof launch_date !==  'string' ||
+        (!Array.isArray(img_path) && img_path.some(el => typeof el !== 'string')) ||
+        typeof source_url !== 'string' ||
+        (!Array.isArray(tags) && tags.some(el => typeof el !== 'string'))
     )
     { return false; }
 
@@ -77,9 +95,13 @@ exports.isTelescopeCorrect = function (telescope)
 
 exports.isUserCorrect = function (user)
 {
+    const {
+        email, password
+    } = user;
+
     if ( 
-        typeof user.email !== 'string' ||
-        typeof user.password !== 'string'
+        typeof email !== 'string' ||
+        typeof password !== 'string'
     )
     { return false; }
 
