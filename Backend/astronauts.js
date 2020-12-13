@@ -2,6 +2,7 @@ const util = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const Astronauts = require("./models/astronauts");
+const AstronautsMissions = require("./models/astronauts_missions");
 const router = express.Router();
 
 // GET METHODS
@@ -140,7 +141,7 @@ router.delete('/:id', async (req, res) =>
 
     .then(result => {
         console.log(result);
-        res.status(200).json(result); // non mi piace...
+        res.status(200).json(result);
     })
 
     .catch(err => {
