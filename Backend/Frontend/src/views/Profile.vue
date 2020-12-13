@@ -10,11 +10,11 @@
         </div>
         <div class="container" id="latestnews" ref="latestnews">
         <h2 class="containertitle">SAVED NEWS</h2>
-        <CardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
+        <CardGrid :cards=coso_bello :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
         </div>
         <div class="container" id="latestnews" ref="latestnews">
         <h2 class="containertitle">FOLLOWED MISSIONS</h2>
-        <CardGrid :cards=computedMissions :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="mission"/>
+        <CardGrid :cards=coso_bellissimo :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="mission"/>
         </div>
         <div class="container">
         <a @click=handleLogout id="api-button">LOGOUT</a>
@@ -47,6 +47,9 @@ export default {
             savedNews: [],
             followedMissions: [],
             cFollowedMissions: [],
+            temp: [],
+            coso_bello: [],
+            coso_bellissimo: []
         }
     },
     props: {
@@ -62,41 +65,11 @@ export default {
         }
         */
         this.getSavedNews();
+        this.computedNews();
         this.getFollowedMissions();
+        this.computedMissions();
     },
     computed: {
-        computedNews(){
-        this.savedNews.forEach( (item, index) => {
-            var t = {
-            id: item._id,
-            header: item.title,
-            date: item.date,
-            content: item.content.slice(0, 100) + "...",
-            fullContent: item.content,
-            img: item.img_path,
-            source: item.source_url,
-            tags: item.tags,
-            };
-        this.cSavedNews.push(t)
-        });
-        return this.cSavedNews;
-        },
-        computedMissions(){
-        this.followedMissions.forEach( (item, index) => {
-            var t = {
-            id: item._id,
-            header: item.title,
-            date: item.date,
-            content: item.description.slice(0, 100) + "...",
-            fullContent: item.description,
-            img: item.img_path,
-            source: item.source_url,
-            tags: item.tags,
-            };
-        this.cFollowedMissions.push(t)
-        });
-        return this.cFollowedMissions;
-        },
         getAvatar(){
             if(this.avatar == ""){
                 return "https://www.teatro.it/old/2016-11/nobody_m.original.jpg"
@@ -112,15 +85,59 @@ export default {
         }
         },
     methods: {
+        computedMissions(){
+            this.followedMissions.forEach( (item, index) => {
+                axios
+                    .get('https://laikapp.herokuapp.com/api/v1/missions/' + item.missionId)
+                    .then(response => {
+                        var t = {
+                            id: response.data._id,
+                            header: response.data.title,
+                            date: response.data.date,
+                            content: response.data.description.slice(0, 100) + "...",
+                            fullContent: response.data.description,
+                            img: response.data.img_path[0],
+                            source: response.data.source_url,
+                            tags: response.data.tags,
+                        };
+                        this.coso_bellissimo.push(t)
+                    });
+            });
+            },
+        computedNews(){
+            this.savedNews.forEach( (item, index) => {
+                axios
+                    .get('https://laikapp.herokuapp.com/api/v1/news/' + item.newsId)
+                    .then(response => {
+                        var t = {
+                            id: response.data._id,
+                            header: response.data.title,
+                            date: response.data.date,
+                            content: response.data.content.slice(0, 100) + "...",
+                            fullContent: response.data.content,
+                            img: response.data.img_path,
+                            source: response.data.source_url,
+                            tags: response.data.tags,
+                            };
+                        this.coso_bello.push(t)
+                    });
+            });
+        },
         async getSavedNews(){
         axios
-            .get('https://laikapp.herokuapp.com/api/v1/news/')
-            .then(response => (this.savedNews = response.data));
+            .get('https://laikapp.herokuapp.com/api/v1/news/favourite/' + this.$store.getters.getId)
+            .then(response => {
+                this.savedNews = response.data;
+                this.computedNews();
+                });
         },
         async getFollowedMissions(){
         axios
-            .get('https://laikapp.herokuapp.com/api/v1/missions/')
-            .then(response => (this.followedMissions = response.data));
+            .get('http://laikapp.herokuapp.com/api/v1/missions/followed/' + this.$store.getters.getId)
+            .then(response => {
+                this.followedMissions = response.data;
+                this.computedMissions();
+                });
         },
         handleLogout(){
             this.$store.commit("_Logout");

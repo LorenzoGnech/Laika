@@ -10,6 +10,12 @@
         </div>
         <div class="blueline"></div>
     </div>
+    <div id="box_cuore">
+      <div class="wrapper" id="cuori">
+        <i id="cuore_cont1" v-on:click="ChangeImg"><img id="1" class="cuore" src="@/assets/cuore1.png" style="visibility: visible;"/></i>
+        <i id="cuore_cont2" v-on:click="ChangeImg"><img id="2" class="cuore" src="@/assets/cuore2.png" style="visibility: hidden;"/></i>
+      </div>
+    </div>
     <div class="container">
         <pre class="newsContent">{{mission.description}}</pre>
         <div class="newsFooter">
@@ -34,13 +40,63 @@ export default {
         mission: {}
     }
   },
-mounted(){
-    var missionNumber = this.$route.params.value;
-    let url = 'https://laikapp.herokuapp.com/api/v1/missions/' + missionNumber;
-    axios
-        .get(url)
-        .then(response => (this.mission = response.data));
+  methods:{
+    isLogged(){
+      if (this.$store.getters.isLoggedIn == false){
+        document.getElementById("cuori").style.visibility = "hidden";
+        document.getElementById("cuore_cont1").style.visibility = "hidden";
+        document.getElementById("1").style.visibility = "hidden";
+        document.getElementById("cuore_cont2").style.visibility = "hidden";
+        document.getElementById("2").style.visibility = "hidden";
+      } else {
+        var already_favourited = false;
+        axios
+        .get('http://laikapp.herokuapp.com/api/v1/missions/followed/' + this.$store.getters.getId)
+        .then(response => {
+            for (var i=0; i<response.data.length; i++){
+              if (response.data[i].missionId == this.$route.params.value){
+                already_favourited = true;
+              }
+            }
+            if (already_favourited){
+              document.getElementById("2").style.visibility = "visible";
+              document.getElementById("1").style.visibility = "hidden";
+            }
+            });
+      }
     },
+    Save(){
+      var params = new URLSearchParams();
+      params.append('missionId', this.$route.params.value);
+      params.append('userId', this.$store.getters.getId);
+      axios.post('https://laikapp.herokuapp.com/api/v1/missions/followed/', params)
+        .catch(err => console.warn(err));;
+    },
+    Remove(){
+      let url = "https://laikapp.herokuapp.com/api/v1/missions/followed/" + this.$store.getters.getId + "/" + this.$route.params.value;
+      axios.delete(url)
+        .catch(err => console.warn(err));;
+    },
+    ChangeImg: function ChangeImg(){
+      if (document.getElementById("1").style.visibility == "hidden"){
+        document.getElementById("1").style.visibility = "visible";
+        document.getElementById("2").style.visibility = "hidden";
+        this.Remove();
+      } else {
+        document.getElementById("2").style.visibility = "visible";
+        document.getElementById("1").style.visibility = "hidden";
+        this.Save();
+      }
+    }
+  },
+  mounted(){
+      var missionNumber = this.$route.params.value;
+      let url = 'https://laikapp.herokuapp.com/api/v1/missions/' + missionNumber;
+      axios
+          .get(url)
+          .then(response => (this.mission = response.data));
+      this.isLogged();
+      },
   computed:{
     bgImage() {
       if(this.mission.img_path == undefined){
