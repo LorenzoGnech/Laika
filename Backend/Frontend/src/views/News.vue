@@ -11,9 +11,9 @@
         <div class="blueline"></div>
     </div>
     <div id="box_cuore">
-      <div class="wrapper">
-        <i id="cuore_cont" v-on:click="ChangeImg"><img id="1" class="cuore" src="@/assets/cuore1.png" style="visibility: visible;"/></i>
-        <i id="cuore_cont" v-on:click="ChangeImg"><img id="2" class="cuore" src="@/assets/cuore2.png" style="visibility: hidden;"/></i>
+      <div class="wrapper" id="cuori">
+        <i id="cuore_cont1" v-on:click="ChangeImg"><img id="1" class="cuore" src="@/assets/cuore1.png" style="visibility: visible;"/></i>
+        <i id="cuore_cont2" v-on:click="ChangeImg"><img id="2" class="cuore" src="@/assets/cuore2.png" style="visibility: hidden;"/></i>
       </div>
     </div>
     <div class="container">
@@ -46,10 +46,19 @@ mounted(){
       axios
           .get(url)
           .then(response => (this.news = response.data));
+    this.isLogged();
   },
   methods:{
+    isLogged(){
+      if (this.$store.getters.isLoggedIn == false){
+        document.getElementById("cuori").style.visibility = "hidden";
+        document.getElementById("cuore_cont1").style.visibility = "hidden";
+        document.getElementById("1").style.visibility = "hidden";
+        document.getElementById("cuore_cont2").style.visibility = "hidden";
+        document.getElementById("2").style.visibility = "hidden";
+      }
+    },
     Save(){
-
     },
     Remove(){
 
@@ -58,11 +67,11 @@ mounted(){
       if (document.getElementById("1").style.visibility == "hidden"){
         document.getElementById("1").style.visibility = "visible";
         document.getElementById("2").style.visibility = "hidden";
-        Remove();
+        this.Remove();
       } else {
         document.getElementById("2").style.visibility = "visible";
         document.getElementById("1").style.visibility = "hidden";
-        Save();
+        this.Save();
       }
     }
   },

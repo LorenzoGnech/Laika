@@ -79,7 +79,7 @@ export default {
         var info_login = {
           email: data.email,
           token: data.token,
-          id: "id_bello_bello"
+          id: data.userId
         };
         this.$store.commit("_Login", info_login);
         this.$router.push("/");
