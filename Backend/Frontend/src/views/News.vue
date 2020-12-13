@@ -56,12 +56,34 @@ mounted(){
         document.getElementById("1").style.visibility = "hidden";
         document.getElementById("cuore_cont2").style.visibility = "hidden";
         document.getElementById("2").style.visibility = "hidden";
+      } else {
+        var already_favourited = false;
+        axios
+        .get('https://laikapp.herokuapp.com/api/v1/news/favourite/' + this.$store.getters.getId)
+        .then(response => {
+            for (var i=0; i<response.data.length; i++){
+              if (response.data[i].newsId == this.$route.params.value){
+                already_favourited = true;
+              }
+            }
+            if (already_favourited){
+              document.getElementById("2").style.visibility = "visible";
+              document.getElementById("1").style.visibility = "hidden";
+            }
+            });
       }
     },
     Save(){
+      var params = new URLSearchParams();
+      params.append('newsId', this.$route.params.value);
+      params.append('userId', this.$store.getters.getId);
+      axios.post('https://laikapp.herokuapp.com/api/v1/news/favourite/', params)
+        .catch(err => console.warn(err));;
     },
     Remove(){
-
+      let url = "https://laikapp.herokuapp.com/api/v1/news/favourite/" + this.$store.getters.getId + "/" + this.$route.params.value;
+      axios.delete(url)
+        .catch(err => console.warn(err));;
     },
     ChangeImg: function ChangeImg(){
       if (document.getElementById("1").style.visibility == "hidden"){

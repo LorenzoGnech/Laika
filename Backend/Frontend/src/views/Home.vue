@@ -118,7 +118,7 @@ export default {
           date: item.date,
           content: item.description.slice(0, 100) + "...",
           fullContent: item.description,
-          img: item.img_path,
+          img: item.img_path[0],
           source: item.source_url,
           tags: item.tags,
         };
@@ -137,7 +137,7 @@ export default {
           date: item.launch_date,
           content: item.description.slice(0, 100) + "...",
           fullContent: item.description,
-          img: item.img_path,
+          img: item.img_path[0],
           source: item.source_url,
           tags: item.tags,
         };
