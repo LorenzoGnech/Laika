@@ -43,7 +43,7 @@ export default {
           date: item.birth,
           content: item.nationality,
           fullContent: item.name,
-          img: item.img_path[0],
+          img: item.img_path,
           source: item.agency,
           tags: [],
         };

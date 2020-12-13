@@ -76,12 +76,7 @@ export default {
     },
     redirect(data){
       if (data.success == true){
-        var info_login = {
-          email: data.email,
-          token: data.token,
-          id: data.userId
-        };
-        this.$store.commit("_Login", info_login);
+        this.$store.commit("_Login",data.email, data.token);
         this.$router.push("/");
       }
     }

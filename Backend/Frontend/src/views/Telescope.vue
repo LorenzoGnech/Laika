@@ -45,7 +45,7 @@ mounted(){
     bgImage() {
       if(this.telescope.img_path != undefined){
         return {
-            backgroundImage: `url(${this.telescope.img_path[0]})`
+            backgroundImage: `url(${this.telescope.img_path})`
         }
       }
       return {
