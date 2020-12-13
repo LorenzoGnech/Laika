@@ -143,10 +143,11 @@ mounted(){
 }
 
 .container{
-    margin: 0 auto;
-    width: 80%;
-    text-align: justify;
-    text-justify: inter-word;
+  padding-top: 3%;
+  margin: 0 auto;
+  width: 80%;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .newsContent{
@@ -160,6 +161,14 @@ mounted(){
     float: right;
     color: lightblue;
     font-size: 0.7vw;
+}
+
+.cuore{
+  position: absolute;
+  height: auto;
+  width: 3%;
+  padding-top: 0.5%;
+  cursor: pointer;
 }
 
 </style>

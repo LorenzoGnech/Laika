@@ -5,7 +5,7 @@ const telescopesSchema = new mongoose.Schema({
     name: String,
     description: String,
     launch_date: Date,
-    img_path: [String],
+    img_path: String,
     source_url: String,
     tags: [String]   
 });

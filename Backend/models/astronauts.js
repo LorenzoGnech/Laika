@@ -5,7 +5,7 @@ const astronautsSchema = new mongoose.Schema({
     birth: Date,
     name: String,
     nationality: String,
-    img_path: [String],
+    img_path: String,
     agency: String,
     tags: [String]   
 });

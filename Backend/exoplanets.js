@@ -140,7 +140,7 @@ router.delete('/:id', async (req, res) =>
 
     .then(result => {
         console.log(result);
-        res.status(200).json(result);
+        res.status(200).json(result); // non mi piace...
     })
 
     .catch(err => {

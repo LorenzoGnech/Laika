@@ -2,7 +2,6 @@ const util = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const News = require("./models/news");
-const FavouriteNews = require("./models/favourite_news");
 const router = express.Router();
 
 // GET METHODS
@@ -141,7 +140,7 @@ router.delete('/:id', async (req, res) =>
 
     .then(result => {
         console.log(result);
-        res.status(200).json(result);
+        res.status(200).json(result); // non mi piace...
     })
 
     .catch(err => {
@@ -189,76 +188,6 @@ router.put('/:id', async (req, res) =>
             });
         });
     }
-});
-
-// GET the favourite news of a user.
-
-router.get('/favourite/:idUtente', async (req, res) =>
-{
-    let idUtente = req.params.idUtente;
-
-    FavouriteNews.find({userId: idUtente})
-    .exec()
-    .then(docs => {
-        console.log(docs);
-        res.status(200).json(docs);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
-        });
-    });
-});
-
-
-// POST a new favourite news of a user
-
-router.post('/favourite', async (req, res) =>
-{
-    let newTempFavouriteNews = {
-        "newsId": req.body.newsId,
-        "userId": req.body.userId
-    };
-
-    let newFavouriteNews = new FavouriteNews({
-        _id: mongoose.Types.ObjectId(),
-        newsId: newTempFavouriteNews.newsId,
-        userId: newTempFavouriteNews.userId
-    });
-    newFavouriteNews.save()    
-    .then(result => {
-        console.log(result);
-        // modificare location?
-        res.location("/api/v1/missions").status(201).send({
-            insertedFavouriteNews: newFavouriteNews
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
-        });
-    });
-});
-
-router.delete('/favourite/:userId/:newsId', async (req, res) =>
-{
-    let idUtente = req.params.userId;
-    let idNews = req.params.newsId;
-
-    FavouriteNews.deleteOne({$and: [{userId: idUtente}, {newsId: idNews}] })
-    .exec()
-    .then(result => {
-        console.log(result);
-        res.status(200).json(result);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
-        });
-    });
 });
 
 module.exports = router;

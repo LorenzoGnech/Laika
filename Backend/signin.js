@@ -44,8 +44,7 @@ router.post('', async (req, res) =>
                 success: true,
                 email: user.email,
                 message: 'Enjoy your token!',
-                token: token,
-                userId: user._id
+                token: token
             });
         }
         } else{

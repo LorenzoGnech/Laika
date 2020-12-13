@@ -162,4 +162,12 @@ export default {
     font-size: 0.7vw;
 }
 
+.cuore{
+  position: absolute;
+  height: auto;
+  width: 3%;
+  padding-top: 0.5%;
+  cursor: pointer;
+}
+
 </style>

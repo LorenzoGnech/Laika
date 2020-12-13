@@ -102,7 +102,7 @@ router.post('', async (req, res) =>
     }
     else
     {
-        let newTelescope = new Telescopes({
+        let newTelescope = new telescopes({
             _id: mongoose.Types.ObjectId(),
             name: newTempTelescope.name,
             description: newTempTelescope.description,
@@ -140,7 +140,7 @@ router.delete('/:id', async (req, res) =>
 
     .then(result => {
         console.log(result);
-        res.status(200).json(result);
+        res.status(200).json(result); // non mi piace...
     })
 
     .catch(err => {

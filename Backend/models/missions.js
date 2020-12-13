@@ -6,9 +6,9 @@ const missionsSchema = new mongoose.Schema({
     date: Date,
     title: String,
     description: String,
-    img_path: [String],
+    img_path: String,
     source_url: String,
-    tags: [String]
+    tags: [Array]
 });
 
 module.exports = mongoose.model('missions', missionsSchema, 'missions');
