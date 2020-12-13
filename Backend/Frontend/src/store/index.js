@@ -11,18 +11,21 @@ export default new Vuex.Store({
   state: {
     loggedIn: false,
     username: "",
-    token: ""
+    token: "",
+    _id: ""
   },
   mutations: { 
-    _Login (state, username, token) { // this.$store.commit("_Login","Pietro Smusi", "a");
+    _Login (state, info_login) { // this.$store.commit("_Login","Pietro Smusi", "a");
       state.loggedIn = true;
-      state.username = username;
-      state.token = token;
+      state.username = info_login.email;
+      state.token = info_login.token;
+      state._id = info_login.id;
     },
     _Logout (state) {
       state.loggedIn = false;
       state.username = "";
       state.token = "";
+      state._id = "";
     }
   },
   actions: {

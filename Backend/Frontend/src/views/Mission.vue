@@ -10,6 +10,12 @@
         </div>
         <div class="blueline"></div>
     </div>
+    <div id="box_cuore">
+      <div class="wrapper">
+        <i id="cuore_cont" v-on:click="ChangeImg"><img id="1" class="cuore" src="@/assets/cuore1.png" style="visibility: visible;"/></i>
+        <i id="cuore_cont" v-on:click="ChangeImg"><img id="2" class="cuore" src="@/assets/cuore2.png" style="visibility: hidden;"/></i>
+      </div>
+    </div>
     <div class="container">
         <pre class="newsContent">{{mission.description}}</pre>
         <div class="newsFooter">
@@ -34,13 +40,32 @@ export default {
         mission: {}
     }
   },
-mounted(){
-    var missionNumber = this.$route.params.value;
-    let url = 'https://laikapp.herokuapp.com/api/v1/missions/' + missionNumber;
-    axios
-        .get(url)
-        .then(response => (this.mission = response.data));
+  methods:{
+    Save(){
+
     },
+    Remove(){
+
+    },
+    ChangeImg: function ChangeImg(){
+      if (document.getElementById("1").style.visibility == "hidden"){
+        document.getElementById("1").style.visibility = "visible";
+        document.getElementById("2").style.visibility = "hidden";
+        Remove();
+      } else {
+        document.getElementById("2").style.visibility = "visible";
+        document.getElementById("1").style.visibility = "hidden";
+        Save();
+      }
+    }
+  },
+  mounted(){
+      var missionNumber = this.$route.params.value;
+      let url = 'https://laikapp.herokuapp.com/api/v1/missions/' + missionNumber;
+      axios
+          .get(url)
+          .then(response => (this.mission = response.data));
+      },
   computed:{
     bgImage() {
       if(this.mission.img_path == undefined){
@@ -104,6 +129,14 @@ mounted(){
     float: right;
     color: lightblue;
     font-size: 0.7vw;
+}
+
+.cuore{
+  position: absolute;
+  height: auto;
+  width: 3%;
+  padding-top: 0.5%;
+  cursor: pointer;
 }
 
 </style>
