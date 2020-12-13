@@ -1,4 +1,4 @@
-const util = require('./utilities');
+const {isExoplanetCorrect, dbErrorHandler} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const Exoplanets = require("./models/exoplanets");
@@ -18,9 +18,10 @@ router.get('', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -38,9 +39,10 @@ router.get('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -62,9 +64,10 @@ router.get('/latest/:size', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -96,7 +99,7 @@ router.post('', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isExoplanetCorrect(newTempExoplanet))
+    if (!isExoplanetCorrect(newTempExoplanet))
     {
         res.status(400).send({ error: 'Object sent is not an exoplanet.' });
     }
@@ -121,9 +124,10 @@ router.post('', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -144,9 +148,10 @@ router.delete('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -166,7 +171,7 @@ router.put('/:id', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isExoplanetCorrect(valuesToUpdate))
+    if (!isExoplanetCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not an exoplanet.' });
     }
@@ -183,10 +188,11 @@ router.put('/:id', async (req, res) =>
             });
         })
 
-        .catch(err =>{
-            console.log(err);
-            res.status(500).json({
-                error: err
+        .catch(err => {
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }

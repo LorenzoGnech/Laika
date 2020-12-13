@@ -1,4 +1,4 @@
-const util = require('./utilities');
+const {isNewsCorrect, dbErrorHandler} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const News = require("./models/news");
@@ -19,9 +19,10 @@ router.get('', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -39,9 +40,10 @@ router.get('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -63,9 +65,10 @@ router.get('/latest/:size', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -97,7 +100,7 @@ router.post('', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isNewsCorrect(newTempNews))
+    if (!isNewsCorrect(newTempNews))
     {
         res.status(400).send({ error: 'Object sent is not a news.' });
     }
@@ -122,9 +125,10 @@ router.post('', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -145,11 +149,12 @@ router.delete('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
-    })
+    });
 });
 
 // PUT an updated version of an already present news. Requires authentication.
@@ -167,7 +172,7 @@ router.put('/:id', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isNewsCorrect(valuesToUpdate))
+    if (!isNewsCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not a news.' });
     }
@@ -182,10 +187,11 @@ router.put('/:id', async (req, res) =>
             });
         })
 
-        .catch(err =>{
-            console.log(err);
-            res.status(500).json({
-                error: err
+        .catch(err => {
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -204,9 +210,10 @@ router.get('/favourite/:idUtente', async (req, res) =>
         res.status(200).json(docs);
     })
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -235,9 +242,10 @@ router.post('/favourite', async (req, res) =>
         });
     })
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -254,9 +262,10 @@ router.delete('/favourite/:userId/:newsId', async (req, res) =>
         res.status(200).json(result);
     })
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });

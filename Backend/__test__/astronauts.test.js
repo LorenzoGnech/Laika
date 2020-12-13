@@ -83,7 +83,7 @@ describe('Unsafe methods for astronauts', () =>
         });
     });
 
-    // TESTS: if user is logged in, if request has correct form
+    // TESTS: if user is logged in, if request has correct form, if request denied because file does not exist
     describe('PUT method for astronauts', () =>
     {
         test('PUT /api/v1/astronauts without a logged user', async () =>
@@ -108,9 +108,30 @@ describe('Unsafe methods for astronauts', () =>
             expect(response.status).toBe(400);
             expect(response.body).toStrictEqual({ error: 'Object sent is not an astronaut.' });
         });
+
+        let astronaut = {
+            "birth": "1967-03-12T00:00:00.000Z",
+            "name": "Mario Rossi",
+            "nationality": "Ita",
+            "img_path": ["file.jpg"],
+            "agency": "ESA",
+            "tags": ["nice", "boy"]
+        }
+
+        test('PUT /api/v1/astronauts but the astronaut does not exists', async () =>
+        {
+            const response = await agent
+                .put('/api/v1/astronauts/0')
+                .set('Accept', 'application/json')
+                .set('x-access-token', token)
+                .send(astronaut);
+
+            expect(response.status).toBe(400);
+            expect(response.body).toStrictEqual({ error: 'Object passed has incorrect values.' });
+        });
     });
 
-    // TESTS: if user is logged in, if request has correct form
+    // TESTS: if user is logged in, if request denied because file does not exist
     describe('DELETE method for astronauts', () =>
     {
         test('DELETE /api/v1/astronauts without a logged user', async () =>
@@ -124,16 +145,14 @@ describe('Unsafe methods for astronauts', () =>
             expect(response.body).toStrictEqual({ error: 'No token provided.' });
         });
 
-        /*test('DELETE /api/v1/astronauts with incorrect astronaut', async () =>
+        test('DELETE /api/v1/astronauts but the astronaut does not exists', async () =>
         {
             const response = await agent
-                .delete('/api/v1/astronauts')
-                .set('Accept', 'application/json')
-                .set('x-access-token', token)
-                .send({ name: "gianni", errori: "di scrittura" });
+                .delete('/api/v1/astronauts/0')
+                .set('x-access-token', token);
 
             expect(response.status).toBe(400);
-            expect(response.body).toStrictEqual({ error: 'Object sent is not an astronaut.' });
-        }); */
+            expect(response.body).toStrictEqual({ error: 'Object passed has incorrect values.' });
+        });
     });
 });

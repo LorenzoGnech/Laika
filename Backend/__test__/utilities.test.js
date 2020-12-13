@@ -3,7 +3,7 @@ const util = require('../utilities');
 test('Astronaut is correct', () =>
 {
     let astronaut = {
-        "birth": "newborn",
+        "birth": "1967-03-12T00:00:00.000Z",
         "name": "Mario Rossi",
         "nationality": "Ita",
         "img_path": ["file.jpg"],
@@ -17,7 +17,7 @@ test('Astronaut is correct', () =>
 test('Mission is correct', () =>
 {
     let mission = {
-        "date": "newborn",
+        "date": "1967-03-12T00:00:00.000Z",
         "title": "Mario Rossi",
         "description": "Ita",
         "img_path": "file.jpg",
@@ -31,7 +31,7 @@ test('Mission is correct', () =>
 test('Exoplanet is correct', () =>
 {
     let exoplanet = {
-        "discover_date": "newborn",
+        "discover_date": "1967-03-12T00:00:00.000Z",
         "name": "Mario Rossi",
         "description": "Ita",
         "img_path": "file.jpg",
@@ -45,7 +45,7 @@ test('Exoplanet is correct', () =>
 test('News is correct', () =>
 {
     let news = {
-        "date": "newborn",
+        "date": "1967-03-12T00:00:00.000Z",
         "title": "Mario Rossi",
         "content": "Ita",
         "img_path": "file.jpg",
@@ -59,7 +59,7 @@ test('News is correct', () =>
 test('Telescope is correct', () =>
 {
     let telescope = {
-        "launch_date": "newborn",
+        "launch_date": "1967-03-12T00:00:00.000Z",
         "name": "Mario Rossi",
         "description": "Ita",
         "img_path": ["file.jpg"],
