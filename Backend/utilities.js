@@ -1,12 +1,13 @@
 exports.isAstronautCorrect = function (astronaut)
 {
     if ( 
-        (typeof astronaut.birth !== 'string' && typeof astronaut.birth === 'undefined') ||
-        (typeof astronaut.name !== 'string' && typeof astronaut.name === 'undefined') ||
-        (typeof astronaut.nationality !== 'string'  && typeof astronaut.nationality === 'undefined') ||
-        (typeof astronaut.img_path !== 'string'  && typeof astronaut.img_path === 'undefined') ||
-        (typeof astronaut.agency !== 'string'  && typeof astronaut.agency === 'undefined') ||
+        typeof astronaut.birth !== 'string' ||
+        typeof astronaut.name !== 'string' ||
+        typeof astronaut.nationality !== 'string' ||
+        !Array.isArray(astronaut.img_path) ||
+        typeof astronaut.agency !== 'string' ||
         !Array.isArray(astronaut.tags)
+
     )
     { return false; }
 
@@ -48,6 +49,7 @@ exports.isNewsCorrect = function (news)
 {
     if ( 
         typeof news.title !== 'string' ||
+        typeof news.date !== 'string' ||
         typeof news.content !== 'string' ||
         typeof news.img_path !== 'string' ||
         typeof news.source_url !== 'string' ||
@@ -61,10 +63,10 @@ exports.isNewsCorrect = function (news)
 exports.isTelescopeCorrect = function (telescope)
 {
     if ( 
-        typeof telescope.description !== 'string' ||
-        typeof telescope.name !== 'string' ||
-        typeof telescope.launch_date !== 'string' ||
-        typeof telescope.img_path !== 'string' ||
+        typeof telescope.description !==  'string' ||
+        typeof telescope.name !==  'string' ||
+        typeof telescope.launch_date !==  'string' ||
+        !Array.isArray(telescope.img_path) ||
         typeof telescope.source_url !== 'string' ||
         !Array.isArray(telescope.tags)
     )
