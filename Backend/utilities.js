@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 exports.isAstronautCorrect = function (astronaut)
 {
     const {
@@ -106,4 +108,31 @@ exports.isUserCorrect = function (user)
     { return false; }
 
     return true;
+}
+
+// Riceve l'oggetto di errore di MongoDB.
+exports.dbErrorHandler = function (error)
+{
+    let errorMsg, errorCode;
+    console.log(error);
+
+    if (error.name === 'CastError')
+    {
+        errorCode = 400;
+        errorMsg = 'Object passed has incorrect values.';
+    }
+
+    if (error.name === 'DocumentNotFoundError')
+    {
+        errorCode = 500;
+        errorMsg = 'Tried deleting or updating an object that does not exist.';
+    }
+
+    if (typeof errorCode === 'undefined' || typeof errorMsg === 'undefined')
+    {
+        errorCode = 500;
+        errorMsg = error.message;
+    }
+
+    return {errorCode, errorMsg};
 }

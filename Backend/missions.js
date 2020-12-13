@@ -1,4 +1,4 @@
-const util = require('./utilities');
+const {isMissionCorrect, dbErrorHandler} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const Missions = require("./models/missions");
@@ -21,9 +21,10 @@ router.get('', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -41,9 +42,10 @@ router.get('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -65,9 +67,10 @@ router.get('/latest/:size', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -99,7 +102,7 @@ router.post('', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isMissionCorrect(newTempMission))
+    if (!isMissionCorrect(newTempMission))
     {
         res.status(400).send({ error: 'Object sent is not a mission.' });
     }
@@ -124,9 +127,10 @@ router.post('', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -154,19 +158,21 @@ router.delete('/:id', async (req, res) =>
             res.status(200).json(result);
         })
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });        
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
-    })
+    });
 });
 
 // PUT an updated version of an already present mission. Requires authentication.
@@ -184,7 +190,7 @@ router.put('/:id', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isMissionCorrect(valuesToUpdate))
+    if (!isMissionCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not a mission.' });
     }
@@ -201,10 +207,11 @@ router.put('/:id', async (req, res) =>
             });
         })
 
-        .catch(err =>{
-            console.log(err);
-            res.status(500).json({
-                error: err
+        .catch(err => {
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -222,9 +229,10 @@ router.get('/update/:id', async (req, res) =>
         res.status(200).json(docs);
     })
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -257,13 +265,12 @@ router.post('/update', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
-
-    
 });
 
 

@@ -1,4 +1,4 @@
-const util = require('./utilities');
+const {isAstronautCorrect, dbErrorHandler} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const Astronauts = require("./models/astronauts");
@@ -19,9 +19,10 @@ router.get('', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -39,9 +40,10 @@ router.get('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -63,9 +65,10 @@ router.get('/latest/:size', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).status.json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -95,7 +98,7 @@ router.post('', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isAstronautCorrect(newTempAstronaut))
+    if (!isAstronautCorrect(newTempAstronaut))
     {
         res.status(400).send({ error: 'Object sent is not an astronaut.' });
     }
@@ -120,9 +123,10 @@ router.post('', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -143,11 +147,12 @@ router.delete('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
-    })
+    });
 });
 
 // PUT an updated version of an already present astronaut. Requires authentication.
@@ -165,7 +170,7 @@ router.put('/:id', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isAstronautCorrect(valuesToUpdate))
+    if (!isAstronautCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not an astronaut.' });
     }
@@ -182,10 +187,11 @@ router.put('/:id', async (req, res) =>
             });
         })
     
-        .catch(err =>{
-            console.log(err);
-            res.status(500).json({
-                error: err
+        .catch(err => {
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }

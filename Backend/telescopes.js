@@ -1,4 +1,4 @@
-const util = require('./utilities');
+const {isTelescopeCorrect, dbErrorHandler} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const Telescopes = require("./models/telescopes");
@@ -18,9 +18,10 @@ router.get('', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -38,9 +39,10 @@ router.get('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
     });
 });
@@ -62,9 +64,10 @@ router.get('/latest/:size', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -96,7 +99,7 @@ router.post('', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isTelescopeCorrect(newTempTelescope))
+    if (!isTelescopeCorrect(newTempTelescope))
     {
         res.status(400).send({ error: 'Object sent is not a telescope.' });
     }
@@ -121,9 +124,10 @@ router.post('', async (req, res) =>
         })
 
         .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
@@ -144,11 +148,12 @@ router.delete('/:id', async (req, res) =>
     })
 
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        let {errorCode, errorMsg} = dbErrorHandler(err);
+    
+        res.status(errorCode).json({
+            error: errorMsg
         });
-    })
+    });
 });
 
 // PUT an updated version of an already present telescope. Requires authentication.
@@ -166,7 +171,7 @@ router.put('/:id', async (req, res) =>
         "tags": req.body.tags
     };
 
-    if (!util.isTelescopeCorrect(valuesToUpdate))
+    if (!isTelescopeCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not a telescope.' });
     }
@@ -183,10 +188,11 @@ router.put('/:id', async (req, res) =>
             });
         })
 
-        .catch(err =>{
-            console.log(err);
-            res.status(500).json({
-                error: err
+        .catch(err => {
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
             });
         });
     }
