@@ -76,7 +76,12 @@ export default {
     },
     redirect(data){
       if (data.success == true){
-        this.$store.commit("_Login",data.email, data.token);
+        var info_login = {
+          email: data.email,
+          token: data.token,
+          id: "id_bello_bello"
+        };
+        this.$store.commit("_Login", info_login);
         this.$router.push("/");
       }
     }

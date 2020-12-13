@@ -4,9 +4,9 @@
               <NavMenu/>
           </div>
     <div class="sectiontitle">
-       <h1 id="maintitle">Latest News</h1>
-       <div class="blueline"></div>
-       <img src="@/assets/filter.png" class="filter">
+        <h1 id="maintitle">Latest News</h1>
+        <div class="blueline"></div>
+        <img src="@/assets/filter.png" class="filter">
     </div>
     <div class="container" ref="gridcontainer">
        <HCardGrid :cards=computedNews :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="news"/>
