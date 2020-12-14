@@ -143,6 +143,7 @@ export default {
 }
 
 .container{
+    padding-top: 3%;
     margin: 0 auto;
     width: 80%;
     text-align: justify;
