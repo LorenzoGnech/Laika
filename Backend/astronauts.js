@@ -105,7 +105,7 @@ router.post('', async (req, res) =>
         "nationality": req.body.nationality,
         "img_path": req.body.img_path,
         "agency": req.body.agency,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isAstronautCorrect(newTempAstronaut))
