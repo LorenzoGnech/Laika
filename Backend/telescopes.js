@@ -172,12 +172,14 @@ router.put('/:id', async (req, res) =>
         tags_lower.push(tags_original[i].toLowerCase());
     }
 
+    name_lowcase = req.body.name.toLowerCase();
 
     let id = req.params.id;
     let valuesToUpdate = {
         "name": req.body.name,
+        "name_lowcase": name_lowcase,
         "description": req.body.description,
-        "launch_date": req.body.launch_date,
+        "launch_date": new Date(Date.parse(req.body.launch_date)).toISOString(),
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
         "tags": tags_lower
