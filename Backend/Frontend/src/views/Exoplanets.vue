@@ -6,10 +6,37 @@
     <div class="sectiontitle">
        <h1 id="maintitle">Exoplanets</h1>
        <div class="blueline"></div>
-       <img src="@/assets/filter.png" class="filter">
+        <img @click="handleFilter" src="@/assets/filter.png" class="filter">
+    </div>
+    <div v-if="filterActive" class="filters"> 
+      <div style="flex:2 1 auto;">  
+        <p class="ordertext">Filter by common tags:</p>
+        <input type="checkbox" name="tag1" value="NASA" v-model="check1">
+        <label for="tag1" class="tag">NASA</label>
+        <input type="checkbox" name="tag2" value="SpaceX" v-model="check2">
+        <label for="tag2" class="tag">SpaceX</label>
+        <input type="checkbox"  name="tag3" value="ESA" v-model="check3">
+        <label for="tag3" class="tag">ESA</label>
+      </div>
+      <div style="flex:1 1 auto; padding-top:2vh;">
+      <input class="filtertags" style="text-align:center;" placeholder="What are you looking for?" name="filtertext" v-model="query">
+      </div>
+      <div style="flex:4 1 auto;">
+        <div style="float:left; display:inline-block; width: 100%;">
+          <p class="ordertext">Order by date:</p>
+          <div class="fbutton r" id="fbutton">
+            <input @click="invertOrder" type="checkbox" class="checkbox">
+            <div class="knobs"></div>
+            <div class="layer"></div>
+          </div>
+        </div>
+      </div>
+      <div style="flex: 1 1 auto;">
+        <a @click=removeFilters id="removefilters">Remove filters</a>
+      </div>
     </div>
     <div class="container" ref="gridcontainer">
-       <HCardGrid :cards=computedExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="exoplanet"/>
+       <HCardGrid :cards=cExoplanets :cardsHeight="getCardsHeight" :cardsWidth="getCardsWidth" type="exoplanet"/>
     </div>
   </div>
 </template>
@@ -29,13 +56,57 @@ export default {
     return {
       cExoplanets: [],
       exoplanets: [],
+      filterActive: false,
+      invert: false,
+      check1: false,
+      check2: false,
+      check3: false,
+      query: "",
     }
+  },
+  watch: {
+    check1: function(){
+      if(this.check1){
+        this.keepElementWithTag("nasa");
+      }
+    },
+    check2: function(){
+      if(this.check2){
+        this.keepElementWithTag("spacex");
+      }
+    },
+    check3: function(){
+      if(this.check3){
+        this.keepElementWithTag("esa");
+      }
+    },
+    query: function(){
+      if(this.query != ""){
+        this.searchQuery(this.query);
+      }
+    },
   },
   mounted(){
     this.getExoplanets();
   },
   computed: {
-    computedExoplanets(){
+    getCardsHeight(){
+      return window.innerHeight/3.5;
+    },
+    getCardsWidth(){
+      return window.innerWidth/1.3;
+    }
+  },
+  methods: {
+    async getExoplanets(){
+      axios
+        .get('https://laikapp.herokuapp.com/api/v1/exoplanets/')
+        .then(response => {
+          this.exoplanets = response.data;
+          this.computeExoplanets();
+          });
+    },
+    computeExoplanets(){
       this.exoplanets.forEach( (item, index) => {
         var t = {
           id: item._id,
@@ -49,20 +120,40 @@ export default {
         };
        this.cExoplanets.push(t)
       });
-      return this.cExoplanets;
     },
-    getCardsHeight(){
-      return window.innerHeight/3.5;
+    handleFilter(){
+      this.filterActive = !this.filterActive;
     },
-    getCardsWidth(){
-      return window.innerWidth/1.3;
-    }
-  },
-  methods: {
-    async getExoplanets(){
-      axios
-        .get('https://laikapp.herokuapp.com/api/v1/exoplanets/')
-        .then(response => (this.exoplanets = response.data));
+    invertOrder(){
+      this.cExoplanets.reverse();
+    },
+    keepElementWithTag(t){
+      let helper = this.cExoplanets;
+      this.cExoplanets = [];
+      for(let i = 0; i<helper.length; i++){
+        if(helper[i].tags.includes(t)){
+          this.cExoplanets.push(helper[i]);
+        }
+      }
+    },
+    searchQuery(q){
+      let helper = this.cExoplanets;
+      this.cExoplanets = [];
+      for(let i = 0; i<helper.length; i++){
+        if(helper[i].header.includes(q)){
+          this.cExoplanets.push(helper[i]);
+        } else if(helper[i].fullContent.includes(q)){
+          this.cExoplanets.push(helper[i]);
+        }
+      }
+    },
+    removeFilters(){
+      this.check1 = false;
+      this.check2 = false;
+      this.check3 = false;
+      this.query = "";
+      this.cExoplanets = [];
+      this.computeExoplanets();
     }
   }
 }
