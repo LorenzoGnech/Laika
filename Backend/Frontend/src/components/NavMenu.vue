@@ -60,12 +60,9 @@ export default {
           var url = this.query.split(" ");
           url = "search/" + url.join("+");
           this.query = "";
-          if (this.$route.name == "Search" || this.$route.name == "News" || this.$route.name == "Mission" || this.$route.name == "Telescope" || this.$route.name == "Exoplanet"){
-            url = url.substring(7);
-            this.$router.push(url);
-            location.reload()
-          }else{
-            this.$router.push(url);
+          this.$router.push("/" + url);
+          if (this.$route.name == "Search"){
+            location.reload();
           }
         }
       }else{

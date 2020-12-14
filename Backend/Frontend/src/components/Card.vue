@@ -74,7 +74,7 @@ export default {
     handleClick(e){
       let host = document.location.origin;
       let url =  this.type + '/' + this.id;
-      this.$router.push(url);
+      this.$router.push("/" + url);
     },
     handleMouseMove(e) {
       this.mouseX = e.pageX - this.$refs.card.offsetLeft - this.width/2;

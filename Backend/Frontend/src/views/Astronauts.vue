@@ -45,7 +45,7 @@ export default {
           fullContent: item.name,
           img: item.img_path[0],
           source: item.agency,
-          tags: [],
+          tags: item.tags,
         };
        this.cAstronauts.push(t)
       });
