@@ -9,7 +9,7 @@ router.get('/:query', async (req, res) => {
     var query = req.params.query
     query = query.split("+")
 
-    Missions.find({tags:{$in: query}})   
+    Missions.find({$or:[{tags:{$in:query}},{title:{$in:query}}]})   
     .exec()
 
     .then(doc => {
@@ -24,8 +24,6 @@ router.get('/:query', async (req, res) => {
             error: errorMsg
         });
     });
-    
-    res.status(200).send(query);
 });
 
 module.exports = router;
