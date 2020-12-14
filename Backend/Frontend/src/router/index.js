@@ -62,6 +62,11 @@ const routes = [
     component: () => import('../views/Mission.vue')
   },
   {
+    path: '/Missions/:value(.*)',
+    name: 'Missionsvalue',
+    component: () => import('../views/Missions.vue')
+  },
+  {
     path: '/Astronaut/:value(.*)',
     name: 'Astronaut',
     component: () => import('../views/Astronaut.vue')

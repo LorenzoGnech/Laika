@@ -7,19 +7,19 @@
             <div class="system_div">
               <ul id="pianeti">
                 <li id="mercury_li" class="new_li">
-                  <router-link to="/missions">
+                  <router-link to="/missions/mercury">
                   <img class="image" src="@/assets/solarsystem/1.jpg"/>
                   <p id="mercury" class="planets">MERCURY</p>
                   </router-link>
                 </li> 
-                <li id="venus_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/2.jpg"/><p id="venus" class="planets">VENUS</p></router-link></li>
-                <li id="earth_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/3.jpg"/><p id="earth" class="planets">EARTH</p></router-link></li>
-                <li id="mars_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/4.jpg"/><p id="mars" class="planets">MARS</p></router-link></li>
-                <li id="jupyter_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/5.jpg"/><p id="jupyter" class="planets">JUPYTER</p></router-link></li>
-                <li id="saturn_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/6.jpg"/><p id="saturn" class="planets">SATURN</p></router-link></li>
-                <li id="uranus_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/7.jpg"/><p id="uranus" class="planets">URANUS</p></router-link></li>
-                <li id="neptune_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/8.jpg"/><p id="neptune" class="planets">NEPTUNE</p></router-link></li>
-                <li id="pluto_li" class="new_li"><router-link to="/missions"><img class="image" src="@/assets/solarsystem/9.jpg"/><p id="pluto" class="planets">PLUTO</p></router-link></li>
+                <li id="venus_li" class="new_li"><router-link to="/missions/venus"><img class="image" src="@/assets/solarsystem/2.jpg"/><p id="venus" class="planets">VENUS</p></router-link></li>
+                <li id="earth_li" class="new_li"><router-link to="/missions/earth"><img class="image" src="@/assets/solarsystem/3.jpg"/><p id="earth" class="planets">EARTH</p></router-link></li>
+                <li id="mars_li" class="new_li"><router-link to="/missions/mars"><img class="image" src="@/assets/solarsystem/4.jpg"/><p id="mars" class="planets">MARS</p></router-link></li>
+                <li id="jupyter_li" class="new_li"><router-link to="/missions/jupyter"><img class="image" src="@/assets/solarsystem/5.jpg"/><p id="jupyter" class="planets">JUPYTER</p></router-link></li>
+                <li id="saturn_li" class="new_li"><router-link to="/missions/saturn"><img class="image" src="@/assets/solarsystem/6.jpg"/><p id="saturn" class="planets">SATURN</p></router-link></li>
+                <li id="uranus_li" class="new_li"><router-link to="/missions/uranus"><img class="image" src="@/assets/solarsystem/7.jpg"/><p id="uranus" class="planets">URANUS</p></router-link></li>
+                <li id="neptune_li" class="new_li"><router-link to="/missions/neptune"><img class="image" src="@/assets/solarsystem/8.jpg"/><p id="neptune" class="planets">NEPTUNE</p></router-link></li>
+                <li id="pluto_li" class="new_li"><router-link to="/missions/pluto"><img class="image" src="@/assets/solarsystem/9.jpg"/><p id="pluto" class="planets">PLUTO</p></router-link></li>
               </ul>
             </div>
           </div>
@@ -516,6 +516,141 @@ h1+p, p+p {
   position: absolute;
   writing-mode: vertical-rl;
   text-orientation: upright;
+}
+
+.filtertags{
+  background-color: whitesmoke;
+  height: 6vh;
+  width: 25vw;
+  margin: 8px 0;
+  border: none;
+  border-radius: 50px;
+  font-size: 25px;
+}
+
+.filter{
+  cursor: pointer;
+}
+
+.filters{
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  height: 4vh;
+  padding-bottom: 4vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fbutton
+{
+    margin: 0 auto;
+    background-color: white;
+    position: relative;
+    width: 74px;
+    height: 36px;
+    overflow: hidden;
+}
+
+.fbutton.r, .fbutton.r .layer
+{
+    border-radius: 100px;
+}
+
+.checkbox
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+#fbutton .knobs:before
+{
+    content: 'DES';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #03A9F4;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#fbutton .checkbox:checked + .knobs:before
+{
+    content: 'ASC';
+    left: 42px;
+    background-color: #f44336;
+}
+
+#fbutton .checkbox:checked ~ .layer
+{
+    background-color: #fcebeb;
+}
+
+#fbutton .knobs, #button-1 .knobs:before, #button-1 .layer
+{
+    transition: 0.3s ease all;
+}
+
+.ordertext{
+  margin-top: 0;
+  margin-bottom: 1px;
+  color:whitesmoke;
+}
+
+.tag{
+  color: whitesmoke;
+  padding-right: 10px;
+}
+
+#removefilters{
+  cursor: pointer;
+  position: relative;
+	padding: 10px 40px;
+  float: left;
+	border-radius: 300px;
+	font-family: 'Lato', sans-serif;
+	font-size: 15px;
+	color: #FFF;
+	text-decoration: none;	
+	background-color: hsl(0, 82%, 52%);
+	border-bottom: 5px solid #a10606;
+	text-shadow: 0px -2px hsl(0, 82%, 52%);
+  transition: all 0.1s;
+	-webkit-transition: all 0.1s;
+}
+
+#removefilters:active
+{
+	transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+	border-bottom: 1px solid;
 }
 
 </style>
