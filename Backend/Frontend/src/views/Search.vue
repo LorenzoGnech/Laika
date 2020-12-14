@@ -117,7 +117,7 @@ export default {
     },
     getSearchMissions(){
       var a = this.$router.currentRoute.path.split("/");
-      var aa = 'http://localhost:3000/api/v1/' + a[1] + "/missions/" + a[2]
+      var aa = 'https://laikapp.herokuapp.com/api/v1/' + a[1] + "/missions/" + a[2]
       axios
         .get(aa)
         .then(response => {
@@ -144,7 +144,7 @@ export default {
     },
     getSearchNews(){
       var a = this.$router.currentRoute.path.split("/");
-      var aa = 'http://localhost:3000/api/v1/' + a[1] + "/news/" + a[2]
+      var aa = 'https://laikapp.herokuapp.com/api/v1/' + a[1] + "/news/" + a[2]
       axios
         .get(aa)
         .then(response => {
@@ -174,7 +174,7 @@ export default {
     },
     getSearchTelescopes(){
       var a = this.$router.currentRoute.path.split("/");
-      var aa = 'http://localhost:3000/api/v1/' + a[1] + "/telescopes/" + a[2]
+      var aa = 'https://laikapp.herokuapp.com/api/v1/' + a[1] + "/telescopes/" + a[2]
       axios
         .get(aa)
         .then(response => {
@@ -201,7 +201,7 @@ export default {
     },
     getSearchAstronauts(){
       var a = this.$router.currentRoute.path.split("/");
-      var aa = 'http://localhost:3000/api/v1/' + a[1] + "/astronauts/" + a[2]
+      var aa = 'https://laikapp.herokuapp.com/api/v1/' + a[1] + "/astronauts/" + a[2]
       axios
         .get(aa)
         .then(response => {
@@ -228,7 +228,7 @@ export default {
     },
     getSearchExoplanets(){
       var a = this.$router.currentRoute.path.split("/");
-      var aa = 'http://localhost:3000/api/v1/' + a[1] + "/exoplanets/" + a[2]
+      var aa = 'https://laikapp.herokuapp.com/api/v1/' + a[1] + "/exoplanets/" + a[2]
       axios
         .get(aa)
         .then(response => {
