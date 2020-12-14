@@ -190,6 +190,25 @@ router.put('/:id', async (req, res) =>
         "tags": req.body.tags
     };
 
+    valuesToUpdate.date = new Date(Date.parse(req.body.date)).toISOString();
+    
+        Missions.updateOne({_id: id}, {$set: valuesToUpdate})
+        .exec()
+
+        .then(result => {
+            res.status(200).json({
+                message: "Mission updated",
+            });
+        })
+
+        .catch(err => {
+            let {errorCode, errorMsg} = dbErrorHandler(err);
+        
+            res.status(errorCode).json({
+                error: errorMsg
+            });
+        });
+    /*
     if (!isMissionCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not a mission.' });
@@ -214,7 +233,7 @@ router.put('/:id', async (req, res) =>
                 error: errorMsg
             });
         });
-    }
+    }*/
 });
 
 
