@@ -112,6 +112,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             date: new Date(Date.now(newTempMission.date)).toISOString(),
             title: newTempMission.title,
+            title_lowcase: newTempMission.title.toLowerCase(),
             description: newTempMission.description,
             img_path: newTempMission.img_path,
             source_url: newTempMission.source_url,
@@ -184,6 +185,7 @@ router.put('/:id', async (req, res) =>
     let valuesToUpdate = {
         "date": req.body.date,
         "title": req.body.title,
+        "title_lowcase": req.body.title.toLowerCase(),
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
