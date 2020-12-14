@@ -55,7 +55,31 @@ export default {
         case "missions":
           params.append('date', obj.date);
           params.append('title', obj.title);
-          params.append('content', obj.content);
+          params.append('description', obj.description);
+          params.append('img_path', obj.img_path);
+          params.append('source_url', obj.source_url);
+          params.append('tags', obj.tags);
+          break;
+        case "astronauts":
+          params.append('birth', obj.birth);
+          params.append('name', obj.name);
+          params.append('nationality', obj.nationality);
+          params.append('img_path', obj.img_path);
+          params.append('agency', obj.agency);
+          params.append('tags', obj.tags);
+          break;
+        case "exoplanets":
+          params.append('discover_date', obj.discover_date);
+          params.append('name', obj.name);
+          params.append('description', obj.description);
+          params.append('img_path', obj.img_path);
+          params.append('source_url', obj.source_url);
+          params.append('tags', obj.tags);
+          break;
+        case "telescopes":
+          params.append('name', obj.name);
+          params.append('description', obj.description);
+          params.append('launch_date', obj.launch_date);
           params.append('img_path', obj.img_path);
           params.append('source_url', obj.source_url);
           params.append('tags', obj.tags);
@@ -74,7 +98,6 @@ export default {
       console.log("post")
       let obj = JSON.parse(richiesta.text);
       var params = this.parser(richiesta.tipo, obj)
-      console.log(params);
       axios.post('http://localhost:3000/api/v1/' + richiesta.tipo, params)
         .catch(err => console.warn(err));;
     },

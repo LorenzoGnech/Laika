@@ -90,12 +90,14 @@ router.get('/latest/:size', async (req, res) =>
 router.post('', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
-    var tags_original = req.body.tags;
+    var tags_original = [req.body.tags];
     var tags_lower = [];
-    console.log(tags_original);
+    tags_lower = [String(tags_original).split(",")];
     for (i in tags_original){
         tags_lower.push(tags_original[i].toLowerCase());
     }
+
+    tags_lower = [tags_lower[1].split(",")][0];
 
     let newTempNews = {
         "date": "irrelevant", // dato che la imposta autonomamente il server
