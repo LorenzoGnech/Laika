@@ -51,7 +51,7 @@ export default {
       } else {
         var already_favourited = false;
         axios
-        .get('http://laikapp.herokuapp.com/api/v1/missions/followed/' + this.$store.getters.getId)
+        .get('https://laikapp.herokuapp.com/api/v1/missions/followed/' + this.$store.getters.getId)
         .then(response => {
             for (var i=0; i<response.data.length; i++){
               if (response.data[i].missionId == this.$route.params.value){
