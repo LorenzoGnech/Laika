@@ -92,6 +92,7 @@ router.post('', async (req, res) =>
     // TO IMPLEMENT AUTH
     var tags_original = req.body.tags;
     var tags_lower = [];
+    console.log(tags_original);
     for (i in tags_original){
         tags_lower.push(tags_original[i].toLowerCase());
     }
