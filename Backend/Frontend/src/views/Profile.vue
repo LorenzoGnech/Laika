@@ -133,7 +133,7 @@ export default {
         },
         async getFollowedMissions(){
         axios
-            .get('http://laikapp.herokuapp.com/api/v1/missions/followed/' + this.$store.getters.getId)
+            .get('https://laikapp.herokuapp.com/api/v1/missions/followed/' + this.$store.getters.getId)
             .then(response => {
                 this.followedMissions = response.data;
                 this.computedMissions();
