@@ -98,15 +98,19 @@ router.post('', async (req, res) =>
     for (i in tags_original){
         tags_lower.push(tags_original[i].toLowerCase());
     }
+    
+    title_lowcase = req.body.title.toLowerCase();
+
     let newTempMission = {
-        "date": req.body.date,
+        "date": new Date(Date.now(req.body.date)).toISOString(),
         "title": req.body.title,
+        "title_lowcase": title_lowcase,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
         "tags": tags_lower
     };
-
+    
     if (!isMissionCorrect(newTempMission))
     {
         res.status(400).send({ error: 'Object sent is not a mission.' });
@@ -186,21 +190,27 @@ router.put('/:id', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
 
-    
+    let id = req.params.id;
 
     var tags_original = req.body.tags;
     var tags_lower = [];
     for (i in tags_original){
         tags_lower.push(tags_original[i].toLowerCase());
     }
-    let newTempMission = {
-        "date": req.body.date,
+
+    title_lowcase = req.body.title.toLowerCase();
+
+    let valuesToUpdate = {
+        "date": new Date(Date.now(req.body.date)).toISOString(),
         "title": req.body.title,
+        "title_lowcase": title_lowcase,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
         "tags": tags_lower
     };
+
+    console.log(valuesToUpdate);
 
     if (!isMissionCorrect(valuesToUpdate))
     {
