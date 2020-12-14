@@ -93,13 +93,18 @@ router.post('', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
 
+    var tags_original = req.body.tags;
+    var tags_lower = [];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
     let newTempMission = {
         "date": req.body.date,
         "title": req.body.title,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isMissionCorrect(newTempMission))
