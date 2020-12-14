@@ -89,6 +89,11 @@ router.get('/latest/:size', async (req, res) =>
 router.post('', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
+    var tags_original = req.body.tags;
+    var tags_lower = [];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
 
     let newTempTelescope = {
         "name": req.body.name,
@@ -96,7 +101,7 @@ router.post('', async (req, res) =>
         "launch_date": req.body.launch_date,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isTelescopeCorrect(newTempTelescope))
@@ -108,6 +113,7 @@ router.post('', async (req, res) =>
         let newTelescope = new Telescopes({
             _id: mongoose.Types.ObjectId(),
             name: newTempTelescope.name,
+            name_lowcase: newTempTelescope.name.toLowerCase(),
             description: newTempTelescope.description,
             launch_date: new Date(Date.parse(newTempTelescope.launch_date)).toISOString(),
             img_path: newTempTelescope.img_path,
@@ -160,6 +166,12 @@ router.delete('/:id', async (req, res) =>
 router.put('/:id', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
+    var tags_original = req.body.tags;
+    var tags_lower = [];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+
 
     let id = req.params.id;
     let valuesToUpdate = {
@@ -168,7 +180,7 @@ router.put('/:id', async (req, res) =>
         "launch_date": req.body.launch_date,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isTelescopeCorrect(valuesToUpdate))
