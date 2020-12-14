@@ -90,6 +90,11 @@ router.get('/latest/:size', async (req, res) =>
 router.post('', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
+    var tags_original = req.body.tags;
+    var tags_lower = [];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
 
     let newTempNews = {
         "date": "irrelevant", // dato che la imposta autonomamente il server
@@ -97,7 +102,7 @@ router.post('', async (req, res) =>
         "content": req.body.content,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isNewsCorrect(newTempNews))
@@ -110,6 +115,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             date: new Date(Date.now()).toISOString(),
             title: newTempNews.title,
+            title_lowcase: newTempNews.title.toLowerCase(),
             content: newTempNews.content,
             img_path: newTempNews.img_path,
             source_url: newTempNews.source_url,
@@ -162,6 +168,13 @@ router.put('/:id', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
 
+    var tags_original = req.body.tags;
+    var tags_lower = [];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+
+
     let id = req.params.id; 
     let valuesToUpdate = {
         "date": new Date(Date.now()).toISOString(), // nessun bisogno di farlo dopo
@@ -169,7 +182,7 @@ router.put('/:id', async (req, res) =>
         "content": req.body.content,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isNewsCorrect(valuesToUpdate))
