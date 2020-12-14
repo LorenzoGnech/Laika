@@ -10,6 +10,7 @@ const router = express.Router();
 router.get('/missions/:query', async (req, res) => {
     
     var query = req.params.query
+    query = query.toLowerCase();
     query = query.split("+")
 
     Missions.find({$or:[{tags:{$in:query}},{title:{$in:query}}]})   
@@ -33,6 +34,7 @@ router.get('/missions/:query', async (req, res) => {
 router.get('/news/:query', async (req, res) => {
     
     var query = req.params.query
+    query = query.toLowerCase();
     query = query.split("+")
 
     News.find({$or:[{tags:{$in:query}},{title:{$in:query}}]})   
@@ -55,6 +57,7 @@ router.get('/news/:query', async (req, res) => {
 router.get('/telescopes/:query', async (req, res) => {
     
     var query = req.params.query
+    query = query.toLowerCase();
     query = query.split("+")
 
     Telescopes.find({$or:[{tags:{$in:query}},{name:{$in:query}}]})   
@@ -77,6 +80,7 @@ router.get('/telescopes/:query', async (req, res) => {
 router.get('/exoplanets/:query', async (req, res) => {
     
     var query = req.params.query
+    query = query.toLowerCase();
     query = query.split("+")
 
     Exoplanets.find({$or:[{tags:{$in:query}},{name:{$in:query}}]})   
