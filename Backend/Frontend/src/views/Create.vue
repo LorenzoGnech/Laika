@@ -149,13 +149,13 @@ export default {
     put(richiesta){
       let obj = JSON.parse(richiesta.text);
       var params = this.parser(richiesta.tipo, obj)
-      axios.put('http://localhost:3000/api/v1/' + richiesta.tipo  + "/" + richiesta.id, params)
+      axios.put('https://laikapp.herokuapp.com/api/v1/' + richiesta.tipo  + "/" + richiesta.id, params)
         .catch(err => console.warn(err));;
     },
     post(richiesta){
       let obj = JSON.parse(richiesta.text);
       var params = this.parser(richiesta.tipo, obj)
-      axios.post('http://localhost:3000/api/v1/' + richiesta.tipo, params)
+      axios.post('https://laikapp.herokuapp.com/api/v1/' + richiesta.tipo, params)
         .catch(err => console.warn(err));;
     },
     submit(e){
