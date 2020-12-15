@@ -103,11 +103,13 @@ router.post('', async (req, res) =>
     tags_lower = [tags_lower[1].split(",")][0];
     
     title_lowcase = req.body.title.toLowerCase();
+    var lowlist = title_lowcase.split(" ");
+
 
     let newTempMission = {
         "date": new Date(Date.now(req.body.date)).toISOString(),
         "title": req.body.title,
-        "title_lowcase": title_lowcase,
+        "title_lowcase": lowlist,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
@@ -124,7 +126,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             date: new Date(Date.now(newTempMission.date)).toISOString(),
             title: newTempMission.title,
-            title_lowcase: newTempMission.title.toLowerCase(),
+            title_lowcase: newTempMission.title_lowcase,
             description: newTempMission.description,
             img_path: newTempMission.img_path,
             source_url: newTempMission.source_url,
@@ -205,11 +207,12 @@ router.put('/:id', async (req, res) =>
     tags_lower = [tags_lower[1].split(",")][0];
     
     title_lowcase = req.body.title.toLowerCase();
+    var lowlist = title_lowcase.split(" ");
 
     let valuesToUpdate = {
         "date": new Date(Date.now(req.body.date)).toISOString(),
         "title": req.body.title,
-        "title_lowcase": title_lowcase,
+        "title_lowcase": lowlist,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
