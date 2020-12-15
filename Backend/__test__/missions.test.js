@@ -111,12 +111,13 @@ describe('Unsafe methods for missions', () =>
 
         let mission = {
             "date": "1967-03-12T00:00:00.000Z",
-            "title": "Troll",
-            "description": "goliardia",
+            "title": "Mario Rossi",
+            "description": "Ita",
             "img_path": ["file.jpg"],
-            "source_url": "prova",
-            "tags": ["gnomo", "ascia"]
+            "source_url": "ESA",
+            "tags": ["nice", "boy"]
         }
+    
 
         test('PUT /api/v1/missions but the mission does not exists', async () =>
         {
