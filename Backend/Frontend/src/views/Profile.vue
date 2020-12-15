@@ -18,7 +18,9 @@
         </div>
         <div class="container">
         <a @click=handleLogout id="api-button">LOGOUT</a>
-        <a @click=create id="api-button">CREATE ARTICLE</a>
+        <div v-if="this.isAdmin">
+            <a @click=create id="api-button">CREATE ARTICLE</a>
+        </div>
         </div>
     </div>
     <div v-else>
@@ -50,7 +52,8 @@ export default {
             cFollowedMissions: [],
             temp: [],
             coso_bello: [],
-            coso_bellissimo: []
+            coso_bellissimo: [],
+            isAdmin: false
         }
     },
     props: {
@@ -69,6 +72,7 @@ export default {
         this.computedNews();
         this.getFollowedMissions();
         this.computedMissions();
+        this.isAdmin = this.$store.getters.isAdmin
     },
     computed: {
         getAvatar(){
