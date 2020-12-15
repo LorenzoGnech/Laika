@@ -1,6 +1,5 @@
 const express = require('express');
 const {dbErrorHandler} = require('./utilities');
-const mongoose = require('mongoose');
 const Missions = require("./models/missions");
 const Astronauts = require("./models/astronauts");
 const News = require("./models/news");
