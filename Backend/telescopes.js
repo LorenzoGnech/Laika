@@ -171,11 +171,16 @@ router.delete('/:id', async (req, res) =>
 router.put('/:id', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
-    var tags_original = req.body.tags;
+    var tags_original = [req.body.tags];
     var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
     for (i in tags_original){
         tags_lower.push(tags_original[i].toLowerCase());
     }
+
+    tags_lower = [tags_lower[1].split(",")][0];
+    array_img = req.body.img_path;
+    array_img = [String(array_img).split(",")][0];
 
     name_lowcase = req.body.name.toLowerCase();
 
@@ -185,7 +190,7 @@ router.put('/:id', async (req, res) =>
         "name_lowcase": name_lowcase,
         "description": req.body.description,
         "launch_date": new Date(Date.parse(req.body.launch_date)).toISOString(),
-        "img_path": req.body.img_path,
+        "img_path": array_img,
         "source_url": req.body.source_url,
         "tags": tags_lower
     };

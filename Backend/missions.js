@@ -195,12 +195,15 @@ router.put('/:id', async (req, res) =>
 
     let id = req.params.id;
 
-    var tags_original = req.body.tags;
+    var tags_original = [req.body.tags];
     var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
     for (i in tags_original){
         tags_lower.push(tags_original[i].toLowerCase());
     }
 
+    tags_lower = [tags_lower[1].split(",")][0];
+    
     title_lowcase = req.body.title.toLowerCase();
 
     let valuesToUpdate = {

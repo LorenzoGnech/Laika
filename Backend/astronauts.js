@@ -178,12 +178,16 @@ router.put('/:id', async (req, res) =>
 
     let id = req.params.id;
 
-    var tags_original = req.body.tags;
+    var tags_original = [req.body.tags];
     var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
     for (i in tags_original){
         tags_lower.push(tags_original[i].toLowerCase());
     }
 
+    tags_lower = [tags_lower[1].split(",")][0];
+    array_img = req.body.img_path;
+    array_img = [String(array_img).split(",")][0];
     name_lowcase = req.body.name.toLowerCase();
 
 
@@ -192,7 +196,7 @@ router.put('/:id', async (req, res) =>
         "name": req.body.name,
         "name_lowcase": name_lowcase,
         "nationality": req.body.nationality,
-        "img_path": req.body.img_path,
+        "img_path": array_img,
         "agency": req.body.agency,
         "tags": tags_lower
     };
