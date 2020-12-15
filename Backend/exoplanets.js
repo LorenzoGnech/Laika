@@ -199,6 +199,7 @@ router.put('/:id', async (req, res) =>
         valuesToUpdate.discover_date = new Date(Date.parse(req.body.discover_date)).toISOString();
         valuesToUpdate.tags = tags_lower;
         valuesToUpdate.name_lowcase = lowlist;
+        valuesToUpdate.tags = tags_lower;
         
         Exoplanets.updateOne({_id: id}, {$set: valuesToUpdate})
         .exec()
