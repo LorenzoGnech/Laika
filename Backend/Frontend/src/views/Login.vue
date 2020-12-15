@@ -36,6 +36,7 @@
 import NavMenu from '../components/NavMenu.vue'
 import crypto from 'crypto-js'
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
 export default {
   name: 'Login',
@@ -79,8 +80,10 @@ export default {
         var info_login = {
           email: data.email,
           token: data.token,
-          id: data.userId
+          id: data.userId,
+          admin: false
         };
+        console.log(jwt.verify(data.token, process.env.ACCESS_TOKEN_SECRET).is_admin)
         this.$store.commit("_Login", info_login);
         this.$router.push("/");
       }

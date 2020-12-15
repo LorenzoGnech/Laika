@@ -12,7 +12,8 @@ export default new Vuex.Store({
     loggedIn: false,
     username: "",
     token: "",
-    _id: ""
+    _id: "",
+    isAdmin: false,
   },
   mutations: { 
     _Login (state, info_login) { // this.$store.commit("_Login","Pietro Smusi", "a");
@@ -20,12 +21,14 @@ export default new Vuex.Store({
       state.username = info_login.email;
       state.token = info_login.token;
       state._id = info_login.id;
+      state.isAdmin = info_login.admin;
     },
     _Logout (state) {
       state.loggedIn = false;
       state.username = "";
       state.token = "";
       state._id = "";
+      state.isAdmin = false;
     }
   },
   actions: {
@@ -35,6 +38,9 @@ export default new Vuex.Store({
   getters: {
     isLoggedIn: state => {
       return state.loggedIn;
+    },
+    isAdmin: state => {
+      return state.isAdmin;
     },
     getUsername: state => {
       return state.username;

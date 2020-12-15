@@ -140,7 +140,7 @@ export default {
       }
     },
     isVerificato(){
-      if (this.$store.getters.getUsername == "admin@admin.admin"){
+      if (this.$store.getters.isAdmin){
         this.verificato = true;
       }
     },
