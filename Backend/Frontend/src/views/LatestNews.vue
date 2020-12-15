@@ -121,7 +121,9 @@ export default {
           tags: item.tags,
         };
        this.cNews.push(t)
-      });
+      }
+      );
+      this.cNews.reverse();
     },
     invertOrder(){
       this.cNews.reverse();

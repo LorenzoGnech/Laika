@@ -122,6 +122,7 @@ export default {
         };
       this.cMissions.push(t)
       });
+      this.cMissions.reverse();
     },
     handleFilter(){
       this.filterActive = !this.filterActive;

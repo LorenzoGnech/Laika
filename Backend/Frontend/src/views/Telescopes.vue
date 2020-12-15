@@ -123,6 +123,7 @@ export default {
         };
        this.cTelescopes.push(t);
       });
+      this.cTelescopes.reverse();
     },
     handleFilter(){
       this.filterActive = !this.filterActive;

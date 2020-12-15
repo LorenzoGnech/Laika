@@ -120,6 +120,7 @@ export default {
         };
        this.cAstronauts.push(t)
       });
+      this.cAstronauts.reverse();
     },
     handleFilter(){
       this.filterActive = !this.filterActive;

@@ -120,6 +120,7 @@ export default {
         };
        this.cExoplanets.push(t)
       });
+      this.cExoplanets.reverse();
     },
     handleFilter(){
       this.filterActive = !this.filterActive;
