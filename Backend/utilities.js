@@ -48,7 +48,7 @@ exports.isMissionCorrect = function (mission)
         typeof date !== 'string' ||
         typeof title !== 'string' ||
         typeof description !== 'string' ||
-        typeof img_path !== 'string' ||
+        (!Array.isArray(img_path) || img_path.some(el => typeof el !== 'string')) ||
         typeof source_url !== 'string' ||
         (!Array.isArray(tags) || tags.some(el => typeof el !== 'string'))
     )

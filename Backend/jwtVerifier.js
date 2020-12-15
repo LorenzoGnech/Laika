@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken")
 const jwtVerifier = function(req, res, next)
 {
     // check header or url parameters or post parameters for token
