@@ -38,7 +38,7 @@
     <div class="container">
       <div class="blueline"></div>
       <h2 class="containertitle">Do you like space?<br>Subscribe to our newsletter!</h2>
-      <form id="newsletterform" action="#" method="post">
+      <form id="newsletterform" action="/">
         <input id="newslettermail" style="text-align:center;" type="email" placeholder="Email" name="email" required>
         <button type="submit" style="visibility: hidden;">Subscribe</button>
       </form>
