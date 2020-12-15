@@ -41,7 +41,7 @@ exports.isExoplanetCorrect = function (exoplanet)
 exports.isMissionCorrect = function (mission)
 {
     const {
-        date, title, description, img_path, source_url, tags
+        date, title, title_lowcase, description, img_path, source_url, tags
     } = mission;
 
     if ( 
@@ -99,13 +99,12 @@ exports.isTelescopeCorrect = function (telescope)
 exports.isUserCorrect = function (user)
 {
     const {
-        email, password, is_admin
+        email, password
     } = user;
 
     if ( 
         typeof email !== 'string' ||
-        typeof password !== 'string' ||
-        typeof is_admin !== 'boolean'
+        typeof password !== 'string'
     )
     { return false; }
 
