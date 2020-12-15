@@ -20,8 +20,21 @@ const jwtVerifier = function(req, res, next)
         } 
         else
         {
-			// if everything is good, save to request for use in other routes
 			req.loggedUser = decoded;
+
+			// If user is not admin and is modifying the site's content, stop them.
+			if (decoded.is_admin == false)
+			{
+				let urlSections = String(req.url).split("/");
+
+				if ( !(
+					urlSections.includes("update") ||
+					urlSections.includes("followed") ||
+					urlSections.includes("favourite")
+				) )
+				{ return res.status(403).send({ error: 'User is not admin.' }); }
+			}
+
 			next();
 		}
 	});
