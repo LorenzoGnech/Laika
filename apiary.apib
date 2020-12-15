@@ -9,37 +9,34 @@ Laika is an API service to return astronomy information and data. It can be used
 
 ### List all news [GET]
 
-+ Response 200 (application/json)
++ Response 201 (application/json)
 
-            {
-                "news": [
-                    {
-                        "id": 1,
-                        "date": "16/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Headed to International Space Station",
-                        "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
-                        "img": "",
-                        "source": "https://www.nasa.gov",
-                        "tags": ["nasa", "spacex", "iss"],
-                    }, {
-                        "id": 2,
-                        "date": "17/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Arrive at Space Station",
-                        "content": " The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.",
-                        "img": "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2046a.jpg"
-                        "source": "https://www.nasa.gov",
-                        "tags": ["nasa", "spacex", "iss"],
-                    }, {
-                        "id": 3,
-                        "date": "17/11/2020",
-                        "title": "NASA Highlights Science, New Airlock on Space Station Resupply Mission",
-                        "content": "NASA will host a media teleconference at 1 p.m. EST Friday, Nov. 20, to discuss science investigations and a new privately funded airlock launching on SpaceX’s 21st commercial cargo resupply mission for the agency to the International Space Station.",
-                        "img": ""
-                        "source": "https://www.nasa.gov",
-                        "tags": ["nasa"],
-                    }
-                ]
-            }
+            
+            [
+                {
+                    "tags":["nasa","spacex"],
+                    "_id":"5fd7a2e7f401d8460e80f3b4",
+                    "date":"2020-12-14T17:37:43.558Z",
+                    "title":"SXM-7 Mission",
+                    "title_lowcase":"sxm-7 mission",
+                    "content":"On Sunday, December 13 at 12:30 p.m. EST, Falcon 9 launched the SXM-7 mission from Space Launch Complex 40 (SLC-40) at Cape Canaveral Space Force Station, Florida",
+                    "img_path":"https://www.nasaspaceflight.com/wp-content/uploads/2020/12/SXM-7-Falcon-9-B1051-LC-40-vertical-121020-SpaceX-1-scaled.jpg",
+                    "source_url":"www.spacex.com",
+                    "__v":0
+                }, 
+                {
+                    "tags":["nasa","spacex"],
+                    "_id":"5fd889565bd2a2ea724e443d",
+                    "date":"2020-12-13T17:37:43.558Z",
+                    "title":"NASA, ESA Choose Astronauts for SpaceX Crew-3 Mission to Space Station",
+                    "title_lowcase":"nasa, esa choose astronauts for spacex crew-3 mission to space station",
+                    "content":"NASA and ESA (European Space Agency) have selected three astronauts to serve as crew members for NASA’s SpaceX Crew-3 mission to the International Space Station, which is expected to launch in the fall of 2021.",
+                    "img_path":"https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/crew-3_composite.png",
+                    "source_url":"www.nasa.gov",
+                    "__v":0
+                }
+            ]
+            
 
 ### Add a new news [POST]
 
@@ -183,35 +180,19 @@ You may get the latest news using this action. You need to specify the number of
 
 + Response 200 (application/json)
 
-            {
-                "news": [
-                    {
-                        "id": 1,
-                        "date": "16/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Headed to International Space Station",
-                        "content": "An international crew of astronauts is en route to the International Space Station following a successful launch on the first NASA-certified commercial human spacecraft system in history. ",
-                        "img": "",
-                        "source": "https://www.nasa.gov",
-                        "tags": ["nasa", "spacex", "iss"],
-                    }, {
-                        "id": 2,
-                        "date": "17/11/2020",
-                        "title": "NASA’s SpaceX Crew-1 Astronauts Arrive at Space Station",
-                        "content": " The SpaceX Crew Dragon Resilience successfully docked to the International Space Station at 11 p.m. EST Monday, transporting NASA astronauts Michael Hopkins, Victor Glover, Shannon Walker, and Japan Aerospace Exploration Agency (JAXA) astronaut Soichi Noguchi.",
-                        "img": "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2046a.jpg"
-                        "source": "https://www.nasa.gov",
-                        "tags": ["nasa", "spacex", "iss"],
-                    }, {
-                        "id": 3,
-                        "date": "17/11/2020",
-                        "title": "NASA Highlights Science, New Airlock on Space Station Resupply Mission",
-                        "content": "NASA will host a media teleconference at 1 p.m. EST Friday, Nov. 20, to discuss science investigations and a new privately funded airlock launching on SpaceX’s 21st commercial cargo resupply mission for the agency to the International Space Station.",
-                        "img": ""
-                        "source": "https://www.nasa.gov",
-                        "tags": ["nasa"],
-                    }
-                ]
-            }
+            [
+                {
+                    "tags":["nasa","spacex"],
+                    "_id":"5fd7a2e7f401d8460e80f3b4",
+                    "date":"2020-12-14T17:37:43.558Z",
+                    "title":"SXM-7 Mission",
+                    "title_lowcase":"sxm-7 mission",
+                    "content":"On Sunday, December 13 at 12:30 p.m. EST, Falcon 9 launched the SXM-7 mission from Space Launch Complex 40 (SLC-40) at Cape Canaveral Space Force Station, Florida",
+                    "img_path":"https://www.nasaspaceflight.com/wp-content/uploads/2020/12/SXM-7-Falcon-9-B1051-LC-40-vertical-121020-SpaceX-1-scaled.jpg",
+                    "source_url":"www.spacex.com",
+                    "__v":0
+                }
+            ]
             
 ## Missions [/api/v1/missions]
 
@@ -219,27 +200,29 @@ You may get the latest news using this action. You need to specify the number of
 
 + Response 200 (application/json)
 
-            {
-                "missions": [
-                    {
-                        "id": 1,
-                        "date": "16/11/2020",
-                        "title": "CREW-1 MISSION",
-                        "content": "n Monday, November 16 at 11:01 p.m. EST, 04:01 UTC on November 17, SpaceX’s Dragon autonomously docked with the International Space Station (ISS) after Falcon 9 launched the spacecraft to orbit from historic Launch Complex 39A (LC-39A) at NASA’s Kennedy Space Center in Florida on Sunday, November 15, 2020.",
-                        "img": "",
-                        "source": "https://www.spacex.com/updates/crew-1-docks-to-iss/index.html",
-                        "tags": ["iss", "spacex", "nasa"],
-                    }, {
-                        "id": 2,
-                        "date": "18/12/2019",
-                        "title": "Cheops",
-                        "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
-                        "img": ""
-                        "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
-                        "tags": ["esa", "exoplanets"],
-                    }
-                ]
-            }
+            [
+                {
+                    "img_path":["https://www.nasaspaceflight.com/wp-content/uploads/2020/12/SXM-7-Falcon-9-B1051-LC-40-vertical-121020-SpaceX-1-scaled.jpg"],
+                    "tags":["spacex","nasa"],
+                    "_id":"5fd78b1d8fcc26322f85a691",
+                    "date":"2020-12-13T00:00:00.000Z",
+                    "title":"SXM-7 Mission",
+                    "title_lowcase":"sxm-7 mission",
+                    "description":"On Sunday, December 13 at 12:30 p.m. EST, Falcon 9 launched the SXM-7 mission from Space Launch Complex 40 (SLC-40) at Cape Canaveral Space Force Station, Florida - SpaceX's 25th mission in 2020.",
+                    "source_url":"www.spacex.com","__v":0
+                },
+                {
+                    "img_path":["https://www.nasa.gov/sites/default/files/thumbnails/image/crew-1_ceitpt2-20200612-dsc05519_2_.jpg"],
+                    "tags":["spacex","nasa"],
+                    "_id":"5fd8a2e8fcfbb0661856332c",
+                    "date":"2020-11-16T00:00:00.000Z",
+                    "title":"CREW-1 MISSION",
+                    "title_lowcase":"crew-1 mission",
+                    "description":"On Monday, November 16 at 11:01 p.m. EST, 04:01 UTC on November 17, SpaceX’s Dragon autonomously docked with the International Space Station (ISS) after Falcon 9 launched the spacecraft to orbit from historic Launch Complex 39A (LC-39A) at NASA’s Kennedy Space Center in Florida on Sunday, November 15, 2020.",
+                    "source_url":"www.spacex.com",
+                    "__v":0
+                }
+            ]
 
 ### Add a new missions [POST]
 
@@ -288,15 +271,18 @@ You may add a new mission using this action. It takes a JSON object containing t
 
 ### Get a specific mission [GET]
 
-+ Response 200 (application/json)
++ Response 201 (application/json)
 
         {
-            "date": "18/12/2019",
-            "title": "Cheops",
-            "content": " Characterising exoplanets known to be orbiting around nearby bright stars",
-            "img": ""
-            "source": "https://www.esa.int/Science_Exploration/Space_Science/Cheops",
-            "tags": ["esa", "exoplanets"],
+            "img_path":["https://www.nasaspaceflight.com/wp-content/uploads/2020/12/SXM-7-Falcon-9-B1051-LC-40-vertical-121020-SpaceX-1-scaled.jpg"],
+            "tags":["spacex","nasa"],
+            "_id":"5fd78b1d8fcc26322f85a691",
+            "date":"2020-12-13T00:00:00.000Z",
+            "title":"SXM-7 Mission",
+            "title_lowcase":"sxm-7 mission",
+            "description":"On Sunday, December 13 at 12:30 p.m. EST, Falcon 9 launched the SXM-7 mission from Space Launch Complex 40 (SLC-40) at Cape Canaveral Space Force Station, Florida - SpaceX's 25th mission in 2020.",
+            "source_url":"www.spacex.com",
+            "__v":0
         }
 
 ### Update a specific mission [PUT]
@@ -411,25 +397,38 @@ You may get the latest missions using this action. You need to specify the numbe
 
 + Response 200 (application/json)
 
-            {
-                "astronauts": [
-                    {
-                        "id": 1,
-                        "birth": "27/09/1976",
-                        "name": "Luca Parmitano",
-                        "nationality": "Italy",
-                        "img": "",
-                        "agency": "ESA",
-                    }, {
-                        "id": 2,
-                        "birth": "19/09/1987",
-                        "name": "Kayla Barron",
-                        "nationality": "US",
-                        "img": "",
-                        "agency": "NASA",
-                    }
-                ]
-            }
+            [
+                {
+                    "img_path":["https://aerospacecue.it/wp-content/uploads/2020/01/Samantha_Cristoforetti_official_portrait_in_an_EMU_spacesuit.jpg"],
+                    "tags":["esa"],
+                    "_id":"5fd7923523272736a0888a4d",
+                    "birth":"1977-04-26T00:00:00.000Z",
+                    "name":"Samantha Cristoforetti",
+                    "nationality":"ITA",
+                    "agency":"ESA",
+                    "__v":0
+                },
+                {
+                    "img_path":["https://upload.wikimedia.org/wikipedia/commons/d/d8/Luca_Parmitano_EMU.jpg"],
+                    "tags":["esa"],
+                    "_id":"5fd792657392c030bcb21492",
+                    "birth":"1976-09-27T00:00:00.000Z",
+                    "name":"Luca Parmitano",
+                    "nationality":"ITA",
+                    "agency":"ESA",
+                    "__v":0
+                },
+                {
+                    "img_path":["https://upload.wikimedia.org/wikipedia/commons/6/60/Paolo_A._Nespoli_2016.jpg"],
+                    "tags":["esa"],
+                    "_id":"5fd792c97392c030bcb21493",
+                    "birth":"1957-04-06T00:00:00.000Z",
+                    "name":"Paolo Nespoli",
+                    "nationality":"ITA",
+                    "agency":"ESA",
+                    "__v":0
+                }
+            ]
 
 ### Add a new astronaut [POST]
 
@@ -480,12 +479,14 @@ You may add a new astronaut using this action. It takes a JSON object containing
 + Response 200 (application/json)
 
             {
-                "id": 1,
-                "birth": "27/09/1976",
-                "name": "Luca Parmitano",
-                "nationality": "Italy",
-                "img": "",
-                "agency": "ESA",
+                "img_path":["https://aerospacecue.it/wp-content/uploads/2020/01/Samantha_Cristoforetti_official_portrait_in_an_EMU_spacesuit.jpg"],
+                "tags":["esa"],
+                "_id":"5fd7923523272736a0888a4d",
+                "birth":"1977-04-26T00:00:00.000Z",
+                "name":"Samantha Cristoforetti",
+                "nationality":"ITA",
+                "agency":"ESA",
+                "__v":0
             }
 
 ### Update a specific astronaut [PUT]
@@ -561,62 +562,38 @@ You may delete an existing astronaut using this action. It takes a JSON object c
             {
                 "error": "Invalid token, or not authorized"
             }
-
-## Latest astronauts [/api/v1/astronauts/latest/{size}]
-
-### Get the latest astronauts [GET]
-
-You may get the latest astronauts using this action. You need to specify the number of how many astronauts you want to be returned.
-
-+ Response 200 (application/json)
-
-            {
-                "astronauts": [
-                    {
-                        "id": 1,
-                        "birth": "27/09/1976",
-                        "name": "Luca Parmitano",
-                        "nationality": "Italy",
-                        "img": "",
-                        "agency": "ESA",
-                    }, {
-                        "id": 2,
-                        "birth": "19/09/1987",
-                        "name": "Kayla Barron",
-                        "nationality": "US",
-                        "img": "",
-                        "agency": "NASA",
-                    }
-                ]
-            }
             
 ## Telescopes [/api/v1/telescopes]
 
 ### List all telescopes [GET]
 
 + Response 200 (application/json)
+            
 
-            {
-                "telescopes": [
+                [
                     {
-                        "id": 1,
-                        "date": "24/04/1990",
-                        "name": "Hubble Space Telescope",
-                        "description": "The Hubble Space Telescope (often referred to as HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, well known both as a vital research tool and as a public relations boon for astronomy.",
-                        "img": [],
-                        "source": "https://www.nasa.gov/mission_pages/hubble/main/index.html",
-                        "tags": ["nasa", "esa"],
-                    }, {
-                        "id": 2,
-                        "date": "14/09/2013",
-                        "name": "Hisaki Satellite",
-                        "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
-                        "img": []
-                        "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
-                        "tags": ["jaxa"],
+                        "img_path":["https://upload.wikimedia.org/wikipedia/commons/f/fd/Chandra_artist_illustration.jpg"],
+                        "tags":["nasa","usa"],
+                        "_id":"5fd7a6e53a4e2e4921a68acd",
+                        "name":"Chandra X-ray Observatory",
+                        "name_lowcase":"chandra x-ray observatory",
+                        "description":"The Chandra X-ray Observatory (CXO), previously known as the Advanced X-ray Astrophysics Facility (AXAF), is a Flagship-class space telescope launched aboard the Space Shuttle Columbia during STS-93 by NASA on July 23, 1999. Chandra is sensitive to X-ray sources 100 times fainter than any previous X-ray telescope, enabled by the high angular resolution of its mirrors. Since the Earth's atmosphere absorbs the vast majority of X-rays, they are not detectable from Earth-based telescopes; therefore space-based telescopes are required to make these observations. Chandra is an Earth satellite in a 64-hour orbit, and its mission is ongoing as of 2020.",
+                        "launch_date":"1999-07-03T00:00:00.000Z",
+                        "source_url":"https://www.nasa.gov/",
+                        "__v":0
+                    },
+                    {
+                        "img_path":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/CGRO_s37-96-010.jpg/1024px-CGRO_s37-96-010.jpg"],
+                        "tags":["nasa","usa"],
+                        "_id":"5fd8a83dfcfbb0661856332e",
+                        "name":"Compton Gamma Ray Observatory",
+                        "name_lowcase":"compton gamma ray observatory",
+                        "description":"The Compton Gamma Ray Observatory (CGRO) was a space observatory detecting photons with energies from 20 keV to 30 GeV, in Earth orbit from 1991 to 2000. The observatory featured four main telescopes in one spacecraft, covering X-rays and gamma rays, including various specialized sub-instruments and detectors.",
+                        "launch_date":"1991-04-05T00:00:00.000Z",
+                        "source_url":"https://www.nasa.gov/",
+                        "__v":0
                     }
                 ]
-            }
 
 ### Add a new telescope [POST]
 
@@ -669,13 +646,15 @@ You may add a new telescope using this action. It takes a JSON object containing
 + Response 200 (application/json)
 
         {
-            "id": 2,
-            "date": "14/09/2013",
-            "name": "Hisaki Satellite",
-            "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
-            "img": []
-            "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
-            "tags": ["jaxa"],
+            "img_path":["https://upload.wikimedia.org/wikipedia/commons/f/fd/Chandra_artist_illustration.jpg"],
+            "tags":["nasa","usa"],
+            "_id":"5fd7a6e53a4e2e4921a68acd",
+            "name":"Chandra X-ray Observatory",
+            "name_lowcase":"chandra x-ray observatory",
+            "description":"The Chandra X-ray Observatory (CXO), previously known as the Advanced X-ray Astrophysics Facility (AXAF), is a Flagship-class space telescope launched aboard the Space Shuttle Columbia during STS-93 by NASA on July 23, 1999. Chandra is sensitive to X-ray sources 100 times fainter than any previous X-ray telescope, enabled by the high angular resolution of its mirrors. Since the Earth's atmosphere absorbs the vast majority of X-rays, they are not detectable from Earth-based telescopes; therefore space-based telescopes are required to make these observations. Chandra is an Earth satellite in a 64-hour orbit, and its mission is ongoing as of 2020.",
+            "launch_date":"1999-07-03T00:00:00.000Z",
+            "source_url":"https://www.nasa.gov/",
+            "__v":0
         }
 
 ### Update a specific telescope [PUT]
@@ -762,27 +741,30 @@ You may get the latest telescopes using this action. You need to specify the num
 
 + Response 200 (application/json)
 
-            {
-                "telescopes": [
-                    {
-                        "id": 1,
-                        "date": "24/04/1990",
-                        "name": "Hubble Space Telescope",
-                        "description": "The Hubble Space Telescope (often referred to as HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, well known both as a vital research tool and as a public relations boon for astronomy.",
-                        "img": [],
-                        "source": "https://www.nasa.gov/mission_pages/hubble/main/index.html",
-                        "tags": ["nasa", "esa"]
-                    }, {
-                        "id": 2,
-                        "date": "14/09/2013",
-                        "name": "Hisaki Satellite",
-                        "description": "Hisaki, also known as the Spectroscopic Planet Observatory for Recognition of Interaction of Atmosphere (SPRINT-A) is a Japanese ultraviolet astronomy satellite operated by the Japan Aerospace Exploration Agency (JAXA). The first mission of the Small Scientific Satellite programme,[2] it was launched in September 2013 on the maiden flight of the Epsilon rocket. ",
-                        "img": []
-                        "source": "https://www.jaxa.jp/projects/sat/sprint_a/",
-                        "tags": ["jaxa"]
-                    }
-                ]
-            }
+            [
+                {
+                    "img_path":["https://upload.wikimedia.org/wikipedia/commons/f/fd/Chandra_artist_illustration.jpg"],
+                    "tags":["nasa","usa"],
+                    "_id":"5fd7a6e53a4e2e4921a68acd",
+                    "name":"Chandra X-ray Observatory",
+                    "name_lowcase":"chandra x-ray observatory",
+                    "description":"The Chandra X-ray Observatory (CXO), previously known as the Advanced X-ray Astrophysics Facility (AXAF), is a Flagship-class space telescope launched aboard the Space Shuttle Columbia during STS-93 by NASA on July 23, 1999. Chandra is sensitive to X-ray sources 100 times fainter than any previous X-ray telescope, enabled by the high angular resolution of its mirrors. Since the Earth's atmosphere absorbs the vast majority of X-rays, they are not detectable from Earth-based telescopes; therefore space-based telescopes are required to make these observations. Chandra is an Earth satellite in a 64-hour orbit, and its mission is ongoing as of 2020.",
+                    "launch_date":"1999-07-03T00:00:00.000Z",
+                    "source_url":"https://www.nasa.gov/",
+                    "__v":0
+                },
+                {
+                    "img_path":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/CGRO_s37-96-010.jpg/1024px-CGRO_s37-96-010.jpg"],
+                    "tags":["nasa","usa"],
+                    "_id":"5fd8a83dfcfbb0661856332e",
+                    "name":"Compton Gamma Ray Observatory",
+                    "name_lowcase":"compton gamma ray observatory",
+                    "description":"The Compton Gamma Ray Observatory (CGRO) was a space observatory detecting photons with energies from 20 keV to 30 GeV, in Earth orbit from 1991 to 2000. The observatory featured four main telescopes in one spacecraft, covering X-rays and gamma rays, including various specialized sub-instruments and detectors.",
+                    "launch_date":"1991-04-05T00:00:00.000Z",
+                    "source_url":"https://www.nasa.gov/",
+                    "__v":0
+                }
+            ]
             
 ## Exoplanets [/api/v1/exoplanets]
 
@@ -790,27 +772,31 @@ You may get the latest telescopes using this action. You need to specify the num
 
 + Response 200 (application/json)
 
+        [
             {
-                "exoplanets": [
-                    {
-                        "id": 1,
-                        "date": "21/10/2013",
-                        "name": "WASP-76b",
-                        "description": "WASP-76b is a hot Jupiter exoplanet discovered during 2013 that can be found in the constellation Pisces. It orbits a F-type star BD+01 316 (WASP-76) and has a size 0.92 that of Jupiter's mass.",
-                        "img": "",
-                        "source": "https://en.wikipedia.org/wiki/WASP-76b",
-                        "tags": ["nasa"]
-                    }, {
-                        "id": 2,
-                        "date": "15/04/2020",
-                        "name": "Kepler-1649c",
-                        "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
-                        "img": []
-                        "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
-                        "tags": ["kepler"]
-                    }
-                ]
+                "tags":["nasa"],
+                "_id":"5fd8a78752a46b07f76c031d",
+                "discover_date":"1996-10-22T00:00:00.000Z",
+                "name":"16 Cygni Bb",
+                "name_lowcase":"16 cygni bb",
+                "description":"16 Cygni Bb or HD 186427 b is an extrasolar planet approximately 69 light-years away in the constellation of Cygnus.",
+                "img_path":"https://upload.wikimedia.org/wikipedia/commons/6/65/16_Cygni_B_b.png",
+                "source_url":"www.nasa.gov",
+                "__v":0
+            },
+            {
+                "tags":["nasa"],
+                "_id":"5fd8aa9d6da89909aac9d600",
+                "discover_date":"1996-01-17T23:00:00.000Z",
+                "name":"70 Virginis b",
+                "name_lowcase":"70 virginis b",
+                "description":"70 Virginis b (abbreviated 70 Vir b) is an extrasolar planet approximately 60 light-years away in the constellation of Virgo.",
+                "img_path":"https://upload.wikimedia.org/wikipedia/commons/c/c0/70_virginis_b_%28Celestia%29.jpg",
+                "source_url":"www.nasa.gov",
+                "__v":0
             }
+                    
+        ]
 
 ### Add a new exoplanet [POST]
 
@@ -864,13 +850,15 @@ You may add a newly discovered exoplanet using this action. It takes a JSON obje
 + Response 200 (application/json)
 
         {
-            "id": 2,
-            "date": "15/04/2020",
-            "name": "Kepler-1649c",
-            "description": "Kepler-1649c is an exoplanet orbiting the M-type main sequence red dwarf star Kepler-1649, about 300 light-years from Earth, nằm trong chòm sao Thiên Nga.",
-            "img": []
-            "source": "https://en.wikipedia.org/wiki/Kepler-1649c",
-            "tags": ["kepler"],
+            "tags":["nasa"],
+            "_id":"5fd8aa9d6da89909aac9d600",
+            "discover_date":"1996-01-17T23:00:00.000Z",
+            "name":"70 Virginis b",
+            "name_lowcase":"70 virginis b",
+            "description":"70 Virginis b (abbreviated 70 Vir b) is an extrasolar planet approximately 60 light-years away in the constellation of Virgo.",
+            "img_path":"https://upload.wikimedia.org/wikipedia/commons/c/c0/70_virginis_b_%28Celestia%29.jpg",
+            "source_url":"www.nasa.gov",
+            "__v":0
         }
 
 ### Update a specific exoplanet [PUT]

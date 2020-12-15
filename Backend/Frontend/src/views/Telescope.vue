@@ -13,7 +13,7 @@
     <div class="container">
         <pre class="newsContent">{{telescope.description}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Launch Date: {{telescope.launch_date}} </p>
+            <p class="footerText">Launch Date: {{telescope.launch_date != undefined ? telescope.launch_date.slice(0,10) : telescope.launch_date}} </p>
             <p class="footerText">Source: {{telescope.source_url}}</p>
         </div>
     </div>

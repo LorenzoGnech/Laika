@@ -367,6 +367,10 @@ h1+p, p+p {
   padding-top: 0px !important;
 }
 
+.newsFooter{
+  width: 100%;
+}
+
 .container {
   margin-top: 4vh;
   padding: 40px 80px;

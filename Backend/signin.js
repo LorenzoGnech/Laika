@@ -9,7 +9,7 @@ router.post('', async (req, res) =>
 {
     let newTempUser = {
         "email": req.body.email,
-        "password": req.body.password,
+        "password": req.body.password
     };
 
     if (!isUserCorrect(newTempUser))
@@ -29,26 +29,23 @@ router.post('', async (req, res) =>
             {
                 // if user is found and password is right create a token
                 var token = jwt.sign(
-                    { email: user.email },
+                    { email: user.email, is_admin: user.is_admin },
                     process.env.ACCESS_TOKEN_SECRET,
                     { expiresIn: process.env.ACCESS_TOKEN_LIFE }
                 );
                 console.log(token);
             
-            // if user is found and password is right create a token
-            var token = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_LIFE });
-            console.log(token);
-        
-            res.json({
-                success: true,
-                email: user.email,
-                message: 'Enjoy your token!',
-                token: token,
-                userId: user._id
-            });
+                res.json({
+                    success: true,
+                    email: user.email,
+                    message: 'Enjoy your token!',
+                    token: token,
+                    userId: user._id
+                });
+            }
         }
-        } else{
-
+        else
+        {
             res.status(400).send({ error: 'User not registered' });
         }
     }

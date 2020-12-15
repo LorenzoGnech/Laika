@@ -9,7 +9,9 @@ router.post('', async (req, res) =>
     let newTempUser = {
         "email": req.body.email,
         "password": req.body.password,
+        "is_admin": false
     };
+
     if (!isUserCorrect(newTempUser))
     {
         res.status(400).send({ error: 'Object sent is not a user' });
@@ -22,6 +24,7 @@ router.post('', async (req, res) =>
                 _id: mongoose.Types.ObjectId(),
                 email: newTempUser.email,
                 password: newTempUser.password,
+                is_admin: false
             });
             newUser.save()
             .then(result => {
@@ -41,7 +44,6 @@ router.post('', async (req, res) =>
         } else{
             res.status(400).send({ error: 'User already registered' });
         }
-
     }
 });
 

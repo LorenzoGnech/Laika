@@ -19,7 +19,7 @@
     <div class="container">
         <pre class="newsContent">{{news.content}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Date: {{news.date}} </p>
+            <p class="footerText">Date: {{news.date != undefined ? news.date.slice(0,10) : news.date}} </p>
             <p class="footerText">Source: {{news.source_url}}</p>
         </div>
     </div>

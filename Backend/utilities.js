@@ -41,12 +41,13 @@ exports.isExoplanetCorrect = function (exoplanet)
 exports.isMissionCorrect = function (mission)
 {
     const {
-        date, title, description, img_path, source_url, tags
+        date, title, title_lowcase, description, img_path, source_url, tags
     } = mission;
 
     if ( 
         typeof date !== 'string' ||
         typeof title !== 'string' ||
+        typeof title_lowcase  !== 'string' ||
         typeof description !== 'string' ||
         (!Array.isArray(img_path) || img_path.some(el => typeof el !== 'string')) ||
         typeof source_url !== 'string' ||
@@ -114,7 +115,7 @@ exports.isUserCorrect = function (user)
 exports.dbErrorHandler = function (error)
 {
     let errorMsg, errorCode;
-    console.log(error);
+    //console.log(error);
 
     if (error.name === 'CastError')
     {

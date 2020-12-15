@@ -89,14 +89,28 @@ router.get('/latest/:size', async (req, res) =>
 router.post('', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
+    var tags_original = [req.body.tags];
+    var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+
+    tags_lower = [tags_lower[1].split(",")][0];
+    array_img = req.body.img_path;
+    array_img = [String(array_img).split(",")][0];
+
+    name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
 
     let newTempTelescope = {
         "name": req.body.name,
+        "name_lowcase": lowlist,
         "description": req.body.description,
         "launch_date": req.body.launch_date,
-        "img_path": req.body.img_path,
+        "img_path": array_img,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isTelescopeCorrect(newTempTelescope))
@@ -108,6 +122,7 @@ router.post('', async (req, res) =>
         let newTelescope = new Telescopes({
             _id: mongoose.Types.ObjectId(),
             name: newTempTelescope.name,
+            name_lowcase: newTempTelescope.name_lowcase,
             description: newTempTelescope.description,
             launch_date: new Date(Date.parse(newTempTelescope.launch_date)).toISOString(),
             img_path: newTempTelescope.img_path,
@@ -160,15 +175,29 @@ router.delete('/:id', async (req, res) =>
 router.put('/:id', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
+    var tags_original = [req.body.tags];
+    var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+
+    tags_lower = [tags_lower[1].split(",")][0];
+    array_img = req.body.img_path;
+    array_img = [String(array_img).split(",")][0];
+
+    name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
 
     let id = req.params.id;
     let valuesToUpdate = {
         "name": req.body.name,
+        "name_lowcase": lowlist,
         "description": req.body.description,
-        "launch_date": req.body.launch_date,
-        "img_path": req.body.img_path,
+        "launch_date": new Date(Date.parse(req.body.launch_date)).toISOString(),
+        "img_path": array_img,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isTelescopeCorrect(valuesToUpdate))

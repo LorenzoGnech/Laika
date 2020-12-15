@@ -75,6 +75,7 @@ test('User is correct', () =>
     let user = {
         "email": "newborn",
         "password": "Mario Rossi",
+        "is_admin": true
     }
 
     expect(util.isUserCorrect(user)).toBeTruthy();
