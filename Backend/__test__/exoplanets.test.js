@@ -8,6 +8,7 @@ let server, agent, connection;
 
 beforeAll( async () =>
 {
+    jest.setTimout(12000);
     jest.unmock('mongoose');
     connection = await mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
     console.log('Database connected!');
@@ -21,6 +22,7 @@ afterAll( () =>
 
 beforeEach( (done) =>
 {
+    console.log("Mi accendo!");
     server = app.listen(4000, (err) =>
     {
         if (err) return done(err);
@@ -150,7 +152,7 @@ describe('Unsafe methods for exoplanets', () =>
             "description": "Ita",
             "img_path": "file.jpg",
             "source_url": "ESA",
-            "tags": ["NICE", "boYYY"]
+            "tags": "nice,boy"
         }
 
         test('PUT /api/v1/exoplanets but the exoplanet does not exists', async () =>

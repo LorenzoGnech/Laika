@@ -6,9 +6,9 @@ test('Astronaut is correct', () =>
         "birth": "1967-03-12T00:00:00.000Z",
         "name": "Mario Rossi",
         "nationality": "Ita",
-        "img_path": ["file.jpg"],
+        "img_path": "file.jpg",
         "agency": "ESA",
-        "tags": ["nice", "boy"]
+        "tags": "nice,boy"
     }
 
     expect(util.isAstronautCorrect(astronaut)).toBeTruthy();
@@ -20,9 +20,9 @@ test('Mission is correct', () =>
         "date": "1967-03-12T00:00:00.000Z",
         "title": "Mario Rossi",
         "description": "Ita",
-        "img_path": ["file.jpg"],
+        "img_path": "file.jpg",
         "source_url": "ESA",
-        "tags": ["nice", "boy"]
+        "tags": "nice,boy"
     }
 
     expect(util.isMissionCorrect(mission)).toBeTruthy();
@@ -36,7 +36,7 @@ test('Exoplanet is correct', () =>
         "description": "Ita",
         "img_path": "file.jpg",
         "source_url": "ESA",
-        "tags": ["nice", "boy"]
+        "tags": "nice,boy"
     }
 
     expect(util.isExoplanetCorrect(exoplanet)).toBeTruthy();
@@ -50,7 +50,7 @@ test('News is correct', () =>
         "content": "Ita",
         "img_path": "file.jpg",
         "source_url": "ESA",
-        "tags": ["nice", "boy"]
+        "tags": "nice,boy"
     }
 
     expect(util.isNewsCorrect(news)).toBeTruthy();
@@ -62,9 +62,9 @@ test('Telescope is correct', () =>
         "launch_date": "1967-03-12T00:00:00.000Z",
         "name": "Mario Rossi",
         "description": "Ita",
-        "img_path": ["file.jpg"],
+        "img_path": "file.jpg",
         "source_url": "ESA",
-        "tags": ["nice", "boy"]
+        "tags": "nice,boy"
     }
 
     expect(util.isTelescopeCorrect(telescope)).toBeTruthy();
@@ -74,8 +74,7 @@ test('User is correct', () =>
 {
     let user = {
         "email": "newborn",
-        "password": "Mario Rossi",
-        "is_admin": true
+        "password": "Mario Rossi"
     }
 
     expect(util.isUserCorrect(user)).toBeTruthy();

@@ -8,6 +8,7 @@ let server, agent, connection;
 
 beforeAll( async () =>
 {
+    jest.setTimout(12000);
     jest.unmock('mongoose');
     connection = await mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
     console.log('Database connected!');
@@ -113,11 +114,10 @@ describe('Unsafe methods for missions', () =>
             "date": "1967-03-12T00:00:00.000Z",
             "title": "Mario Rossi",
             "description": "Ita",
-            "img_path": ["file.jpg"],
+            "img_path": "file.jpg",
             "source_url": "ESA",
-            "tags": ["nice", "boy"]
+            "tags": "nice,boy"
         }
-    
 
         test('PUT /api/v1/missions but the mission does not exists', async () =>
         {

@@ -8,6 +8,7 @@ let server, agent, connection;
 
 beforeAll( async () =>
 {
+    jest.setTimout(12000);
     jest.unmock('mongoose');
     connection = await mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
     console.log('Database connected!');
@@ -141,16 +142,16 @@ describe('Unsafe methods for news', () =>
                 .send({ title: "News Testing PUT", errori: "di scrittura" });
 
             expect(response.status).toBe(400);
-            expect(response.body).toStrictEqual({ error: 'Object sent is not an news.' });
+            expect(response.body).toStrictEqual({ error: 'Object sent is not a news.' });
         });
 
         let news = {
-            "birth": "2020-03-12T00:00:00.000Z",
-            "title": "News Testing",
-            "content": "Content Testing",
-            "img_path": ["file.jpg"],
-            "source_url": "www.nasa.gov",
-            "tags": ["nasa", "esa", "spacex"]
+            "date": "1967-03-12T00:00:00.000Z",
+            "title": "Mario Rossi",
+            "content": "Ita",
+            "img_path": "file.jpg",
+            "source_url": "ESA",
+            "tags": "nice,boy"
         }
 
         test('PUT /api/v1/news but the news does not exists', async () =>

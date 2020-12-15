@@ -176,7 +176,7 @@ router.put('/:id', async (req, res) =>
         "name": req.body.name,
         //"name_lowcase": lowlist,
         "description": req.body.description,
-        "launch_date": new Date(Date.parse(req.body.launch_date)).toISOString(),
+        "launch_date": req.body.launch_date,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
         "tags": req.body.tags
