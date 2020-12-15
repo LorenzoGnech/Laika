@@ -202,6 +202,7 @@ router.put('/:id', async (req, res) =>
 
         valuesToUpdate.launch_date = new Date(Date.parse(req.body.launch_date)).toISOString();
         valuesToUpdate.name_lowcase = lowlist;
+        valuesToUpdate.tags = tags_lower;
         valuesToUpdate.img_path = img;
     
         Telescopes.updateOne({_id: id}, {$set: valuesToUpdate})
