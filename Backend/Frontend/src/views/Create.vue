@@ -69,7 +69,7 @@
     <div class="sticky" v-sticky="true" sticky-offset="{top: 0, right: 0}" sticky-side="both" on-stick="onStick" sticky-z-index="20">
               <NavMenu/>
           </div>
-    <h1 id="scritta">YOU DON'T HAVE THE RIGHT PRIVILEGES</h1>
+    <h1 id="scritta" style="color:white;">YOU DON'T HAVE THE RIGHT PRIVILEGES</h1>
   </div>
 </template>
 
@@ -196,17 +196,20 @@ export default {
       params.append('token', this.$store.getters.getToken);
       let url = "https://laikapp.herokuapp.com/api/v1/" + richiesta.tipo  + "/" + richiesta.id;
       axios.delete(url)
-        .catch(err => console.warn(err));;
+        .then(r => location.reload())
+        .catch(err => console.warn(err));
     },
     put(richiesta){
       var params = this.parser(richiesta.tipo, richiesta)
       axios.put('https://laikapp.herokuapp.com/api/v1/' + richiesta.tipo  + "/" + richiesta.id, params)
-        .catch(err => console.warn(err));;
+        .then(r => location.reload())
+        .catch(err => console.warn(err));
     },
     post(richiesta){
       var params = this.parser(richiesta.tipo, richiesta)
       axios.post('https://laikapp.herokuapp.com/api/v1/' + richiesta.tipo, params)
-        .catch(err => console.warn(err));;
+        .then(r => location.reload())
+        .catch(err => console.warn(err));
     },
     submit(e){
       var _id = 0
