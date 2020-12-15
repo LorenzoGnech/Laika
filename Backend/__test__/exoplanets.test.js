@@ -18,7 +18,6 @@ afterAll( () =>
 {
     mongoose.connection.close(true);
     console.log('Database connection closed');
-    if (server) server.close(done);
 });
 
 beforeEach( (done) =>
