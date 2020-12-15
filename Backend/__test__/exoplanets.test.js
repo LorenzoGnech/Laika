@@ -18,15 +18,19 @@ afterAll( () =>
 {
     mongoose.connection.close(true);
     console.log('Database connection closed');
+    if (server) server.close(done);
 });
 
 beforeEach( (done) =>
 {
-    console.log("Mi accendo!");
-    server = app.listen(4000, (err) =>
+    server = app.listen(8080, (err) =>
     {
-        if (err) return done(err);
-        
+        if (err) {
+            console.log("PERCHEEEE");
+            return done(err);  
+        } 
+        console.log("WHYYY");
+
         agent = request.agent(server);
         done();
     });

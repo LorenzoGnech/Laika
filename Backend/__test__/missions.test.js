@@ -24,7 +24,13 @@ beforeEach( (done) =>
 {
     server = app.listen(4000, (err) =>
     {
-        if (err) return done(err);
+        if (err) {
+            console.log("PERCHEEEE");
+            return done(err);  
+        } 
+        
+
+        console.log("WHYYY");
         
         agent = request.agent(server);
         done();
