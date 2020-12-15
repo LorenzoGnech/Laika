@@ -4,7 +4,7 @@ const astronautsSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     birth: Date,
     name: String,
-    name_lowcase: String,
+    name_lowcase: [String],
     nationality: String,
     img_path: [String],
     agency: String,

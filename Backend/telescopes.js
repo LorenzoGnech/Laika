@@ -100,8 +100,12 @@ router.post('', async (req, res) =>
     array_img = req.body.img_path;
     array_img = [String(array_img).split(",")][0];
 
+    name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
+
     let newTempTelescope = {
         "name": req.body.name,
+        "name_lowcase": lowlist,
         "description": req.body.description,
         "launch_date": req.body.launch_date,
         "img_path": array_img,
@@ -118,7 +122,7 @@ router.post('', async (req, res) =>
         let newTelescope = new Telescopes({
             _id: mongoose.Types.ObjectId(),
             name: newTempTelescope.name,
-            name_lowcase: newTempTelescope.name.toLowerCase(),
+            name_lowcase: newTempTelescope.name_lowcase,
             description: newTempTelescope.description,
             launch_date: new Date(Date.parse(newTempTelescope.launch_date)).toISOString(),
             img_path: newTempTelescope.img_path,
@@ -183,11 +187,12 @@ router.put('/:id', async (req, res) =>
     array_img = [String(array_img).split(",")][0];
 
     name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
 
     let id = req.params.id;
     let valuesToUpdate = {
         "name": req.body.name,
-        "name_lowcase": name_lowcase,
+        "name_lowcase": lowlist,
         "description": req.body.description,
         "launch_date": new Date(Date.parse(req.body.launch_date)).toISOString(),
         "img_path": array_img,

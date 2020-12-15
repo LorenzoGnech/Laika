@@ -102,11 +102,12 @@ router.post('', async (req, res) =>
     array_img = [String(array_img).split(",")][0];
 
     name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
 
     let newTempAstronaut = {
         "birth": req.body.birth,
         "name": req.body.name,
-        "name_lowcase": name_lowcase,
+        "name_lowcase": lowlist,
         "nationality": req.body.nationality,
         "img_path": array_img,
         "agency": req.body.agency,
@@ -123,7 +124,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             birth: new Date(Date.parse(newTempAstronaut.birth)).toISOString(),
             name: newTempAstronaut.name,
-            name_lowcase: newTempAstronaut.name.toLowerCase(),
+            name_lowcase: newTempAstronaut.name_lowcase,
             nationality: newTempAstronaut.nationality,
             img_path: newTempAstronaut.img_path,
             agency: newTempAstronaut.agency,
@@ -188,13 +189,15 @@ router.put('/:id', async (req, res) =>
     tags_lower = [tags_lower[1].split(",")][0];
     array_img = req.body.img_path;
     array_img = [String(array_img).split(",")][0];
+
     name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
 
 
     let valuesToUpdate = {
         "birth": req.body.birth,
         "name": req.body.name,
-        "name_lowcase": name_lowcase,
+        "name_lowcase": lowlist,
         "nationality": req.body.nationality,
         "img_path": array_img,
         "agency": req.body.agency,

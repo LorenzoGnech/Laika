@@ -99,9 +99,13 @@ router.post('', async (req, res) =>
 
     tags_lower = [tags_lower[1].split(",")][0];
 
+    name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
+
     let newTempExoplanet = {
         "discover_date": req.body.discover_date,
         "name": req.body.name,
+        "name_lowcase": lowlist,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
@@ -118,7 +122,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             discover_date: new Date(Date.parse(newTempExoplanet.discover_date)).toISOString(),
             name: newTempExoplanet.name,
-            name_lowcase: newTempExoplanet.name.toLowerCase(),
+            name_lowcase: newTempExoplanet.name_lowcase,
             description: newTempExoplanet.description,
             img_path: newTempExoplanet.img_path,
             source_url: newTempExoplanet.source_url,
@@ -178,11 +182,14 @@ router.put('/:id', async (req, res) =>
         tags_lower.push(tags_original[i].toLowerCase());
     }
     
+    name_lowcase = req.body.name.toLowerCase();
+    var lowlist = name_lowcase.split(" ");
+
     let id = req.params.id;
     let valuesToUpdate = {
         "discover_date": req.body.discover_date,
         "name": req.body.name,
-        "name_lowcase": req.body.name.toLowerCase(),
+        "name_lowcase": lowlist,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
