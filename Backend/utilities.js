@@ -47,6 +47,7 @@ exports.isMissionCorrect = function (mission)
     if ( 
         typeof date !== 'string' ||
         typeof title !== 'string' ||
+        typeof title_lowcase  !== 'string' ||
         typeof description !== 'string' ||
         typeof img_path !== 'string' ||
         typeof source_url !== 'string' ||

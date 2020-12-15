@@ -2,6 +2,7 @@ const {isUserCorrect, dbErrorHandler} = require('./utilities');
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require("./models/user");
+const { FALSE } = require('node-sass');
 const router = express.Router();
 
 router.post('', async (req, res) =>
@@ -9,6 +10,7 @@ router.post('', async (req, res) =>
     let newTempUser = {
         "email": req.body.email,
         "password": req.body.password,
+        "is_admin": false,
     };
     if (!isUserCorrect(newTempUser))
     {
@@ -22,6 +24,7 @@ router.post('', async (req, res) =>
                 _id: mongoose.Types.ObjectId(),
                 email: newTempUser.email,
                 password: newTempUser.password,
+                is_admin: false
             });
             newUser.save()
             .then(result => {
