@@ -150,7 +150,7 @@ describe('Unsafe methods for exoplanets', () =>
             "description": "Ita",
             "img_path": "file.jpg",
             "source_url": "ESA",
-            "tags": ["nice", "boy"]
+            "tags": ["NICE", "boYYY"]
         }
 
         test('PUT /api/v1/exoplanets but the exoplanet does not exists', async () =>

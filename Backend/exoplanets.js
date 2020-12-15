@@ -88,28 +88,14 @@ router.get('/latest/:size', async (req, res) =>
 // POST a new exoplanet. Requires authentication.
 router.post('', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
-    var tags_original = [req.body.tags];
-    var tags_lower = [];
-    tags_lower = [String(tags_original).split(",")];
-    for (i in tags_original){
-        tags_lower.push(tags_original[i].toLowerCase());
-    }
-
-    tags_lower = [tags_lower[1].split(",")][0];
-
-    name_lowcase = req.body.name.toLowerCase();
-    var lowlist = name_lowcase.split(" ");
-
     let newTempExoplanet = {
         "discover_date": req.body.discover_date,
         "name": req.body.name,
-        "name_lowcase": lowlist,
+        //"name_lowcase": lowlist, // Non c'è bisogno di verificarlo, perché dipende da name.
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": tags_lower
+        "tags": req.body.tags
     };
 
     if (!isExoplanetCorrect(newTempExoplanet))
@@ -118,15 +104,27 @@ router.post('', async (req, res) =>
     }
     else
     {
+        var tags_original = req.body.tags;
+        var tags_lower = [];
+
+        for (i in tags_original){
+            tags_lower.push(tags_original[i].toLowerCase());
+        }
+    
+        //tags_lower = [tags_lower[1].split(",")][0];
+    
+        name_lowcase = req.body.name.toLowerCase();
+        var lowlist = name_lowcase.split(" ");
+
         var newExoplanet = new Exoplanets({
             _id: mongoose.Types.ObjectId(),
             discover_date: new Date(Date.parse(newTempExoplanet.discover_date)).toISOString(),
             name: newTempExoplanet.name,
-            name_lowcase: newTempExoplanet.name_lowcase,
+            name_lowcase: lowlist,
             description: newTempExoplanet.description,
             img_path: newTempExoplanet.img_path,
             source_url: newTempExoplanet.source_url,
-            tags: newTempExoplanet.tags
+            tags: tags_lower
         });
         newExoplanet.save()
 
@@ -150,8 +148,6 @@ router.post('', async (req, res) =>
 // DELETE an already present exoplanet. Requires authentication.
 router.delete('/:id', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
     let id = req.params.id;
     Exoplanets.deleteOne({_id: id})
     .exec()
@@ -173,36 +169,36 @@ router.delete('/:id', async (req, res) =>
 // PUT an updated version of an already present exoplanet. Requires authentication.
 router.put('/:id', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
-    var tags_original = [req.body.tags];
-    var tags_lower = [];
-    tags_lower = [String(tags_original).split(",")];
-    for (i in tags_original){
-        tags_lower.push(tags_original[i].toLowerCase());
-    }
-    
-    name_lowcase = req.body.name.toLowerCase();
-    var lowlist = name_lowcase.split(" ");
-
     let id = req.params.id;
     let valuesToUpdate = {
         "discover_date": req.body.discover_date,
         "name": req.body.name,
-        "name_lowcase": lowlist,
+        //"name_lowcase": lowlist, // Non c'è bisogno di verificarlo, perché dipende da name.
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": tags_lower
+        "tags": req.body.tags
     };
-
+    
     if (!isExoplanetCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not an exoplanet.' });
     }
     else
     {
+        var tags_original = req.body.tags;
+        var tags_lower = [];
+
+        for (i in tags_original){
+            tags_lower.push(tags_original[i].toLowerCase());
+        }
+        
+        name_lowcase = req.body.name.toLowerCase();
+        var lowlist = name_lowcase.split(" ");
+
         valuesToUpdate.discover_date = new Date(Date.parse(req.body.discover_date)).toISOString();
+        valuesToUpdate.tags = tags_lower;
+        valuesToUpdate.name_lowcase = lowlist;
         
         Exoplanets.updateOne({_id: id}, {$set: valuesToUpdate})
         .exec()

@@ -91,29 +91,14 @@ router.get('/latest/:size', async (req, res) =>
 // POST a new mission. Requires authentication.
 router.post('', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
-    var tags_original = [req.body.tags];
-    var tags_lower = [];
-    tags_lower = [String(tags_original).split(",")];
-    for (i in tags_original){
-        tags_lower.push(tags_original[i].toLowerCase());
-    }
-
-    tags_lower = [tags_lower[1].split(",")][0];
-    
-    title_lowcase = req.body.title.toLowerCase();
-    var lowlist = title_lowcase.split(" ");
-
-
     let newTempMission = {
         "date": new Date(Date.now(req.body.date)).toISOString(),
         "title": req.body.title,
-        "title_lowcase": lowlist,
+        //"title_lowcase": lowlist,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": tags_lower
+        "tags": req.body.tags
     };
     
     if (!isMissionCorrect(newTempMission))
@@ -122,15 +107,25 @@ router.post('', async (req, res) =>
     }
     else
     {
+        var tags_original = req.body.tags;
+        var tags_lower = [];
+        
+        for (i in tags_original){
+            tags_lower.push(tags_original[i].toLowerCase());
+        }
+
+        let title_lowcase = req.body.title.toLowerCase();
+        var lowlist = title_lowcase.split(" ");
+
         let newMission = new Missions({
             _id: mongoose.Types.ObjectId(),
             date: new Date(Date.now(newTempMission.date)).toISOString(),
             title: newTempMission.title,
-            title_lowcase: newTempMission.title_lowcase,
+            title_lowcase: lowlist,
             description: newTempMission.description,
             img_path: newTempMission.img_path,
             source_url: newTempMission.source_url,
-            tags: newTempMission.tags
+            tags: tags_lower
         });
         newMission.save()
 
@@ -152,15 +147,9 @@ router.post('', async (req, res) =>
 });
 
 
-// POST 
-
-
-
 // DELETE an already present mission. Requires authentication.
 router.delete('/:id', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
     let id = req.params.id;
     Missions.deleteOne({_id: id})
     .exec()
@@ -193,33 +182,16 @@ router.delete('/:id', async (req, res) =>
 // PUT an updated version of an already present mission. Requires authentication.
 router.put('/:id', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
     let id = req.params.id;
-
-    var tags_original = [req.body.tags];
-    var tags_lower = [];
-    tags_lower = [String(tags_original).split(",")];
-    for (i in tags_original){
-        tags_lower.push(tags_original[i].toLowerCase());
-    }
-
-    tags_lower = [tags_lower[1].split(",")][0];
-    
-    title_lowcase = req.body.title.toLowerCase();
-    var lowlist = title_lowcase.split(" ");
-
     let valuesToUpdate = {
         "date": new Date(Date.now(req.body.date)).toISOString(),
         "title": req.body.title,
-        "title_lowcase": lowlist,
+        //"title_lowcase": lowlist,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": tags_lower
+        "tags": req.body.tags
     };
-
-    console.log(valuesToUpdate);
 
     if (!isMissionCorrect(valuesToUpdate))
     {
@@ -227,7 +199,19 @@ router.put('/:id', async (req, res) =>
     }
     else
     {
+        var tags_original = req.body.tags;
+        var tags_lower = [];
+        
+        for (i in tags_original){
+            tags_lower.push(tags_original[i].toLowerCase());
+        }
+
+        let title_lowcase = req.body.title.toLowerCase();
+        var lowlist = title_lowcase.split(" ");
+
         valuesToUpdate.date = new Date(Date.parse(req.body.date)).toISOString();
+        valuesToUpdate.title_lowcase = lowlist;
+        valuesToUpdate.tags = tags_lower;
     
         Missions.updateOne({_id: id}, {$set: valuesToUpdate})
         .exec()

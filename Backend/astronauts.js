@@ -89,46 +89,45 @@ router.get('/latest/:size', async (req, res) =>
 // POST a new astronaut. Requires authentication.
 router.post('', async (req, res) =>
 { 
-
-    var tags_original = [req.body.tags];
-    var tags_lower = [];
-    tags_lower = [String(tags_original).split(",")];
-    for (i in tags_original){
-        tags_lower.push(tags_original[i].toLowerCase());
-    }
-
-    tags_lower = [tags_lower[1].split(",")][0];
-    array_img = req.body.img_path;
-    array_img = [String(array_img).split(",")][0];
-
-    name_lowcase = req.body.name.toLowerCase();
-    var lowlist = name_lowcase.split(" ");
-
     let newTempAstronaut = {
         "birth": req.body.birth,
         "name": req.body.name,
-        "name_lowcase": lowlist,
+        //"name_lowcase": lowlist,
         "nationality": req.body.nationality,
-        "img_path": array_img,
+        "img_path": req.body.img_path,
         "agency": req.body.agency,
-        "tags": tags_lower
+        "tags": req.body.tags
     };
-
+    
     if (!isAstronautCorrect(newTempAstronaut))
     {
         res.status(400).send({ error: 'Object sent is not an astronaut.' });
     }
     else
     {
+        var tags_original = req.body.tags;
+        var tags_lower = [];
+        
+        for (i in tags_original){
+            tags_lower.push(tags_original[i].toLowerCase());
+        }
+
+        let name_lowcase = req.body.name.toLowerCase();
+        var lowlist = name_lowcase.split(" ");
+
+        //tags_lower = [tags_lower[1].split(",")][0];
+        //array_img = req.body.img_path;
+        //array_img = [String(array_img).split(",")][0];
+        
         let newAstronaut = new Astronauts({
             _id: mongoose.Types.ObjectId(),
             birth: new Date(Date.parse(newTempAstronaut.birth)).toISOString(),
             name: newTempAstronaut.name,
-            name_lowcase: newTempAstronaut.name_lowcase,
+            name_lowcase: lowlist,
             nationality: newTempAstronaut.nationality,
             img_path: newTempAstronaut.img_path,
             agency: newTempAstronaut.agency,
-            tags: newTempAstronaut.tags
+            tags: tags_lower
         });
         newAstronaut.save()
 
@@ -152,8 +151,6 @@ router.post('', async (req, res) =>
 // DELETE an already present astronaut. Requires authentication.
 router.delete('/:id', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
     let id = req.params.id;
     Astronauts.deleteOne({_id: id})
     .exec()
@@ -175,42 +172,36 @@ router.delete('/:id', async (req, res) =>
 // PUT an updated version of an already present astronaut. Requires authentication.
 router.put('/:id', async (req, res) =>
 {
-    // TO IMPLEMENT AUTH
-
     let id = req.params.id;
-
-    var tags_original = [req.body.tags];
-    var tags_lower = [];
-    tags_lower = [String(tags_original).split(",")];
-    for (i in tags_original){
-        tags_lower.push(tags_original[i].toLowerCase());
-    }
-
-    tags_lower = [tags_lower[1].split(",")][0];
-    array_img = req.body.img_path;
-    array_img = [String(array_img).split(",")][0];
-
-    name_lowcase = req.body.name.toLowerCase();
-    var lowlist = name_lowcase.split(" ");
-
-
     let valuesToUpdate = {
         "birth": req.body.birth,
         "name": req.body.name,
-        "name_lowcase": lowlist,
+        //"name_lowcase": lowlist,
         "nationality": req.body.nationality,
-        "img_path": array_img,
+        "img_path": req.body.img_path,
         "agency": req.body.agency,
-        "tags": tags_lower
+        "tags": req.body.tags
     };
-
+    
     if (!isAstronautCorrect(valuesToUpdate))
     {
         res.status(400).send({ error: 'Object sent is not an astronaut.' });
     }
     else
     {
+        var tags_original = req.body.tags;
+        var tags_lower = [];
+        
+        for (i in tags_original){
+            tags_lower.push(tags_original[i].toLowerCase());
+        }
+
+        let name_lowcase = req.body.name.toLowerCase();
+        var lowlist = name_lowcase.split(" ");
+
         valuesToUpdate.birth = new Date(Date.parse(req.body.birth)).toISOString();
+        valuesToUpdate.name_lowcase = lowlist;
+        valuesToUpdate.tags = tags_lower;
     
         Astronauts.updateOne({_id: id}, {$set: valuesToUpdate})
         .exec()
