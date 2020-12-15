@@ -104,7 +104,7 @@ router.post('', async (req, res) =>
     }
     else
     {
-        var tags_original = req.body.tags;
+        var tags_original = req.body.tags.split(",");
         var tags_lower = [];
 
         for (i in tags_original){

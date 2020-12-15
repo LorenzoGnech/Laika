@@ -189,12 +189,10 @@ export default {
           params.append('tags', obj.tags);
           break;
       }
-      console.log(obj);
       return params;
     },
     delete(richiesta){
       let params = new URLSearchParams();
-      console.log("richiesta.id")
       params.append('token', this.$store.getters.getToken);
       let url = "https://laikapp.herokuapp.com/api/v1/" + richiesta.tipo  + "/" + richiesta.id;
       axios.delete(url)
@@ -213,7 +211,11 @@ export default {
     submit(e){
       var _id = 0
       if (document.getElementById("method").value != "delete"){
-        _id = 0;
+        if (document.getElementById("method").value == "put"){
+          _id = e.target.elements.id.value;
+        } else {
+          _id = 0;
+        }
         var richiesta = {
           tipo: e.target.elements.type.value,
           id: _id,

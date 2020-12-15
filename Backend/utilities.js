@@ -10,9 +10,9 @@ exports.isAstronautCorrect = function (astronaut)
         typeof birth !== 'string' ||
         typeof name !== 'string' ||
         typeof nationality !== 'string' ||
-        (!Array.isArray(img_path) || img_path.some(el => typeof el !== 'string')) ||
+        typeof img_path !== 'string' ||
         typeof agency !== 'string' ||
-        (!Array.isArray(tags) || tags.some(el => typeof el !== 'string'))
+        typeof tags !== 'string'
     )
     { return false; }
 
@@ -31,7 +31,7 @@ exports.isExoplanetCorrect = function (exoplanet)
         typeof description !== 'string' ||
         typeof img_path !== 'string' ||
         typeof source_url !== 'string' ||
-        (!Array.isArray(tags) || tags.some(el => typeof el !== 'string'))
+        typeof tags !== 'string'
     )
     { return false; }
 
@@ -49,9 +49,9 @@ exports.isMissionCorrect = function (mission)
         typeof title !== 'string' ||
         //typeof title_lowcase  !== 'string' ||
         typeof description !== 'string' ||
-        (!Array.isArray(img_path) || img_path.some(el => typeof el !== 'string')) ||
+        typeof img_path !== 'string' ||
         typeof source_url !== 'string' ||
-        (!Array.isArray(tags) || tags.some(el => typeof el !== 'string'))
+        typeof tags !== 'string'
     )
     { return false; }
 
@@ -70,7 +70,7 @@ exports.isNewsCorrect = function (news)
         typeof content !== 'string' ||
         typeof img_path !== 'string' ||
         typeof source_url !== 'string' ||
-        (!Array.isArray(tags) || tags.some(el => typeof el !== 'string'))
+        typeof tags !== 'string'
     )
     { return false; }
 
@@ -87,9 +87,9 @@ exports.isTelescopeCorrect = function (telescope)
         typeof description !==  'string' ||
         typeof name !==  'string' ||
         typeof launch_date !==  'string' ||
-        (!Array.isArray(img_path) || img_path.some(el => typeof el !== 'string')) ||
+        typeof img_path !== 'string' ||
         typeof source_url !== 'string' ||
-        (!Array.isArray(tags) || tags.some(el => typeof el !== 'string'))
+        typeof tags !== 'string'
     )
     { return false; }
 

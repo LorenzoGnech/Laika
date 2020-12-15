@@ -105,12 +105,14 @@ router.post('', async (req, res) =>
     }
     else
     {
-        var tags_original = req.body.tags;
+        var tags_original = req.body.tags.split(",");
         var tags_lower = [];
         
         for (i in tags_original){
             tags_lower.push(tags_original[i].toLowerCase());
         }
+
+        var img = req.body.img_path.split(",");
 
         let name_lowcase = req.body.name.toLowerCase();
         var lowlist = name_lowcase.split(" ");
@@ -125,7 +127,7 @@ router.post('', async (req, res) =>
             name: newTempAstronaut.name,
             name_lowcase: lowlist,
             nationality: newTempAstronaut.nationality,
-            img_path: newTempAstronaut.img_path,
+            img_path: img,
             agency: newTempAstronaut.agency,
             tags: tags_lower
         });
@@ -189,12 +191,14 @@ router.put('/:id', async (req, res) =>
     }
     else
     {
-        var tags_original = req.body.tags;
+        var tags_original = req.body.tags.split(",");
         var tags_lower = [];
         
         for (i in tags_original){
             tags_lower.push(tags_original[i].toLowerCase());
         }
+
+        var img = req.body.img_path.split(",");
 
         let name_lowcase = req.body.name.toLowerCase();
         var lowlist = name_lowcase.split(" ");
@@ -202,6 +206,7 @@ router.put('/:id', async (req, res) =>
         valuesToUpdate.birth = new Date(Date.parse(req.body.birth)).toISOString();
         valuesToUpdate.name_lowcase = lowlist;
         valuesToUpdate.tags = tags_lower;
+        valuesToUpdate.img_path = img;
     
         Astronauts.updateOne({_id: id}, {$set: valuesToUpdate})
         .exec()

@@ -107,7 +107,7 @@ router.post('', async (req, res) =>
     }
     else
     {
-        var tags_original = req.body.tags;
+        var tags_original = req.body.tags.split(",");
         var tags_lower = [];
         
         for (i in tags_original){
@@ -199,12 +199,14 @@ router.put('/:id', async (req, res) =>
     }
     else
     {
-        var tags_original = req.body.tags;
+        var tags_original = req.body.tags.split(",");
         var tags_lower = [];
         
         for (i in tags_original){
             tags_lower.push(tags_original[i].toLowerCase());
         }
+
+        var img = req.body.img_path.split(",");
 
         let title_lowcase = req.body.title.toLowerCase();
         var lowlist = title_lowcase.split(" ");
@@ -212,6 +214,7 @@ router.put('/:id', async (req, res) =>
         valuesToUpdate.date = new Date(Date.parse(req.body.date)).toISOString();
         valuesToUpdate.title_lowcase = lowlist;
         valuesToUpdate.tags = tags_lower;
+        valuesToUpdate.img_path = img;
     
         Missions.updateOne({_id: id}, {$set: valuesToUpdate})
         .exec()
