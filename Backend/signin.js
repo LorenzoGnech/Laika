@@ -9,7 +9,7 @@ router.post('', async (req, res) =>
 {
     let newTempUser = {
         "email": req.body.email,
-        "password": req.body.password,
+        "password": req.body.password
     };
 
     if (!isUserCorrect(newTempUser))
