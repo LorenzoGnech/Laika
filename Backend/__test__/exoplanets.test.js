@@ -48,13 +48,19 @@ describe('GET methods for exoplanets', () =>
 
 describe('Unsafe methods for exoplanets', () => 
 {
-    let token = jwt.sign(
-        {email: 'mock@email.dumb'},
+    let adminToken = jwt.sign(
+        {email: 'mock@email.dumb', is_admin: true},
         process.env.ACCESS_TOKEN_SECRET,
         {expiresIn: 100000000000}
     );
 
-    // TESTS: if user is logged in, if request has correct form
+    let nonAdminToken = jwt.sign(
+        {email: 'mock@email.dumb', is_admin: false},
+        process.env.ACCESS_TOKEN_SECRET,
+        {expiresIn: 100000000000}
+    );
+
+    // TESTS: if user is logged in, if user is admin, if request has correct form
     describe('POST methods for exoplanets', () => 
     {
         test('POST /api/v1/exoplanets without a logged user', async () =>
@@ -68,6 +74,20 @@ describe('Unsafe methods for exoplanets', () =>
             expect(response.body).toStrictEqual({ error: 'No token provided.' });
         });
 
+        test('POST /api/v1/exoplanets with a non-admin user', async () =>
+        {
+            let exoplanet = { name: "Kepler-102930293", errori: "di scrittura" };
+
+            const response = await agent
+                .post('/api/v1/exoplanets')
+                .set('Accept', 'application/json')
+                .set('x-access-token', nonAdminToken)
+                .send(exoplanet);
+
+            expect(response.status).toBe(403);
+            expect(response.body).toStrictEqual({ error: 'User is not admin.' });
+        });
+
         test('POST /api/v1/exoplanets with incorrect exoplanet', async () =>
         {
             let exoplanet = { name: "Kepler-102930293", errori: "di scrittura" };
@@ -75,7 +95,7 @@ describe('Unsafe methods for exoplanets', () =>
             const response = await agent
                 .post('/api/v1/exoplanets')
                 .set('Accept', 'application/json')
-                .set('x-access-token', token)
+                .set('x-access-token', adminToken)
                 .send(exoplanet);
 
             expect(response.status).toBe(400);
@@ -83,7 +103,8 @@ describe('Unsafe methods for exoplanets', () =>
         });
     });
 
-    // TESTS: if user is logged in, if request has correct form, if request denied because file does not exist
+    // TESTS: if user is logged in, if user is admin, if request has correct form,
+    // if request denied because file does not exist
     describe('PUT method for exoplanets', () =>
     {
         test('PUT /api/v1/exoplanets without a logged user', async () =>
@@ -96,13 +117,27 @@ describe('Unsafe methods for exoplanets', () =>
             expect(response.status).toBe(401);
             expect(response.body).toStrictEqual({ error: 'No token provided.' });
         });
+
+        test('PUT /api/v1/exoplanets with a non-admin user', async () =>
+        {
+            let exoplanet = { name: "Kepler-102930293", errori: "di scrittura" };
+
+            const response = await agent
+                .put('/api/v1/exoplanets')
+                .set('Accept', 'application/json')
+                .set('x-access-token', nonAdminToken)
+                .send(exoplanet);
+
+            expect(response.status).toBe(403);
+            expect(response.body).toStrictEqual({ error: 'User is not admin.' });
+        });
         
         test('PUT /api/v1/exoplanets with incorrect exoplanets', async () =>
         {
             const response = await agent
                 .put('/api/v1/exoplanets/13')
                 .set('Accept', 'application/json')
-                .set('x-access-token', token)
+                .set('x-access-token', adminToken)
                 .send({ name: "Kepler-1313", errori: "di scrittura" });
 
             expect(response.status).toBe(400);
@@ -123,7 +158,7 @@ describe('Unsafe methods for exoplanets', () =>
             const response = await agent
                 .put('/api/v1/exoplanets/0')
                 .set('Accept', 'application/json')
-                .set('x-access-token', token)
+                .set('x-access-token', adminToken)
                 .send(exoplanet);
 
             expect(response.status).toBe(400);
@@ -131,7 +166,7 @@ describe('Unsafe methods for exoplanets', () =>
         });
     });
 
-    // TESTS: if user is logged in, if request denied because file does not exist
+    // TESTS: if user is logged in, if user is admin, if request denied because file does not exist
     describe('DELETE method for exoplanets', () =>
     {
         test('DELETE /api/v1/exoplanets without a logged user', async () =>
@@ -145,11 +180,23 @@ describe('Unsafe methods for exoplanets', () =>
             expect(response.body).toStrictEqual({ error: 'No token provided.' });
         });
 
+        test('DELETE /api/v1/exoplanets with a non-admin user', async () =>
+        {
+            const response = await agent
+                .delete('/api/v1/exoplanets')
+                .set('Accept', 'application/json')
+                .set('x-access-token', nonAdminToken)
+                .send({ stuff: 'whatever' });
+
+            expect(response.status).toBe(403);
+            expect(response.body).toStrictEqual({ error: 'User is not admin.' });
+        });
+
         test('DELETE /api/v1/exoplanets but the exoplanet does not exists', async () =>
         {
             const response = await agent
                 .delete('/api/v1/exoplanets/0')
-                .set('x-access-token', token);
+                .set('x-access-token', adminToken);
 
             expect(response.status).toBe(400);
             expect(response.body).toStrictEqual({ error: 'Object passed has incorrect values.' });

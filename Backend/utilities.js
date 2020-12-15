@@ -98,12 +98,13 @@ exports.isTelescopeCorrect = function (telescope)
 exports.isUserCorrect = function (user)
 {
     const {
-        email, password
+        email, password, is_admin
     } = user;
 
     if ( 
         typeof email !== 'string' ||
-        typeof password !== 'string'
+        typeof password !== 'string' ||
+        typeof is_admin !== 'boolean'
     )
     { return false; }
 
@@ -114,7 +115,7 @@ exports.isUserCorrect = function (user)
 exports.dbErrorHandler = function (error)
 {
     let errorMsg, errorCode;
-    console.log(error);
+    //console.log(error);
 
     if (error.name === 'CastError')
     {
