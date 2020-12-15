@@ -41,15 +41,15 @@ exports.isExoplanetCorrect = function (exoplanet)
 exports.isMissionCorrect = function (mission)
 {
     const {
-        date, title, title_lowcase, description, img_path, source_url, tags
+        date, title,  description, img_path, source_url, tags
     } = mission;
 
     if ( 
         typeof date !== 'string' ||
         typeof title !== 'string' ||
-        typeof title_lowcase  !== 'string' ||
+        //typeof title_lowcase  !== 'string' ||
         typeof description !== 'string' ||
-        typeof img_path !== 'string' ||
+        (!Array.isArray(img_path) || img_path.some(el => typeof el !== 'string')) ||
         typeof source_url !== 'string' ||
         (!Array.isArray(tags) || tags.some(el => typeof el !== 'string'))
     )

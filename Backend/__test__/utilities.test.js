@@ -20,7 +20,7 @@ test('Mission is correct', () =>
         "date": "1967-03-12T00:00:00.000Z",
         "title": "Mario Rossi",
         "description": "Ita",
-        "img_path": "file.jpg",
+        "img_path": ["file.jpg"],
         "source_url": "ESA",
         "tags": ["nice", "boy"]
     }

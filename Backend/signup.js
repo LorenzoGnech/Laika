@@ -9,7 +9,6 @@ router.post('', async (req, res) =>
     let newTempUser = {
         "email": req.body.email,
         "password": req.body.password,
-        "is_admin": false
     };
 
     if (!isUserCorrect(newTempUser))
