@@ -76,13 +76,13 @@ describe('Unsafe methods for news', () =>
 
         test('POST /api/v1/news with a non-admin user', async () =>
         {
-            let astronaut = { title: "News testing POST", errori: "di scrittura" };
+            let news = { title: "News testing POST", errori: "di scrittura" };
 
             const response = await agent
                 .post('/api/v1/news')
                 .set('Accept', 'application/json')
                 .set('x-access-token', nonAdminToken)
-                .send(astronaut);
+                .send(news);
 
             expect(response.status).toBe(403);
             expect(response.body).toStrictEqual({ error: 'User is not admin.' });
@@ -90,13 +90,13 @@ describe('Unsafe methods for news', () =>
 
         test('POST /api/v1/news with incorrect news', async () =>
         {
-            let astronaut = { title: "News testing POST", errori: "di scrittura" };
+            let news = { title: "News testing POST", errori: "di scrittura" };
 
             const response = await agent
                 .post('/api/v1/news')
                 .set('Accept', 'application/json')
                 .set('x-access-token', adminToken)
-                .send(astronaut);
+                .send(news);
 
             expect(response.status).toBe(400);
             expect(response.body).toStrictEqual({ error: 'Object sent is not a news.' });
@@ -120,13 +120,13 @@ describe('Unsafe methods for news', () =>
 
         test('PUT /api/v1/news with a non-admin user', async () =>
         {
-            let astronaut = { title: "News Testing PUT", errori: "di scrittura" };
+            let news = { title: "News Testing PUT", errori: "di scrittura" };
 
             const response = await agent
                 .put('/api/v1/news')
                 .set('Accept', 'application/json')
                 .set('x-access-token', nonAdminToken)
-                .send(astronaut);
+                .send(news);
 
             expect(response.status).toBe(403);
             expect(response.body).toStrictEqual({ error: 'User is not admin.' });
