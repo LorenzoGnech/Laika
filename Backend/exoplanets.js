@@ -90,13 +90,22 @@ router.post('', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
 
+    var tags_original = [req.body.tags];
+    var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+
+    tags_lower = [tags_lower[1].split(",")][0];
+
     let newTempExoplanet = {
         "discover_date": req.body.discover_date,
         "name": req.body.name,
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isExoplanetCorrect(newTempExoplanet))
@@ -109,6 +118,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             discover_date: new Date(Date.parse(newTempExoplanet.discover_date)).toISOString(),
             name: newTempExoplanet.name,
+            name_lowcase: newTempExoplanet.name.toLowerCase(),
             description: newTempExoplanet.description,
             img_path: newTempExoplanet.img_path,
             source_url: newTempExoplanet.source_url,
@@ -161,14 +171,22 @@ router.put('/:id', async (req, res) =>
 {
     // TO IMPLEMENT AUTH
 
+    var tags_original = [req.body.tags];
+    var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+    
     let id = req.params.id;
     let valuesToUpdate = {
         "discover_date": req.body.discover_date,
         "name": req.body.name,
+        "name_lowcase": req.body.name.toLowerCase(),
         "description": req.body.description,
         "img_path": req.body.img_path,
         "source_url": req.body.source_url,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isExoplanetCorrect(valuesToUpdate))
@@ -184,7 +202,7 @@ router.put('/:id', async (req, res) =>
 
         .then(result => {
             res.status(200).json({
-                message: "News updated",
+                message: "Exoplanet updated",
             });
         })
 

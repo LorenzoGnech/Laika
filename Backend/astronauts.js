@@ -88,14 +88,29 @@ router.get('/latest/:size', async (req, res) =>
 
 // POST a new astronaut. Requires authentication.
 router.post('', async (req, res) =>
-{
+{ 
+
+    var tags_original = [req.body.tags];
+    var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+
+    tags_lower = [tags_lower[1].split(",")][0];
+    array_img = req.body.img_path;
+    array_img = [String(array_img).split(",")][0];
+
+    name_lowcase = req.body.name.toLowerCase();
+
     let newTempAstronaut = {
         "birth": req.body.birth,
         "name": req.body.name,
+        "name_lowcase": name_lowcase,
         "nationality": req.body.nationality,
-        "img_path": req.body.img_path,
+        "img_path": array_img,
         "agency": req.body.agency,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isAstronautCorrect(newTempAstronaut))
@@ -108,6 +123,7 @@ router.post('', async (req, res) =>
             _id: mongoose.Types.ObjectId(),
             birth: new Date(Date.parse(newTempAstronaut.birth)).toISOString(),
             name: newTempAstronaut.name,
+            name_lowcase: newTempAstronaut.name.toLowerCase(),
             nationality: newTempAstronaut.nationality,
             img_path: newTempAstronaut.img_path,
             agency: newTempAstronaut.agency,
@@ -161,13 +177,28 @@ router.put('/:id', async (req, res) =>
     // TO IMPLEMENT AUTH
 
     let id = req.params.id;
+
+    var tags_original = [req.body.tags];
+    var tags_lower = [];
+    tags_lower = [String(tags_original).split(",")];
+    for (i in tags_original){
+        tags_lower.push(tags_original[i].toLowerCase());
+    }
+
+    tags_lower = [tags_lower[1].split(",")][0];
+    array_img = req.body.img_path;
+    array_img = [String(array_img).split(",")][0];
+    name_lowcase = req.body.name.toLowerCase();
+
+
     let valuesToUpdate = {
         "birth": req.body.birth,
         "name": req.body.name,
+        "name_lowcase": name_lowcase,
         "nationality": req.body.nationality,
-        "img_path": req.body.img_path,
+        "img_path": array_img,
         "agency": req.body.agency,
-        "tags": req.body.tags
+        "tags": tags_lower
     };
 
     if (!isAstronautCorrect(valuesToUpdate))

@@ -18,6 +18,7 @@
         </div>
         <div class="container">
         <a @click=handleLogout id="api-button">LOGOUT</a>
+        <a @click=create id="api-button">CREATE ARTICLE</a>
         </div>
     </div>
     <div v-else>
@@ -143,6 +144,9 @@ export default {
             this.$store.commit("_Logout");
             this.$router.push("/");
         },
+        create(){
+            this.$router.push("/create");
+        }
     }
   }
 </script>
