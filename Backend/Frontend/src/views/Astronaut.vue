@@ -13,7 +13,7 @@
     <div class="container">
         <div class="newsFooter">
             <p class="footerText">Nationality: {{astronaut.nationality}} </p>
-            <p class="footerText">Birthdate: {{astronaut.birth}} </p>
+            <p class="footerText">Birthdate: {{astronaut.birth != undefined ? astronaut.birth.slice(0,10) : astronaut.birth}} </p>
             <p class="footerText">Agency: {{astronaut.agency}}</p>
         </div>
     </div>

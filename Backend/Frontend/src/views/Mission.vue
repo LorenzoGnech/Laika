@@ -19,7 +19,7 @@
     <div class="container">
         <pre class="newsContent">{{mission.description}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Date: {{mission.date}} </p>
+            <p class="footerText">Date: {{mission.date != undefined ? mission.date.slice(0,10) : mission.date}} </p>
             <p class="footerText">Source: {{mission.source_url}}</p>
         </div>
     </div>

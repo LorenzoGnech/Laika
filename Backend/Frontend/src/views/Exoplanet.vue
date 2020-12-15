@@ -13,7 +13,7 @@
     <div class="container">
         <pre class="newsContent">{{exoplanet.description}}</pre>
         <div class="newsFooter">
-            <p class="footerText">Date: {{exoplanet.discover_date}} </p>
+            <p class="footerText">Discovery Date: {{exoplanet.discover_date ? exoplanet.discover_date.slice(0,10) : exoplanet.discover_date}} </p>
             <p class="footerText">Source: {{exoplanet.source_url}}</p>
         </div>
     </div>
