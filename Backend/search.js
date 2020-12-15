@@ -13,7 +13,7 @@ router.get('/missions/:query', async (req, res) => {
     query = query.toLowerCase();
     query = query.split("+")
 
-    Missions.find({$or:[{tags:{$in:query}},{title:{$in:query}}]})   
+    Missions.find({$or:[{tags:{$in:query}},{title_lowcase:{$in:query}}]})   
     .exec()
 
     .then(doc => {
@@ -37,7 +37,7 @@ router.get('/news/:query', async (req, res) => {
     query = query.toLowerCase();
     query = query.split("+")
 
-    News.find({$or:[{tags:{$in:query}},{title:{$in:query}}]})   
+    News.find({$or:[{tags:{$in:query}},{title_lowcase:{$in:query}}]})   
     .exec()
 
     .then(doc => {
@@ -60,7 +60,7 @@ router.get('/telescopes/:query', async (req, res) => {
     query = query.toLowerCase();
     query = query.split("+")
 
-    Telescopes.find({$or:[{tags:{$in:query}},{name:{$in:query}}]})   
+    Telescopes.find({$or:[{tags:{$in:query}},{name_lowcase:{$in:query}}]})   
     .exec()
 
     .then(doc => {
@@ -83,7 +83,7 @@ router.get('/exoplanets/:query', async (req, res) => {
     query = query.toLowerCase();
     query = query.split("+")
 
-    Exoplanets.find({$or:[{tags:{$in:query}},{name:{$in:query}}]})   
+    Exoplanets.find({$or:[{tags:{$in:query}},{name_lowcase:{$in:query}}]})   
     .exec()
 
     .then(doc => {
@@ -106,7 +106,7 @@ router.get('/astronauts/:query', async (req, res) => {
     query = query.toLowerCase();
     query = query.split("+")
 
-    Astronauts.find({$or:[{tags:{$in:query}},{name:{$in:query}}]})   
+    Astronauts.find({$or:[{tags:{$in:query}},{name_lowcase:{$in:query}}]})   
     .exec()
 
     .then(doc => {
