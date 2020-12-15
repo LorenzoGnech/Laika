@@ -81,9 +81,9 @@ export default {
           email: data.email,
           token: data.token,
           id: data.userId,
-          admin: false
+          admin: data.isAdmin
         };
-        console.log(jwt.verify(data.token, process.env.ACCESS_TOKEN_SECRET).is_admin)
+        console.log(data.isAdmin);
         this.$store.commit("_Login", info_login);
         this.$router.push("/");
       }

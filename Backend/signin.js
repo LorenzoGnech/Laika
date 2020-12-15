@@ -40,7 +40,8 @@ router.post('', async (req, res) =>
                     email: user.email,
                     message: 'Enjoy your token!',
                     token: token,
-                    userId: user._id
+                    userId: user._id,
+                    isAdmin: user.is_admin
                 });
             }
         }
