@@ -777,11 +777,6 @@ If you're signed into your account, you may save an article to then read it late
 
 + Response 202 (application/json)
 
-    + Headers
-
-            Location: /users/2
-            
-    + Body
     
             [
                 {
@@ -835,11 +830,6 @@ If you're signed into your account, you may follow a specific mission to receive
 
 + Response 202 (application/json)
 
-    + Headers
-
-            Location: /users/2
-            
-    + Body
     
             [
                 {
@@ -883,3 +873,184 @@ If you're signed into your account, you unfollow a mission you followed earlier.
 
 
 + Response 202 (application/json)
+
+## Search news [/api/v1/news/{query}]
+
+### Execute query [GET]
+
+Matches the query with the title and the tags 
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+            [
+                {
+                    "tags":["nasa","spacex"],
+                    "_id":"5fd7a2e7f401d8460e80f3b4",
+                    "date":"2020-12-14T17:37:43.558Z",
+                    "title":"SXM-7 Mission",
+                    "title_lowcase":"sxm-7 mission",
+                    "content":"On Sunday, December 13 at 12:30 p.m. EST, Falcon 9 launched the SXM-7 mission from Space Launch Complex 40 (SLC-40) at Cape Canaveral Space Force Station, Florida",
+                    "img_path":"https://www.nasaspaceflight.com/wp-content/uploads/2020/12/SXM-7-Falcon-9-B1051-LC-40-vertical-121020-SpaceX-1-scaled.jpg",
+                    "source_url":"www.spacex.com",
+                    "__v":0
+                }, 
+                {
+                    "tags":["nasa","spacex"],
+                    "_id":"5fd889565bd2a2ea724e443d",
+                    "date":"2020-12-13T17:37:43.558Z",
+                    "title":"NASA, ESA Choose Astronauts for SpaceX Crew-3 Mission to Space Station",
+                    "title_lowcase":"nasa, esa choose astronauts for spacex crew-3 mission to space station",
+                    "content":"NASA and ESA (European Space Agency) have selected three astronauts to serve as crew members for NASA’s SpaceX Crew-3 mission to the International Space Station, which is expected to launch in the fall of 2021.",
+                    "img_path":"https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/crew-3_composite.png",
+                    "source_url":"www.nasa.gov",
+                    "__v":0
+                }
+            ]
+            
+## Search missions [/api/v1/missions/{query}]
+
+### Execute query [GET]
+
+Matches the query with the title and the tags 
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+            [
+                {
+                    "img_path":["https://www.nasaspaceflight.com/wp-content/uploads/2020/12/SXM-7-Falcon-9-B1051-LC-40-vertical-121020-SpaceX-1-scaled.jpg"],
+                    "tags":["spacex","nasa"],
+                    "_id":"5fd78b1d8fcc26322f85a691",
+                    "date":"2020-12-13T00:00:00.000Z",
+                    "title":"SXM-7 Mission",
+                    "title_lowcase":"sxm-7 mission",
+                    "description":"On Sunday, December 13 at 12:30 p.m. EST, Falcon 9 launched the SXM-7 mission from Space Launch Complex 40 (SLC-40) at Cape Canaveral Space Force Station, Florida - SpaceX's 25th mission in 2020.",
+                    "source_url":"www.spacex.com","__v":0
+                },
+                {
+                    "img_path":["https://www.nasa.gov/sites/default/files/thumbnails/image/crew-1_ceitpt2-20200612-dsc05519_2_.jpg"],
+                    "tags":["spacex","nasa"],
+                    "_id":"5fd8a2e8fcfbb0661856332c",
+                    "date":"2020-11-16T00:00:00.000Z",
+                    "title":"CREW-1 MISSION",
+                    "title_lowcase":"crew-1 mission",
+                    "description":"On Monday, November 16 at 11:01 p.m. EST, 04:01 UTC on November 17, SpaceX’s Dragon autonomously docked with the International Space Station (ISS) after Falcon 9 launched the spacecraft to orbit from historic Launch Complex 39A (LC-39A) at NASA’s Kennedy Space Center in Florida on Sunday, November 15, 2020.",
+                    "source_url":"www.spacex.com",
+                    "__v":0
+                }
+            ]
+            
+## Search astronauts [/api/v1/astronauts/{query}]
+
+### Execute query [GET]
+
+Matches the query with the title and the tags 
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+            [
+                {
+                    "img_path":["https://aerospacecue.it/wp-content/uploads/2020/01/Samantha_Cristoforetti_official_portrait_in_an_EMU_spacesuit.jpg"],
+                    "tags":["esa"],
+                    "_id":"5fd7923523272736a0888a4d",
+                    "birth":"1977-04-26T00:00:00.000Z",
+                    "name":"Samantha Cristoforetti",
+                    "nationality":"ITA",
+                    "agency":"ESA",
+                    "__v":0
+                },
+                {
+                    "img_path":["https://upload.wikimedia.org/wikipedia/commons/d/d8/Luca_Parmitano_EMU.jpg"],
+                    "tags":["esa"],
+                    "_id":"5fd792657392c030bcb21492",
+                    "birth":"1976-09-27T00:00:00.000Z",
+                    "name":"Luca Parmitano",
+                    "nationality":"ITA",
+                    "agency":"ESA",
+                    "__v":0
+                },
+                {
+                    "img_path":["https://upload.wikimedia.org/wikipedia/commons/6/60/Paolo_A._Nespoli_2016.jpg"],
+                    "tags":["esa"],
+                    "_id":"5fd792c97392c030bcb21493",
+                    "birth":"1957-04-06T00:00:00.000Z",
+                    "name":"Paolo Nespoli",
+                    "nationality":"ITA",
+                    "agency":"ESA",
+                    "__v":0
+                }
+            ]
+            
+## Search telescopes [/api/v1/telescopes/{query}]
+
+### Execute query [GET]
+
+Matches the query with the title and the tags 
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+            [
+                    {
+                        "img_path":["https://upload.wikimedia.org/wikipedia/commons/f/fd/Chandra_artist_illustration.jpg"],
+                        "tags":["nasa","usa"],
+                        "_id":"5fd7a6e53a4e2e4921a68acd",
+                        "name":"Chandra X-ray Observatory",
+                        "name_lowcase":"chandra x-ray observatory",
+                        "description":"The Chandra X-ray Observatory (CXO), previously known as the Advanced X-ray Astrophysics Facility (AXAF), is a Flagship-class space telescope launched aboard the Space Shuttle Columbia during STS-93 by NASA on July 23, 1999. Chandra is sensitive to X-ray sources 100 times fainter than any previous X-ray telescope, enabled by the high angular resolution of its mirrors. Since the Earth's atmosphere absorbs the vast majority of X-rays, they are not detectable from Earth-based telescopes; therefore space-based telescopes are required to make these observations. Chandra is an Earth satellite in a 64-hour orbit, and its mission is ongoing as of 2020.",
+                        "launch_date":"1999-07-03T00:00:00.000Z",
+                        "source_url":"https://www.nasa.gov/",
+                        "__v":0
+                    },
+                    {
+                        "img_path":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/CGRO_s37-96-010.jpg/1024px-CGRO_s37-96-010.jpg"],
+                        "tags":["nasa","usa"],
+                        "_id":"5fd8a83dfcfbb0661856332e",
+                        "name":"Compton Gamma Ray Observatory",
+                        "name_lowcase":"compton gamma ray observatory",
+                        "description":"The Compton Gamma Ray Observatory (CGRO) was a space observatory detecting photons with energies from 20 keV to 30 GeV, in Earth orbit from 1991 to 2000. The observatory featured four main telescopes in one spacecraft, covering X-rays and gamma rays, including various specialized sub-instruments and detectors.",
+                        "launch_date":"1991-04-05T00:00:00.000Z",
+                        "source_url":"https://www.nasa.gov/",
+                        "__v":0
+                    }
+                ]
+                
+## Search exoplanets [/api/v1/exoplanets/{query}]
+
+### Execute query [GET]
+
+Matches the query with the title and the tags 
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+            [
+                {
+                    "tags":["nasa"],
+                    "_id":"5fd8aa9d6da89909aac9d600",
+                    "discover_date":"1996-01-17T23:00:00.000Z",
+                    "name":"70 Virginis b",
+                    "name_lowcase":"70 virginis b",
+                    "description":"70 Virginis b (abbreviated 70 Vir b) is an extrasolar planet approximately 60 light-years away in the constellation of Virgo.",
+                    "img_path":"https://upload.wikimedia.org/wikipedia/commons/c/c0/70_virginis_b_%28Celestia%29.jpg",
+                    "source_url":"www.nasa.gov",
+                    "__v":0
+                }, {
+                    "tags":["nasa"],
+                    "_id":"5fd8aa9d6da89909aac9d600",
+                    "discover_date":"1996-01-17T23:00:00.000Z",
+                    "name":"70 Virginis b",
+                    "name_lowcase":"70 virginis b",
+                    "description":"70 Virginis b (abbreviated 70 Vir b) is an extrasolar planet approximately 60 light-years away in the constellation of Virgo.",
+                    "img_path":"https://upload.wikimedia.org/wikipedia/commons/c/c0/70_virginis_b_%28Celestia%29.jpg",
+                    "source_url":"www.nasa.gov",
+                    "__v":0
+                }
+            ]
