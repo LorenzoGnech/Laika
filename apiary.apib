@@ -767,7 +767,36 @@ You may sign in to an existing user account by providing a username and password
 
             Location: /users/2
             
-## Saved News [/api/v1/save]
+## Get saved News [/api/v1/news/favourite]
+            
+### Get a saved article [GET]
+
+If you're signed into your account, you may save an article to then read it later.
+
++ Request (application/json)
+
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /users/2
+            
+    + Body
+    
+            [
+                {
+                    "newsId":"5fd7a2e7f401d8460e80f3b4",
+                    "userId":"jbndfbj34jhbjhb33334n3bnh",
+                    "_id":"sdfkjbsdnkjbsnkbdjkjbksjh"
+                },
+                {
+                    "newsId":"5fd7a2e7f401d8460e80f3b4",
+                    "userId":"jbndfbj34jhbjhb33334n3bnh",
+                    "_id":"sdfkjbsdnkjbsnkbdjkjbksjh"
+                }
+            ]
+            
+## Save News [/api/v1/news/favourite/{userId}]
             
 ### Save a specific article [POST]
 
@@ -776,8 +805,8 @@ If you're signed into your account, you may save an article to then read it late
 + Request (application/json)
 
             {
-                "userID": "unique ID",
-                "article_id": 3,
+                "userId": "unique ID",
+                "newsid": "3",
             }
 
 + Response 202 (application/json)
@@ -786,18 +815,46 @@ If you're signed into your account, you may save an article to then read it late
 
             Location: /users/2
             
+## Delete saved News [/api/v1/news/favourite/{userId}/{newsId}]
+            
 ### Delete a specific article [DELETE]
 
 If you're signed into your account, you may delete an article you saved previously.
 
 + Request (application/json)
 
-            {
-                "userID": "unique ID",
-                "article_id": 3,
-            }
++ Response 202 (application/json)
 
-## Followed Missions [/api/v1/follow]
+## Get followed Missions [/api/v1/missions/followed/{userId}]
+            
+### Follow a specific mission [GET]
+
+If you're signed into your account, you may follow a specific mission to receive updates of it by name.
+
++ Request (application/json)
+
++ Response 202 (application/json)
+
+    + Headers
+
+            Location: /users/2
+            
+    + Body
+    
+            [
+                {
+                    "missionId":"5fd7a2e7f401d8460e80f3b4",
+                    "userId":"jbndfbj34jhbjhb33334n3bnh",
+                    "_id":"sdfkjbsdnkjbsnkbdjkjbksjh"
+                },
+                {
+                    "missionId":"5fd7a2e7f401d8460e80f3b4",
+                    "userId":"jbndfbj34jhbjhb33334n3bnh",
+                    "_id":"sdfkjbsdnkjbsnkbdjkjbksjh"
+                }
+            ]
+
+## Follow Missions [/api/v1/missions/followed]
             
 ### Follow a specific mission [POST]
 
@@ -806,8 +863,8 @@ If you're signed into your account, you may follow a specific mission to receive
 + Request (application/json)
 
             {
-                "userID": "unique ID",
-                "mission_id": 3,
+                "userId": "unique ID",
+                "missionId": "3",
             }
 
 + Response 202 (application/json)
@@ -815,6 +872,8 @@ If you're signed into your account, you may follow a specific mission to receive
     + Headers
 
             Location: /users/2
+            
+## Delete Followed Missions [/api/v1/missions/followed/{userId}/{missionId}]
 
 ### Unfollow a specific mission [DELETE]
 
@@ -822,13 +881,5 @@ If you're signed into your account, you unfollow a mission you followed earlier.
 
 + Request (application/json)
 
-            {
-                "userID": "unique ID",
-                "mission_id": 3,
-            }
 
 + Response 202 (application/json)
-
-    + Headers
-
-            Location: /users/2
